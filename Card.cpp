@@ -1,8 +1,9 @@
 #include "Card.h"
 
-
+int Card::CardCounter = 0;
 Card::Card(const CellPosition & pos) : GameObject(pos) // sets the cell position of the GameObject
 {
+	CardCounter++;
 }
 
 void Card::SetCardNumber(int cnum)
@@ -35,6 +36,16 @@ void Card::Apply(Grid* pGrid, Player* pPlayer)
 	// "If a player reaches a card of any other type", the following message should be printed then wait mouse click
 
 	pGrid->PrintErrorMessage("You have reached card " + to_string(cardNumber) + ". Click to continue ...");
+}
+
+int Card::Count()
+{
+	return CardCounter;
+}
+
+int Card::GetCount() const
+{
+	return Count();
 }
 
 Card::~Card()

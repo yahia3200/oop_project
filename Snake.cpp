@@ -1,8 +1,9 @@
 #include "Snake.h"
-
+int Snake::SnakeCount = 0;
 Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos):GameObject(startCellPos)
 {
 	this->endCellPos = endCellPos;
+	SnakeCount++;
 
 //Validation 
 }
@@ -27,6 +28,16 @@ void Snake::Apply(Grid* pGrid, Player* pPlayer)
 CellPosition Snake::GetEndPosition() const
 {
 	return endCellPos;
+}
+
+int Snake::Count()
+{
+	return SnakeCount;
+}
+
+int Snake::GetCount() const
+{
+	return Count();
 }
 
 
