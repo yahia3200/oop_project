@@ -149,7 +149,7 @@ void Player::Move(Grid * pGrid, int diceNumber)
 		}
 		//pCell->GetGameObject()->Apply(pGrid, this);
 		if (pCell->GetCellPosition().GetCellNum() == 99)pGrid->SetEndGame(true);
-		if (pGrid->GetEndGame())pOut->PrintMessage("Player "+to_string(this->playerNum)+"Won the Game...");
+		if (pGrid->GetEndGame())pOut->PrintMessage("Player "+to_string(this->playerNum+1)+" Won the Game...");
 	}
 
 }
