@@ -7,7 +7,7 @@ class Ladder :	public GameObject // inherited from GameObject
 	// Note: the "position" data member inherited from the GameObject class is used as the ladder's "Start Cell Position"
 
 	CellPosition endCellPos; // here is the ladder's End Cell Position
-
+	static int LadderCounter;
 public:
 
 	Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos); // A constructor for initialization
@@ -17,7 +17,8 @@ public:
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applys the effect of the ladder by moving player to ladder's end cell
 
 	CellPosition GetEndPosition() const; // A getter for the endCellPos data member
-
+	static int Count();
+	virtual int GetCount()const;
 	virtual ~Ladder(); // Virtual destructor
 };
 

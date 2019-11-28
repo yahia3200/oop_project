@@ -1,9 +1,10 @@
 #include "Ladder.h"
 #include "Player.h"
+int Ladder::LadderCounter = 0;
 Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
 {
 	this->endCellPos = endCellPos;
-	
+	LadderCounter++;
 	///TODO: Do the needed validation
 }
 
@@ -37,6 +38,16 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 CellPosition Ladder::GetEndPosition() const
 {
 	return endCellPos;
+}
+
+int Ladder::Count()
+{
+	return LadderCounter;
+}
+
+int Ladder::GetCount() const
+{
+	return Count();
 }
 
 Ladder::~Ladder()
