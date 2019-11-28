@@ -15,7 +15,7 @@ public :
 
 	CellPosition GetEndPosition() const;
 	static int Count();
-	virtual int GetCount()const;
+	virtual int GetCounter()const;
 	virtual ~Snake();
 };
 

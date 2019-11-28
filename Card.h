@@ -31,7 +31,7 @@ public:
 
 
 	static int Count();
-	virtual int GetCount()const;
+	virtual int GetCounter()const;
 	virtual ~Card(); // A Virtual Destructor
 };
 

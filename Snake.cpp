@@ -35,7 +35,7 @@ int Snake::Count()
 	return SnakeCount;
 }
 
-int Snake::GetCount() const
+int Snake::GetCounter() const
 {
 	return Count();
 }

@@ -22,7 +22,7 @@ public:
 	virtual void Save(ofstream& OutFile, int t);
 
 	static int Count();
-	virtual int GetCount()const;
+	virtual int GetCounter()const;
 
 	virtual ~Ladder(); // Virtual destructor
 };

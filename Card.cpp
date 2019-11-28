@@ -49,7 +49,7 @@ int Card::Count()
 	return CardCounter;
 }
 
-int Card::GetCount() const
+int Card::GetCounter() const
 {
 	return Count();
 }

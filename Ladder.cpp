@@ -51,7 +51,7 @@ int Ladder::Count()
 	return LadderCounter;
 }
 
-int Ladder::GetCount() const
+int Ladder::GetCounter() const
 {
 	return Count();
 }
