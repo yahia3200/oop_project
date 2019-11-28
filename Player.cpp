@@ -120,8 +120,11 @@ void Player::Move(Grid * pGrid, int diceNumber)
 		pos = pos.GetCellPositionFromNum(pCell->GetCellPosition().GetCellNum() + justRolledDiceNum);
 
 		//pos.GetCellPositionFromNum(pos.GetCellNum() + justRolledDiceNum);
-		pos.AddCellNum(justRolledDiceNum);
+		
+		if(pos.GetCellNum()+justRolledDiceNum<=99)
+			pos.AddCellNum(justRolledDiceNum);
 		pGrid->UpdatePlayerCell(this, pos);
+		
 		//Draw(pOut);
 		color playerColor = UI.PlayerColors[playerNum];
 
@@ -146,6 +149,7 @@ void Player::Move(Grid * pGrid, int diceNumber)
 		}
 		//pCell->GetGameObject()->Apply(pGrid, this);
 		if (pCell->GetCellPosition().GetCellNum() == 99)pGrid->SetEndGame(true);
+		if (pGrid->GetEndGame())pOut->PrintMessage("Player "+to_string(this->playerNum)+"Won the Game...");
 	}
 
 }
