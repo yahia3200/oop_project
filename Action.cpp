@@ -6,7 +6,7 @@ Action::Action(ApplicationManager *pApp) : pManager(pApp)
 }
 
 
-// hhh
+
 Action::~Action()
 {
 }

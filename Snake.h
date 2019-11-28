@@ -4,6 +4,7 @@ class Snake :
 	public GameObject
 {
 	CellPosition endCellPos;
+	CellPosition startCellPos;
 	static int SnakeCount;
 public :
 	Snake(const CellPosition& startCellPos, const CellPosition& endCellPos); // A constructor for initialization

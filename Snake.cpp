@@ -1,8 +1,10 @@
 #include "Snake.h"
+
 int Snake::SnakeCount = 0;
 Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos):GameObject(startCellPos)
 {
 	this->endCellPos = endCellPos;
+	this->startCellPos = startCellPos;
 	SnakeCount++;
 
 //Validation 
@@ -43,7 +45,10 @@ int Snake::GetCounter() const
 
 void Snake::Save(ofstream& OutFile, int t)
 {
-
+	if (t == 1)
+	{
+		OutFile << startCellPos.GetCellNum() << " " << endCellPos.GetCellNum() << '\n';
+	}	
 }
 
 Snake::~Snake()

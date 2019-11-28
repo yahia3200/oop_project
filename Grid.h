@@ -80,6 +80,8 @@ public:
 	void PrintErrorMessage(string msg); // Prints an error message on statusbar, Waits for mouse click then clears statusbar
 	int GetcurrPlayerNumber();					    // We added this function once here because it is used many times by other classes
 
+	void SaveAll(ofstream& OutFile,int t);
+
 	~Grid(); // A destructor for any needed deallcations
 };
 

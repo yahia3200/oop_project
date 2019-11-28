@@ -1,10 +1,11 @@
 #include "Grid.h"
-
 #include "Cell.h"
 #include "GameObject.h"
 #include "Ladder.h"
 #include "Card.h"
 #include "Player.h"
+#include <fstream>
+using namespace std;
 
 Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
 {
@@ -257,5 +258,20 @@ Grid::~Grid()
 	for (int i = 0; i < MaxPlayerCount; i++) 
 	{
 		delete PlayerList[i];
+	}
+}
+
+void Grid::SaveAll(ofstream & OutFile,int t)
+{
+	for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) // left to right
+		{
+
+			if (CellList[i][j]->GetGameObject())
+			{
+				CellList[i][j]->GetGameObject()->Save(OutFile,t);
+			}
+		}
 	}
 }

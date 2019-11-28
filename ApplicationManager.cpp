@@ -13,6 +13,7 @@
 #include "CopyCardAction.h"
 #include "CutCardAction.h"
 #include "PasteCardAction.h"
+#include "SaveAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -88,6 +89,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case ITM_DELETE_GAME_OBJECT:
 		pAct = new DeleteGameObject(this);
 	case EXIT:
+		break;
+	case ITM_Save_Grid:
+		pAct = new SaveAction(this);
 		break;
 
 	case TO_PLAY_MODE:

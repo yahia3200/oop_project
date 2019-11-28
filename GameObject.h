@@ -1,5 +1,6 @@
 #pragma once
 #include "Grid.h"
+#include <fstream>
 
 // Base Class for All Game Objects ( ladders, snakes and cards )
 class GameObject

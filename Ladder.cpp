@@ -1,9 +1,11 @@
 #include "Ladder.h"
 #include "Player.h"
+
 int Ladder::LadderCounter = 0;
 Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
 {
 	this->endCellPos = endCellPos;
+	this->startCellPos = startCellPos;
 	LadderCounter++;
 	///TODO: Do the needed validation
 }
@@ -43,7 +45,10 @@ CellPosition Ladder::GetEndPosition() const
 
 void Ladder::Save(ofstream& OutFile, int t)
 {
-
+	if (t == 0)
+	{
+		OutFile << startCellPos.GetCellNum() << " " << endCellPos.GetCellNum() << '\n';
+	}
 }
 
 int Ladder::Count()
