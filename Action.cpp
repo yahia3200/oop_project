@@ -5,6 +5,8 @@ Action::Action(ApplicationManager *pApp) : pManager(pApp)
 	// The constructor initializes the ApplicationManager pointer data member
 }
 
+
+// hhh
 Action::~Action()
 {
 }
