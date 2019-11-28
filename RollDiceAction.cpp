@@ -32,14 +32,16 @@ void RollDiceAction::Execute()
 	// -- If not ended, do the following --:
 	else
 	{
-
+		Player* pPlayer = pGrid->GetCurrentPlayer();
 		// 2- Generate a random number from 1 to 6 --> This step is done for you
 		srand((int)time(NULL)); // time is for different seed each run
 		int diceNumber = 1 + rand() % 6; // from 1 to 6 --> should change seed
-		pOut->PrintMessage("Dice Number Is "+to_string(diceNumber));
-
+		pOut->PrintMessage("Dice Value "+to_string(diceNumber)+" , Click Anywhere to continue..");
+		int x, y;
+		pIn->GetPointClicked(x, y);//Waiting user Action
+		pOut->ClearStatusBar();
 		// 3- Get the "current" player from pGrid
-		Player* pPlayer = pGrid->GetCurrentPlayer();
+		
 		//Player* pPlayer = pGrid->GetPlayer1();
 		// 4- Move the currentPlayer using function Move of class player
 		pPlayer->Move(pGrid, diceNumber);

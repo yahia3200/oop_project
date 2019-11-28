@@ -102,11 +102,15 @@ void Player::Move(Grid * pGrid, int diceNumber)
 	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)
 	turnCount++;
 	Output* pOut = pGrid->GetOutput();
-
+	Input* pIn = pGrid->GetInput();
 	if (turnCount == 3)
 	{
 		turnCount = 0;
 		SetWallet(wallet + 10 * diceNumber);
+		pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased,Click Anywhere to continue  ");
+		int x, y;
+		pIn->GetPointClicked(x, y);//Waiting user Action
+		pOut->ClearStatusBar();
 	}
 
 	else
