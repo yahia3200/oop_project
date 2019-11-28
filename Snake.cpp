@@ -30,6 +30,10 @@ CellPosition Snake::GetEndPosition() const
 }
 
 
+void Snake::Save(ofstream& OutFile, int t)
+{
+
+}
 
 Snake::~Snake()
 {

@@ -11,6 +11,8 @@ public :
 
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applys the effect of the ladder by moving player to ladder's end cell
 
+	virtual void Save(ofstream& OutFile, int t);
+
 	CellPosition GetEndPosition() const;
 	virtual ~Snake();
 };

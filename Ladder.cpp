@@ -39,6 +39,11 @@ CellPosition Ladder::GetEndPosition() const
 	return endCellPos;
 }
 
+void Ladder::Save(ofstream& OutFile, int t)
+{
+
+}
+
 Ladder::~Ladder()
 {
 }
