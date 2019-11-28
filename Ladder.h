@@ -17,14 +17,13 @@ public:
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applys the effect of the ladder by moving player to ladder's end cell
 
 	CellPosition GetEndPosition() const; // A getter for the endCellPos data member
-<<<<<<< HEAD
+
 
 	virtual void Save(ofstream& OutFile, int t);
 
-=======
 	static int Count();
 	virtual int GetCount()const;
->>>>>>> 8e6901293e530ea9a64910aae53213d907d7cdcd
+
 	virtual ~Ladder(); // Virtual destructor
 };
 

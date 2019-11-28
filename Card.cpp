@@ -1,8 +1,9 @@
 #include "Card.h"
 
-
+int Card::CardCounter = 0;
 Card::Card(const CellPosition & pos) : GameObject(pos) // sets the cell position of the GameObject
 {
+	CardCounter++;
 }
 
 void Card::SetCardNumber(int cnum)
@@ -37,10 +38,22 @@ void Card::Apply(Grid* pGrid, Player* pPlayer)
 	pGrid->PrintErrorMessage("You have reached card " + to_string(cardNumber) + ". Click to continue ...");
 }
 
+
 void Card::Save(ofstream& OutFile, int t)
 {
 	
 }
+
+int Card::Count()
+{
+	return CardCounter;
+}
+
+int Card::GetCount() const
+{
+	return Count();
+}
+
 
 Card::~Card()
 {

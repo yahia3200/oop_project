@@ -8,9 +8,10 @@
 // it may have additional data members and functions like: Apply(), ...etc. which have different implementation depending on Card Number
 class Card : public GameObject
 {
+	
 protected:
 	int cardNumber; // an integer representing the card number
-
+	static int CardCounter;
 public:
 	Card(const CellPosition & pos); // A Constructor for card that takes the cell position of it
 
@@ -27,6 +28,10 @@ public:
 	                                                   // It is a virtual function (implementation depends on Card Type)
 	virtual void Save(ofstream& OutFile, int t);
 
+
+
+	static int Count();
+	virtual int GetCount()const;
 	virtual ~Card(); // A Virtual Destructor
 };
 

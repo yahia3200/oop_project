@@ -4,7 +4,7 @@ class Snake :
 	public GameObject
 {
 	CellPosition endCellPos;
-	
+	static int SnakeCount;
 public :
 	Snake(const CellPosition& startCellPos, const CellPosition& endCellPos); // A constructor for initialization
 	virtual void Draw(Output* pOut) const; // Draws a ladder from its start cell to its end cell
@@ -14,6 +14,8 @@ public :
 	virtual void Save(ofstream& OutFile, int t);
 
 	CellPosition GetEndPosition() const;
+	static int Count();
+	virtual int GetCount()const;
 	virtual ~Snake();
 };
 
