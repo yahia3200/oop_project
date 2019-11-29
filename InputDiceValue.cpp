@@ -35,9 +35,33 @@ void InputDiceValue::Execute()
 	}
 	else {
 		int x, y;
-	
-		pOut->PrintMessage("Winner winner! Chicken Dinner! click to continue");
-		pIn->GetPointClicked(x, y);
+
+		srand((int)time(NULL));
+		int randomvalue = 1 + rand() % 3;
+		switch (randomvalue)
+		{
+		case 1:
+			pOut->PrintMessage("Winner winner! Chicken Dinner! click to continue");
+			pIn->GetPointClicked(x, y);
+			break;
+
+		case 2:
+			pOut->PrintMessage("Congratulations! you get no reward for winning");
+			pIn->GetPointClicked(x, y);
+			break;
+
+		case 3:
+			pOut->PrintMessage("Please stop playing and go study you will fail");
+			pIn->GetPointClicked(x, y);
+			break;
+
+
+		default:
+			pOut->PrintMessage("P" + to_string(pGrid->GetcurrPlayerNumber()) + "is winner");
+			pIn->GetPointClicked(x, y);
+			break;
+		}
+
 		Cell* startplayerscell[NumVerticalCells][NumHorizontalCells];
 		for (int i = 0; i < MaxPlayerCount; i++)
 		{
@@ -50,9 +74,14 @@ void InputDiceValue::Execute()
 		{
 			pGrid->AdvanceCurrentPlayer();
 		}
-
+		/*	cout << pGrid->getcurrPlayerNumber() << endl;
+			cout << pGrid->GetEndGame() << endl;
+			cout << pGrid->GetCurrentPlayer()->GetWallet()<<endl;
+			cout << pGrid->GetCurrentPlayer()->GetTurnCount()<<endl;
+			cout << pGrid->GetCurrentPlayer()->GetCell()<<endl;*/
 		pGrid->SetEndGame(false);
-
+		//cout << pGrid->GetEndGame() << endl;	}
+		// -- If not ended, do the following --:
 
 	}
 }
