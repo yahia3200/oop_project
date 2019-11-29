@@ -4,11 +4,12 @@
 #include "Ladder.h"
 #include "Snake.h"
 #include "Card.h"
+#include "Lightning.h"
 Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum)
 {
 	this->pCell = pCell;
 	this->turnCount = 0;
-
+	NumberOfAttacks = 0;
 	// Make all the needed initialization or validations
 }
 
@@ -102,17 +103,47 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	// 6- Apply() the game object of the reached cell (if any)
 
 	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)
-	turnCount++;
+	turnCount++; 
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 	if (turnCount == 3)
 	{
 		turnCount = 0;
-		SetWallet(wallet + 10 * diceNumber);
-		pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased,Click Anywhere to continue  ");
-		int x, y;
-		pIn->GetPointClicked(x, y);//Waiting user Action
-		pOut->ClearStatusBar();
+		pOut->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
+		string ans = pIn->GetSrting(pOut);
+		//while (ans != "y" || ans != "Y" || ans != "n" || ans != "N")
+		//{
+		//	pOut->PrintMessage("Invalid Input,Try Again...");
+		//	ans = pIn->GetSrting(pOut);
+		//}
+		if (ans == "y" || ans == "Y")
+		{
+			pOut->PrintMessage("Press 1.Ice, 2.Fire, 3.Poison, 4.Ice...");
+			int Answer = pIn->GetInteger(pOut);
+			Lightning* Light = pGrid->GetLight();
+			switch (Answer)
+			{
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				
+				Light->Execute();
+				break;
+			default:
+				break;
+			}
+		}
+		else if (ans == "n" || ans == "N") {
+			SetWallet(wallet + 10 * diceNumber);
+			pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased,Click Anywhere to continue  ");
+			int x, y;
+			pIn->GetPointClicked(x, y);//Waiting user Action
+			pOut->ClearStatusBar();
+		}
 	}
 
 	else

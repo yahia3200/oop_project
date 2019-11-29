@@ -16,7 +16,7 @@ class Player
 	int turnCount;         // a counter that starts with 0, is incremented with each dice roll
 	                       // and reset again when reached 3
 	                       // it is used to indicate when to move and when to add to your wallet
-	
+	int NumberOfAttacks;//Determine how many times did the player Attack 
 public:
 
 	Player(Cell * pCell, int playerNum); // Constructor making any needed initializations

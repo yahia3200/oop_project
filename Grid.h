@@ -14,6 +14,7 @@ class Ladder;
 class Card;
 class Player;
 class Snake;
+class Lightning;
 class Grid
 {
 	Output * pOut;   // A pointer to the Output object
@@ -30,7 +31,7 @@ class Grid
 	Card * Clipboard;	   // This is used in copy/cut/paste card (should be set in copy/cut and got in paste)
 
 	bool endGame;	       // A boolean indicating if the Game is ended or not (a player reaches the end cell of the grid or not)
-
+	Lightning* Light;
 public:
 
 	Grid(Input * pIn, Output * pOut);	  // Gives the Grid a Pointer to the Output Object and the Input Object
@@ -47,7 +48,8 @@ public:
 	void UpdatePlayerCell(Player * player, const CellPosition & newPosition); // Update the player's pCell with the CellList's Cell pointer of the "newPosition",
 	                                                                          // Clears the player's circle from the previous cell
 	    																	  // and  Draws it in the new cell
-
+	void SetLighting(Lightning* L);
+	Lightning* GetLight()const;
 	// ========= Setters and Getters Functions =========
 
 	Input * GetInput() const;	// Gets a Pointer to the Input

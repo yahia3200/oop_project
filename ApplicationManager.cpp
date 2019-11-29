@@ -14,6 +14,7 @@
 #include "CutCardAction.h"
 #include "PasteCardAction.h"
 #include "SaveAction.h"
+#include "Lightning.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -22,6 +23,8 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output();
 	pIn = pOut->CreateInput();
 	pGrid = new Grid(pIn, pOut);
+	Lightingptr = new Lightning(this);
+	pGrid->SetLighting(Lightingptr);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
