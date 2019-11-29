@@ -48,6 +48,11 @@ void AddCardAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	pOut->PrintMessage("Enter Card Number : ");
 cardNumber = pIn->GetInteger(pOut);
+		while (cardNumber < 1 || cardNumber > 14)
+	{
+		pOut->PrintMessage("Invalid Input. Please enter a number between 1:14 : ");
+		cardNumber = pIn->GetInteger(pOut);
+	}
 pOut->PrintMessage("Click On Cell : ");
 cardPosition = pIn->GetCellClicked();
 pOut->ClearStatusBar();
