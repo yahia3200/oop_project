@@ -82,10 +82,7 @@ void InputDiceValue::Execute()
 		pGrid->SetEndGame(false);
 		//cout << pGrid->GetEndGame() << endl;	}
 		// -- If not ended, do the following --:
-<<<<<<< HEAD
-=======
 
->>>>>>> 398828e5560c3dd8f3d03828e52d564695ee4115
 
 	}
 }
