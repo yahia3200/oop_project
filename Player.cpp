@@ -102,12 +102,19 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	// 6- Apply() the game object of the reached cell (if any)
 
 	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)
-	turnCount++;
+	turnCount++; 
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 	if (turnCount == 3)
 	{
 		turnCount = 0;
+		pOut->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
+		string ans = pIn->GetSrting(pOut);
+		while (ans != "y" || ans != "Y" || ans != "n" || ans != "N")
+		{
+			pOut->PrintMessage("Invalid Input,Try Again...");
+			ans = pIn->GetSrting(pOut);
+		}
 		SetWallet(wallet + 10 * diceNumber);
 		pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased,Click Anywhere to continue  ");
 		int x, y;
