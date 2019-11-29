@@ -6,6 +6,7 @@ class Lightning :
 private : 
 	Player* CurrPlayer;
 	int CurrPlayerNum;
+	bool Used[MaxPlayerCount];
 public :
 	Lightning(ApplicationManager* pApp);  // Constructor
 
@@ -15,7 +16,7 @@ public :
 											 // (code depends on action type so virtual)
 
 	virtual void Execute() ;  // Executes action (code depends on action type so virtual)
-
+	void IsUsed(int PlayerIndex);
 	virtual ~Lightning();  // Virtual Destructor
 };
 
