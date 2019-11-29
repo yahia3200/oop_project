@@ -23,10 +23,10 @@ void Lightning::Execute()
 	ReadActionParameters();
 	if (Used[CurrPlayerNum] == false) {
 		IsUsed(CurrPlayerNum);
-		for (int i = 0; i < MaxPlayerCount; i++)
+		for (int i = 0; i < MaxPlayerCount-1; i++)
 		{
 			pGrid->AdvanceCurrentPlayer();
-			if (i != CurrPlayerNum)
+			ReadActionParameters();
 				CurrPlayer->SetWallet(CurrPlayer->GetWallet() - 20);
 		}
 	}
