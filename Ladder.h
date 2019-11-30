@@ -22,8 +22,10 @@ public:
 
 	virtual void Save(ofstream& OutFile, int t);
 
-	static int Count();
-	virtual int GetCounter()const;
+	static void DecrementLadderCounter();
+	
+	static void SaveLaddersNumber(ofstream& OutFile);
+	
 
 	virtual ~Ladder(); // Virtual destructor
 };

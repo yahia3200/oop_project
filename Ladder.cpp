@@ -51,16 +51,18 @@ void Ladder::Save(ofstream& OutFile, int t)
 	}
 }
 
-int Ladder::Count()
+
+void Ladder::SaveLaddersNumber(ofstream& OutFile)
 {
-	return LadderCounter;
+	OutFile << LadderCounter << '\n';
 }
 
-int Ladder::GetCounter() const
+void Ladder::DecrementLadderCounter()
 {
-	return Count();
+	LadderCounter--;
 }
 
 Ladder::~Ladder()
 {
+	LadderCounter--;
 }

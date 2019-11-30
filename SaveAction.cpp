@@ -2,6 +2,9 @@
 #include "Grid.h"
 #include "Input.h"
 #include "Output.h"
+#include "Ladder.h"
+#include "Snake.h"
+#include "Card.h"
 #include <fstream>
 
 SaveAction::SaveAction(ApplicationManager* pApp) :Action(pApp)
@@ -25,8 +28,12 @@ void SaveAction::Execute()
 	ofstream OutFile;
 	OutFile.open(fileName,ios::out);
 
+	Ladder::SaveLaddersNumber(OutFile);
 	pGrid->SaveAll(OutFile,0);
-	pGrid->SaveAll(OutFile,1);
+	Snake::SaveSnakesNumber(OutFile);
+	pGrid->SaveAll(OutFile, 1);
+	Card::SaveCardsNumber(OutFile);
+	pGrid->SaveAll(OutFile, 2);
 
 	OutFile.close();
 }

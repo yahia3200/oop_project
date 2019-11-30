@@ -2,6 +2,7 @@
 #include "Cell.h"
 #include "GameObject.h"
 #include "Ladder.h"
+#include "Snake.h"
 #include "Card.h"
 #include "Player.h"
 #include <fstream>
@@ -62,7 +63,18 @@ void Grid::RemoveObjectFromCell(const CellPosition & pos)
 	if (pos.IsValidCell()) // Check if valid position
 	{
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
-		
+		if (CellList[pos.VCell()][pos.HCell()]->HasLadder())
+		{
+			Ladder::DecrementLadderCounter();
+		}
+		else if (CellList[pos.VCell()][pos.HCell()]->HasSnake())
+		{
+			Snake::DecrementSnakeCounter();
+		}
+		else if (CellList[pos.VCell()][pos.HCell()]->HasCard())
+		{
+			Card::DecrementCardCounter();
+		}
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
 		//GetOutput()->PrintMessage("Null pointer at cell " + to_string(pos.GetCellNum()));
 	
@@ -275,3 +287,4 @@ void Grid::SaveAll(ofstream & OutFile,int t)
 		}
 	}
 }
+

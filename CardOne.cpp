@@ -3,6 +3,7 @@
 CardOne::CardOne(const CellPosition & pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 1; // set the inherited cardNumber data member with the card number (1 here)
+	Cardpos = pos;
 }
 
 CardOne::~CardOne(void)
@@ -51,4 +52,17 @@ void CardOne::Apply(Grid* pGrid, Player* pPlayer)
 	//This Step Need Validation (What If Wallet Is Negative ? ) (Note In Player.cpp)
 	pPlayer->SetWallet(pPlayer->GetWallet() - walletAmount);
 
+}
+
+void CardOne::SetWalletAmount(int w)
+{
+	walletAmount = w;
+}
+
+void CardOne::Save(ofstream& OutFile, int t)
+{
+	if (t == 2)
+	{
+		OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << walletAmount << '\n';
+	}
 }

@@ -19,6 +19,7 @@ public:
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applies the effect of CardOne on the passed Player
 	                                                  // by decrementing the player's wallet by the walletAmount data member
 	void SetWalletAmount(int);
+	virtual void Save(ofstream& OutFile, int t);
 	virtual ~CardOne(); // A Virtual Destructor
 };
 

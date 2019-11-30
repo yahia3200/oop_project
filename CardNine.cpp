@@ -12,6 +12,11 @@ void CardNine::Apply(Grid* pGrid, Player* pPlayer)
 {
 }
 
+void CardNine::Save(ofstream& OutFile, int t)
+{
+
+}
+
 CardNine::~CardNine()
 {
 }

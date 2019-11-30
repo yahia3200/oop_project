@@ -2,7 +2,8 @@
 
 CardThirteen::CardThirteen(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
-	cardNumber = 10;  // set the inherited cardNumber data member with the card number (10 here)
+	cardNumber = 13;  // set the inherited cardNumber data member with the card number (10 here)
+	Cardpos = pos;
 	ownerplayer = NULL;
 }
 
@@ -95,6 +96,13 @@ int CardThirteen::getfees()
 	return Fees;
 }
 
+void CardThirteen::Save(ofstream& OutFile, int t)
+{
+	if (t == 2)
+	{
+		OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << price << " " << Fees << '\n';
+	}
+}
 
 CardThirteen::~CardThirteen()
 {

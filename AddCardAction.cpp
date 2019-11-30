@@ -47,10 +47,10 @@ void AddCardAction::ReadActionParameters()
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	pOut->PrintMessage("Enter Card Number : ");
-cardNumber = pIn->GetInteger(pOut);
-pOut->PrintMessage("Click On Cell : ");
-cardPosition = pIn->GetCellClicked();
-pOut->ClearStatusBar();
+	cardNumber = pIn->GetInteger(pOut);
+	pOut->PrintMessage("Click On Cell : ");
+	cardPosition = pIn->GetCellClicked();
+	pOut->ClearStatusBar();
 }
 
 void AddCardAction::Execute() 
@@ -112,8 +112,6 @@ void AddCardAction::Execute()
 		break;
 		// A- Add the remaining cases
 
-	
-
 	}
 
 	// 3- if pCard is correctly set in the switch case (i.e. if pCard is pointing to an object -- NOT NULL)
@@ -130,7 +128,12 @@ void AddCardAction::Execute()
 		pCard->ReadCardParameters(pGrid);
 		bool IsValid=pGrid->AddObjectToCell(pCard);
 		if (IsValid == false)
+		{
 			pGrid->PrintErrorMessage("This Cell Is Invalid");
+			delete pCard;
+		}
+			
+
 		else pGrid->GetOutput()->DrawCell(cardPosition, cardNumber);
 		
 	}

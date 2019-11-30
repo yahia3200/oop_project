@@ -260,7 +260,6 @@
     <ClInclude Include="InputDiceValue.h" />
     <ClInclude Include="Ladder.h" />
     <ClInclude Include="NewGame.h" />
-    <ClInclude Include="OpjectsType.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="PasteCardAction.h" />
     <ClInclude Include="Player.h" />

@@ -444,7 +444,6 @@
     <ClInclude Include="CutCardAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="OpjectsType.h" />
     <ClInclude Include="SaveAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
