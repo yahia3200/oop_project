@@ -2,6 +2,8 @@
 #include "Action.h"
 #include "Player.h"
 #include "Grid.h"
+#include <time.h> // used to in srand to generate random numbers with different seed
+
 class InputDiceValue : public Action
 {
 private:

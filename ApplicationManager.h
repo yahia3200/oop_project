@@ -6,7 +6,7 @@
 class Input;
 class Output;
 class Grid;
-
+class Lightning;
 // Main class that manages everything in the application.
 class ApplicationManager
 {
@@ -16,6 +16,7 @@ class ApplicationManager
 	// Pointers to the Input and Output 
 	Input *pIn;
 	Output *pOut;
+	Lightning* Lightingptr;
 
 public:
 

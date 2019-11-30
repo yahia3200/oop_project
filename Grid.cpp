@@ -5,6 +5,7 @@
 #include "Snake.h"
 #include "Card.h"
 #include "Player.h"
+#include "Lightning.h"
 #include <fstream>
 using namespace std;
 
@@ -34,6 +35,7 @@ Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pI
 
 	// Initialize endGame with false
 	endGame = false;
+	
 }
 
 
@@ -100,6 +102,16 @@ void Grid::UpdatePlayerCell(Player * player, const CellPosition & newPosition)
 	player->Draw(pOut);
 }
 
+void Grid::SetLighting(Lightning* L)
+{
+	Light = L;
+}
+
+Lightning* Grid::GetLight() const
+{
+	return Light;
+}
+
 
 // ========= Setters and Getters Functions =========
 
@@ -139,6 +151,7 @@ void Grid::AdvanceCurrentPlayer()
 {
 	currPlayerNumber = (currPlayerNumber + 1) % MaxPlayerCount; // this generates value from 0 to MaxPlayerCount - 1
 }
+
 
 
 
