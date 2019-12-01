@@ -96,10 +96,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case ITM_EDIT_CARD:
 		pAct = new EditCardAction(this);
-
+		break;
 	case ITM_DELETE_GAME_OBJECT:
 		pAct = new DeleteGameObject(this);
-
+		break;
 	case EXIT:
 		break;
 
