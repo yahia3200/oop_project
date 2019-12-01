@@ -11,18 +11,19 @@ void NewGame::ReadActionParameters()
 
 void NewGame::Execute()
 {
+	// Get a Pointer to the Input / Output Interfaces from the Grid
 	Grid* pGrid = pManager->GetGrid();
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	
 	
 	// restart thePlayer Objects
-	Cell* startplayerscell[NumVerticalCells][NumHorizontalCells];
+	CellPosition startplayerscell(NumVerticalCells - 1, 0);
 	for (int i = 0; i < MaxPlayerCount; i++)
 	{
-		pGrid->GetCurrentPlayer()->SetCell(startplayerscell[NumVerticalCells - 1][0]);
 		pGrid->GetCurrentPlayer()->SetWallet(100);
 		pGrid->GetCurrentPlayer()->SetturnCount(0);
+		pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), startplayerscell);
 		pGrid->AdvanceCurrentPlayer();
 	}
 
@@ -32,7 +33,8 @@ void NewGame::Execute()
 	{
 		pGrid->AdvanceCurrentPlayer();
 	}
-	//setting endgame false to start a new game
+
+	// setting endgame false to start a new game
 	pGrid->SetEndGame(false);
 }
 

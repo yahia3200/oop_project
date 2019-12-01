@@ -18,17 +18,19 @@ void RollDiceAction::Execute()
 {
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
+	//Get a Pointer to the Input / Output Interfaces from the Grid
 	Grid* pGrid = pManager->GetGrid();
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
 
-	// 1- Check if the Game is ended (Use the GetEndGame() function of pGrid), if yes, make the appropriate action
+	// Check if the Game is ended (Use the GetEndGame() function of pGrid), if yes, make the appropriate action
 	if (pGrid->GetEndGame())
 	{
 		int x, y;
 
+		//print a random messege to the user
 		srand((int)time(NULL));
 		int randomvalue = 1 + rand() % 3;
 		switch (randomvalue)
@@ -55,40 +57,41 @@ void RollDiceAction::Execute()
 			break;
 		}
 
-		Cell* startplayerscell[NumVerticalCells][NumHorizontalCells];
+		// restart thePlayer Objects
+		CellPosition startplayerscell(NumVerticalCells - 1, 0);
 		for (int i = 0; i < MaxPlayerCount; i++)
 		{
-			pGrid->GetCurrentPlayer()->SetCell(startplayerscell[NumVerticalCells - 1][0]);
 			pGrid->GetCurrentPlayer()->SetWallet(100);
 			pGrid->GetCurrentPlayer()->SetturnCount(0);
+			pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), startplayerscell);
 			pGrid->AdvanceCurrentPlayer();
 		}
+
+		// Initialize currPlayerNumber with 0 (first player)
+		// start with the first player
 		while (pGrid->GetcurrPlayerNumber() != 0)
 		{
 			pGrid->AdvanceCurrentPlayer();
 		}
-		/*	cout << pGrid->getcurrPlayerNumber() << endl;
-			cout << pGrid->GetEndGame() << endl;
-			cout << pGrid->GetCurrentPlayer()->GetWallet()<<endl;
-			cout << pGrid->GetCurrentPlayer()->GetTurnCount()<<endl;
-			cout << pGrid->GetCurrentPlayer()->GetCell()<<endl;*/
+
+		//setting endgame false to start a new game
 		pGrid->SetEndGame(false);
-		//cout << pGrid->GetEndGame() << endl;	}
 		// -- If not ended, do the following --:
 	}
 	else
 	{
-		// 2- Generate a random number from 1 to 6 --> This step is done for you
+		// Generate a random number from 1 to 6 --> This step is done for you
 		srand((int)time(NULL)); // time is for different seed each run
 		int diceNumber = 1 + rand() % 6; // from 1 to 6 --> should change seed
 		pOut->PrintMessage("Dice Number Is " + to_string(diceNumber));
 
-		// 3- Get the "current" player from pGrid
+		// Get the "current" player from pGrid
 		Player* pPlayer = pGrid->GetCurrentPlayer();
-		//Player* pPlayer = pGrid->GetPlayer1();
-		// 4- Move the currentPlayer using function Move of class player
+
+		// Move the currentPlayer using function Move of class player
 		pPlayer->Move(pGrid, diceNumber);
-		// 5- Advance the current player number of pGrid
+
+		// Advance the current player number of pGrid
 		pGrid->AdvanceCurrentPlayer();
 
 	}

@@ -118,7 +118,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		//}
 		if (ans == "y" || ans == "Y")
 		{
-			pOut->PrintMessage("Press 1.Ice, 2.Fire, 3.Poison, 4.Ice...");
+			pOut->PrintMessage("Press 1.Ice, 2.Fire, 3.Poison, 4.Lightning...");
 			int Answer = pIn->GetInteger(pOut);
 			Lightning* Light = pGrid->GetLight();
 			switch (Answer)
