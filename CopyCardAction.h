@@ -1,13 +1,11 @@
 #pragma once
 #include "Action.h"
-#include"Cell.h"
 #include"Card.h"
 #include "Grid.h"
 #include"CellPosition.h"
 class CopyCardAction:public Action 
 {
-		// [Action Parameters]
-	Cell* CpiedCardcell;     //cell of the card which need to copied 
+		// [Action Parameters] 
 	Card* CpiedCardinfo;	// cpied card 
 	CellPosition position; //position of the copied card
 	Grid* pGrid;

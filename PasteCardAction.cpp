@@ -1,7 +1,7 @@
 #include "PasteCardAction.h"
 #include "Input.h"
 #include "Output.h"
-
+#include"Card.h"
 PasteCardAction::PasteCardAction(ApplicationManager* pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer
@@ -10,16 +10,13 @@ PasteCardAction::PasteCardAction(ApplicationManager* pApp) : Action(pApp)
 
 PasteCardAction::~PasteCardAction()
 {
-	//delete Cardcell;
-	//position = NULL;
-	//Cardcell = NULL;
-	//PasteCardinfo = NULL;
+	
 }
 
 void PasteCardAction::ReadActionParameters()
 {
 	//getting pointer to output && input class
-	pGrid = pManager->GetGrid();
+	Grid *pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
@@ -27,22 +24,33 @@ void PasteCardAction::ReadActionParameters()
 	//settig the Game object with the card cpied||cutted
 	pOut->PrintMessage("Click On The Cell To Paste The Card On It..");
 	position = pIn->GetCellClicked();
-	PasteCardinfo = pGrid->GetClipboard();
-	Object = PasteCardinfo;
-	pOut->ClearStatusBar();
+	cardnum = pGrid->GetClipboard()->GetCardNumber();
+    pOut->ClearStatusBar();
 
 }
 
 void PasteCardAction::Execute()
 {
+	
+	//getting pointer to Grid
+	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+	//calling read action parameters
+
 	ReadActionParameters();
+
 	//Paste the card to clicked After check  
-	if (PasteCardinfo != NULL)
+	//Draw the card in the clicked cell
+	if (pGrid->GetClipboard() != NULL)
 	{
-		pGrid->AddObjectToCell(Object);
-		PasteCardinfo->Draw(pGrid->GetOutput());
-		pGrid->GetOutput()->DrawCell(position, PasteCardinfo->GetCardNumber());
-		pGrid->UpdateInterface();
+		pGrid->GetClipboard()->SetCardposition(position, pGrid->GetClipboard());
+		bool valid = pGrid->AddObjectToCell(pGrid->GetClipboard());
+		if (valid)
+		{
+			pOut->DrawCell(position, cardnum);
+			pGrid->UpdateInterface();
+
+		}
 	}
-	else pGrid->GetOutput()->PrintMessage("Bitch");
 }

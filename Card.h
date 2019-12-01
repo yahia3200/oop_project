@@ -11,7 +11,6 @@ class Card : public GameObject
 	
 protected:
 	int cardNumber; // an integer representing the card number
-	CellPosition Cardpos;
 	static int CardCounter;
 
 public:
@@ -20,6 +19,7 @@ public:
 	void SetCardNumber(int cnum);   // The setter of card number
 	int GetCardNumber();            // The getter of card number
 
+	void SetCardposition(CellPosition& po,Card * c); //setting card position
 	void Draw(Output* pOut) const;  // Draws the card number in the cell position of the card
 	                                // It has the same implementation for all Card Types (Non-Virtual)
 
@@ -28,9 +28,12 @@ public:
 
 	virtual void Apply(Grid* pGrid, Player* pPlayer);  // It applies the effect of the Card Type on the passed player
 	                                                   // It is a virtual function (implementation depends on Card Type)
-	
-	static void DecrementCardCounter();
-	static void SaveCardsNumber(ofstream& OutPut);
+	virtual void Save(ofstream& OutFile, int t);
+
+
+
+	static int Count();
+	virtual int GetCounter()const;
 	virtual ~Card(); // A Virtual Destructor
 };
 

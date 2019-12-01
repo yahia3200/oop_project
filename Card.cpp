@@ -1,5 +1,4 @@
 #include "Card.h"
-#include <fstream>
 
 int Card::CardCounter = 0;
 Card::Card(const CellPosition & pos) : GameObject(pos) // sets the cell position of the GameObject
@@ -18,6 +17,10 @@ int Card::GetCardNumber()
 	return cardNumber;
 }
 
+void Card::SetCardposition(CellPosition& po, Card* c)
+{
+	c->position = po;
+}
 void Card::Draw(Output* pOut) const
 {
 
@@ -41,18 +44,22 @@ void Card::Apply(Grid* pGrid, Player* pPlayer)
 }
 
 
-void Card::SaveCardsNumber(ofstream& OutPut)
+void Card::Save(ofstream& OutFile, int t)
 {
-	OutPut << CardCounter << '\n';
+	
 }
 
-void Card::DecrementCardCounter()
+int Card::Count()
 {
-	CardCounter--;
+	return CardCounter;
+}
+
+int Card::GetCounter() const
+{
+	return Count();
 }
 
 
 Card::~Card()
 {
-	CardCounter--;
 }
