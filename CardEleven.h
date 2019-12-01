@@ -9,9 +9,11 @@
 class CardEleven : public Card
 {
 	// CardEleven Parameters:
-	int price; // Price of card the player want to buy
-	int Fees; // Fees to pay by passing players
+	static int price; // Price of card the player want to buy
+	static int Fees; // Fees to pay by passing players
 	Player* ownerplayer; //the owner of the card(s)
+	static bool IsExisted;  // a bool refers if this card is created 
+
 
 public:
 	CardEleven(const CellPosition& pos); // A Constructor takes card position

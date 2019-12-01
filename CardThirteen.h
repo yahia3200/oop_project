@@ -7,10 +7,13 @@
 // Its Parameters: Card price & Fees to pay by passing players --> put them as "data members" and read them in ReadCardParameters()
 
 class CardThirteen : public Card
-{// CardTen Parameters:
-	int price; // Price of card the player want to buy
-	int Fees; // Fees to pay by passing players
+{
+	// CardTen Parameters:
+	static int price; // Price of card the player want to buy
+	static int Fees; // Fees to pay by passing players
 	Player* ownerplayer; //the owner of the card(s)
+	static bool IsExisted;  // a bool refers if this card is created 
+
 
 public:
 	CardThirteen(const CellPosition& pos); // A Constructor takes card position
