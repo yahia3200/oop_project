@@ -3,7 +3,6 @@
 class CardEight :
 	public Card
 {
-	//Data Members (TODO)
 public :
 	CardEight(const CellPosition& cpos);
 	virtual void ReadCardParameters(Grid* pGrid); // Reads the parameters of CardOne which is: walletAmount

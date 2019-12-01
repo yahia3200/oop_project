@@ -32,6 +32,7 @@ void PasteCardAction::ReadActionParameters()
 void PasteCardAction::Execute()
 {
 	
+
 	//getting pointer to Grid
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();

@@ -5,7 +5,7 @@
 #include "Snake.h"
 #include "Card.h"
 #include "Lightning.h"
-Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum)
+Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum),preventplayer(false)
 {
 	this->pCell = pCell;
 	this->turnCount = 0;
@@ -50,6 +50,18 @@ int Player::GetTurnCount() const
 int Player::GetRolledDiceNUm()
 {
 	return justRolledDiceNum;
+}
+
+
+
+void Player::setpreventplayer(bool prev)
+{
+	preventplayer = prev;
+}
+
+bool Player::getpreventplayer()
+{
+	return preventplayer;
 }
 
 // ====== Drawing Functions ======
@@ -106,6 +118,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	turnCount++; 
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
+	
 	if (turnCount == 3)
 	{
 		turnCount = 0;
@@ -148,7 +161,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 
 	else
 	{
-		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99)
+		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99 && !preventplayer)
 		{
 			justRolledDiceNum = diceNumber;
 			this->ClearDrawing(pOut);
@@ -190,6 +203,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 			if (pGrid->GetEndGame())pOut->PrintMessage("Player " + to_string(this->playerNum + 1) + " Won the Game...");
 		}
 	}
+	
 }
 
 void Player::AppendPlayerInfo(string& playersInfo) const
