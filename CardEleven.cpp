@@ -2,6 +2,7 @@
 CardEleven::CardEleven(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 11;  // set the inherited cardNumber data member with the card number (10 here)
+	Cardpos = pos;
 	ownerplayer = NULL;
 }
 
@@ -94,7 +95,13 @@ int CardEleven::getfees()
 	return Fees;
 }
 
-
+void CardEleven::Save(ofstream& OutFile, int t)
+{
+	if (t == 2)
+	{
+		OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << price << " " << Fees << '\n';
+	}
+}
 
 CardEleven::~CardEleven()
 {

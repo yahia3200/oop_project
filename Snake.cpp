@@ -32,15 +32,6 @@ CellPosition Snake::GetEndPosition() const
 	return endCellPos;
 }
 
-int Snake::Count()
-{
-	return SnakeCount;
-}
-
-int Snake::GetCounter() const
-{
-	return Count();
-}
 
 
 void Snake::Save(ofstream& OutFile, int t)
@@ -51,6 +42,17 @@ void Snake::Save(ofstream& OutFile, int t)
 	}	
 }
 
+void Snake::SaveSnakesNumber(ofstream& OutPut)
+{
+	OutPut << SnakeCount << '\n';
+}
+
+void Snake::DecrementSnakeCounter()
+{
+	SnakeCount--;
+}
+
 Snake::~Snake()
 {
+	SnakeCount--;
 }

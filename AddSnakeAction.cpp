@@ -34,24 +34,34 @@ void AddSnakeAction::ReadActionParameters()
 void AddSnakeAction::Execute()
 {
 	// The first line of any Action Execution is to read its parameter first 
-// and hence initializes its data members
+    // and hence initializes its data members
 	ReadActionParameters();
 
-	// Create a Ladder object with the parameters read from the user
-	Snake* pSnake = new Snake(startPos, endPos);
-
-	Grid* pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
-
-	// Add the card object to the GameObject of its Cell:
-	bool added = pGrid->AddObjectToCell(pSnake);
-
-	// if the GameObject cannot be added
-	if (!added)
+	if (startPos.GetCellNum() > endPos.GetCellNum() && endPos.HCell() == startPos.HCell())
 	{
-		// Print an appropriate message
-		pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+		// Create a Ladder object with the parameters read from the user
+		Snake* pSnake = new Snake(startPos, endPos);
+
+		Grid* pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
+
+		// Add the card object to the GameObject of its Cell:
+		bool added = pGrid->AddObjectToCell(pSnake);
+
+		// if the GameObject cannot be added
+		if (!added)
+		{
+			// Print an appropriate message
+			pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+			delete pSnake;
+		}
+		// Here, the Snake is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
 	}
-	// Here, the Snake is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
+	else
+	{
+		Grid* pGrid = pManager->GetGrid();
+		pGrid->PrintErrorMessage("Error: In Input Parameters ! Click to continue ...");
+	}
+	
 }
 
 AddSnakeAction::~AddSnakeAction()

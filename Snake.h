@@ -13,10 +13,10 @@ public :
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applys the effect of the ladder by moving player to ladder's end cell
 
 	virtual void Save(ofstream& OutFile, int t);
+	static void DecrementSnakeCounter();
+	static void SaveSnakesNumber(ofstream& OutFile);
 
 	CellPosition GetEndPosition() const;
-	static int Count();
-	virtual int GetCounter()const;
 	virtual ~Snake();
 };
 

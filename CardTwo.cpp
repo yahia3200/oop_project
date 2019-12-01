@@ -3,6 +3,7 @@
 CardTwo::CardTwo(const CellPosition& cpos):Card(cpos)
 {
 	cardNumber = 2;
+	Cardpos = cpos;
 }
 
 void CardTwo::ReadCardParameters(Grid* pGrid)
@@ -20,6 +21,14 @@ void CardTwo::Apply(Grid* pGrid, Player* pPlayer)
 	//InCrementing Wallet Of Player By walletAmount
 	Card::Apply(pGrid, pPlayer);
 	pPlayer->SetWallet(pPlayer->GetWallet() + walletAmount);
+}
+
+void CardTwo::Save(ofstream& OutFile, int t)
+{
+	if (t == 2)
+	{
+		OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << walletAmount << '\n';
+	}
 }
 
 CardTwo::~CardTwo()

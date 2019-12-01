@@ -31,9 +31,7 @@ void AddLadderAction::ReadActionParameters()
 
 
 	///TODO: Make the needed validations on the read parameters
-
 	
-
 	// Clear messages
 	pOut->ClearStatusBar();
 }
@@ -45,22 +43,32 @@ void AddLadderAction::Execute()
 	// The first line of any Action Execution is to read its parameter first 
 	// and hence initializes its data members
 	ReadActionParameters();
-
-	// Create a Ladder object with the parameters read from the user
-	Ladder * pLadder = new Ladder(startPos, endPos);
-
-	Grid * pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
-
-	// Add the card object to the GameObject of its Cell:
-	bool added = pGrid->AddObjectToCell(pLadder);
-
-	// if the GameObject cannot be added
-	if (! added)
+	if (startPos.GetCellNum() < endPos.GetCellNum() && endPos.HCell() == startPos.HCell())
 	{
-		// Print an appropriate message
-		pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+		// Create a Ladder object with the parameters read from the user
+		Ladder* pLadder = new Ladder(startPos, endPos);
+
+		Grid* pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
+
+		// Add the card object to the GameObject of its Cell:
+		bool added = pGrid->AddObjectToCell(pLadder);
+
+		// if the GameObject cannot be added
+		if (!added)
+		{
+			// Print an appropriate message
+			pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+			delete pLadder;
+		}
+		//else { pGrid->SetCell(endPos, pLadder); }
+		// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
+
 	}
-	//else { pGrid->SetCell(endPos, pLadder); }
-	// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
+	else
+	{
+		Grid* pGrid = pManager->GetGrid();
+		pGrid->PrintErrorMessage("Error: In Input Parameters ! Click to continue ...");
+	}
+	
 
 }
