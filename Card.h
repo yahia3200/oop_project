@@ -13,6 +13,7 @@ protected:
 	int cardNumber; // an integer representing the card number
 	CellPosition Cardpos;
 	static int CardCounter;
+
 public:
 	Card(const CellPosition & pos); // A Constructor for card that takes the cell position of it
 
