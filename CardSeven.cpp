@@ -13,7 +13,6 @@ void CardSeven::ReadCardParameters(Grid* pGrid)
 void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 {
 	//get a variable that refers to the player's number 
-	//int pnum = pGrid->GetcurrPlayerNumber();
 	for (int i = 0; i < 3; i++)
 	{
 		pGrid->AdvanceCurrentPlayer();
