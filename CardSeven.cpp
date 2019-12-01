@@ -12,7 +12,7 @@ void CardSeven::ReadCardParameters(Grid* pGrid)
 
 void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 {
-	//get a variable that refers to the player's number 
+	//do 4 loops to return to the player who reached the card
 	for (int i = 0; i < 3; i++)
 	{
 		pGrid->AdvanceCurrentPlayer();
