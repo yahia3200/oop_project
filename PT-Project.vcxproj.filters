@@ -259,6 +259,7 @@
     <ClCompile Include="SaveAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Lightning.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -448,5 +449,6 @@
     <ClInclude Include="SaveAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="Lightning.h" />
   </ItemGroup>
 </Project>
