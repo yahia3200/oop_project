@@ -27,24 +27,23 @@ void CopyCardAction::ReadActionParameters()
 	//getting position of the cell clicked 
 
 	pOut->PrintMessage("Click On The Card To Copy it..");
-	position =pIn->GetCellClicked();
-	//CpiedCardcell = new Cell(position);
-	
+	position = pIn->GetCellClicked();
+
+	//getting card in the clicked cell
+	CpiedCardinfo = pGrid->Getcard(position);
 	pOut->ClearStatusBar();
 
-	//check if there is a card and if there return its address 
-
-	CpiedCardinfo = CpiedCardcell->HasCard();
-
+	
 
 }
 
 void CopyCardAction::Execute()
 {
 	ReadActionParameters();
+
 	//copy the card clicked After check there is card in clicked 
 	if (CpiedCardinfo != NULL)
 		pGrid->SetClipboard(CpiedCardinfo);
-	else pGrid->GetOutput()->PrintMessage("Bitch");
+	
 
 }

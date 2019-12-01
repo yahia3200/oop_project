@@ -23,18 +23,18 @@ EditCardAction::EditCardAction(ApplicationManager* pApp) :Action(pApp)
 void EditCardAction::ReadActionParameters()
 {
 	////Allocation of Grid ,Input,Output Pointers
-	//Grid* pGrid = pManager->GetGrid();
-	//Input* pIn = pGrid->GetInput();
-	//Output* pOut = pGrid->GetOutput();
-	//pOut->PrintMessage("Click on The Sourse To Edit ..");
-	//cardPosition = pIn->GetCellClicked();
-	////Cell* Cellptr = pGrid->GetCell(cardPosition); //Get the Cell of clicked Cell position 
-	//Cardptr = Cellptr->HasCard();
-	////if (Cardptr) //Check of not null pointer 
-	////{
-	//CardNumber = Cardptr->GetCardNumber();
-	////}
-	////Deallocations
+	Grid* pGrid = pManager->GetGrid();
+	Input* pIn = pGrid->GetInput();
+	Output* pOut = pGrid->GetOutput();
+	pOut->PrintMessage("Click on The Sourse To Edit ..");
+	cardPosition = pIn->GetCellClicked();
+	Cardptr = pGrid->Getcard(cardPosition); //Get the card of clicked Cell position 
+	
+	if (Cardptr!=NULL) //Check of not null pointer 
+	{
+	CardNumber = Cardptr->GetCardNumber();
+	}
+	
 
 }
 

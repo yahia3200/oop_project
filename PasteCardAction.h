@@ -1,19 +1,14 @@
 #pragma once
 #pragma once
 #include "Action.h"
-#include"Cell.h"
-#include"Card.h"
 #include "Grid.h"
 #include"CellPosition.h"
 #include "GameObject.h"
 class PasteCardAction:public Action
 {
-		// [Action Parameters]
-		Cell* Cardcell;     //cell of the card which need to paste 
-		Card* PasteCardinfo;	// paste card 
+		// [Action Parameters] 
 		CellPosition position; //position of the card
-		Grid* pGrid;
-		GameObject *Object;
+		int cardnum;    //card pasted num 
 		// Note: These parameters should be read in ReadActionParameters()
 
 	public:

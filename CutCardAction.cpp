@@ -26,13 +26,11 @@ void CutCardAction::ReadActionParameters()
 	pOut->PrintMessage("Click On The Card To Cut it..");
 	position = pIn->GetCellClicked();
 
-//	Cell* CuttedCardcell = pGrid->GetCell(position);
-
+	//getting card in the clicked cell
+	CutCard = pGrid->Getcard(position);
 	pOut->ClearStatusBar();
 
-	//check if there is a card and if there return its address 
-
-	//CutCard = CuttedCardcell->HasCard();
+	
 
 }
 
