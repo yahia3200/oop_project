@@ -44,7 +44,7 @@ void PasteCardAction::Execute()
 	//Draw the card in the clicked cell
 	if (pGrid->GetClipboard() != NULL)
 	{
-		pGrid->GetClipboard()->SetCardposition(position, pGrid->GetClipboard());
+		//pGrid->GetClipboard()->SetCardposition(position, pGrid->GetClipboard());
 		bool valid = pGrid->AddObjectToCell(pGrid->GetClipboard());
 		if (valid)
 		{

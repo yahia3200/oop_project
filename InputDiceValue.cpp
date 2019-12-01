@@ -1,4 +1,7 @@
 ﻿#include "InputDiceValue.h"
+#include "Player.h"
+#include "Grid.h"
+#include <time.h> // used to in srand to generate random numbers with different seed
 
 InputDiceValue::InputDiceValue(ApplicationManager* pApp) :Action(pApp)
 {
@@ -7,7 +10,7 @@ InputDiceValue::InputDiceValue(ApplicationManager* pApp) :Action(pApp)
 void InputDiceValue::ReadActionParameters()
 {
 	// Get a Pointer to the Input / Output Interfaces from the Grid
-	Grid* pGrid;
+	Grid* pGrid = pManager->GetGrid();
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	int x, y;
@@ -21,7 +24,7 @@ void InputDiceValue::ReadActionParameters()
 		diceNumber = pIn->GetInteger(pOut);
 	}
 
-	// 3- Clear the status bar
+	// Clear the status bar
 	pOut->ClearStatusBar();
 
 }
@@ -34,7 +37,7 @@ void InputDiceValue::Execute()
 	Output* pOut = pGrid->GetOutput();
 
 	// Check if the Game is ended (Use the GetEndGame() function of pGrid), if yes, make the appropriate action
-	if (pGrid->GetEndGame() == false)
+	if (!pGrid->GetEndGame())
 	{
 		// Get the "current" player from pGrid
 		Player* pPlayer = pGrid->GetCurrentPlayer();
