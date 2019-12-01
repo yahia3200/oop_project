@@ -15,6 +15,7 @@
 #include "PasteCardAction.h"
 #include "SaveAction.h"
 #include "Lightning.h"
+#include "NewGame.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -71,28 +72,37 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case ADD_LADDER:
 		pAct = new AddLadderAction(this);
 		break;
+
 	case ADD_SNAKE:
 		pAct = new AddSnakeAction(this);
 		break;
+
 	case ADD_CARD:
 		// create an object of AddCardAction here
 		pAct = new AddCardAction(this);
 		break;
+
 	case ITM_COPY_CARD:
 		pAct = new CopyCardAction(this);
 		break;
+
 	case ITM_CUT_CARD:
 		pAct = new CutCardAction(this);
 		break;
+
 	case ITM_Paste_Card:
 		pAct = new PasteCardAction(this);
 		break;
+
 	case ITM_EDIT_CARD:
 		pAct = new EditCardAction(this);
+
 	case ITM_DELETE_GAME_OBJECT:
 		pAct = new DeleteGameObject(this);
+
 	case EXIT:
 		break;
+
 	case ITM_Save_Grid:
 		pAct = new SaveAction(this);
 		break;
@@ -105,12 +115,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// create an object of RollDiceAction here
 		pAct = new RollDiceAction(this);
 		break;
+
 	case INPUT_DICE_VALUE:
 		pAct = new InputDiceValue(this);
+		break;
+
 	case TO_DESIGN_MODE:
 		pAct = new ToDesignModeAction(this);
 		break;
 
+	case NEW_GAME:
+		pAct = new NewGame(this);
+		break;
 		
 
 		///TODO: Add a case for EACH Action type in the Design mode or Play mode
