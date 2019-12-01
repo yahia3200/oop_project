@@ -1,43 +1,54 @@
 ﻿#include "CardEleven.h"
+
+bool CardEleven::IsExisted = false;  // set false for first time it's created
+int CardEleven::price = 0;
+int CardEleven::Fees = 0;
+
 CardEleven::CardEleven(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
-	cardNumber = 11;  // set the inherited cardNumber data member with the card number (10 here)
-	Cardpos = pos;
-	ownerplayer = NULL;
+	cardNumber = 11;  // set the inherited cardNumber data member with the card number (11 here)
+	Cardpos = pos;  //set the inherited Cardpos data member with the card position
+	ownerplayer = NULL;  // set the owner of the card pointint to null
 }
 
 void CardEleven::ReadCardParameters(Grid* pGrid)
 {
-	// 1- Get a Pointer to the Input / Output Interfaces from the Grid
+	// Get a Pointer to the Input / Output Interfaces from the Grid
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	int x, y;
 
-	pOut->PrintMessage("New CardEleven: Enter its price: ");
-	price = pIn->GetInteger(pOut);
-	while (price < 0)
+	// check if card is existed before
+	if (!IsExisted)
 	{
-		pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
+		// get parameters for card
+		pOut->PrintMessage("New CardEleven: Enter its price: ");
 		price = pIn->GetInteger(pOut);
-	}
-	pOut->PrintMessage("Price: " + to_string(price) + "  , Click to continue");
-	pIn->GetPointClicked(x, y);
+		while (price < 0)
+		{
+			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
+			price = pIn->GetInteger(pOut);
+		}
+		pOut->PrintMessage("Price: " + to_string(price) + "  , Click to continue");
+		pIn->GetPointClicked(x, y);
 
-	pOut->PrintMessage("New CardEleven: Enter its fee: ");
-	Fees = pIn->GetInteger(pOut);
-
-	while (Fees < 0)
-	{
-		pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
+		pOut->PrintMessage("New CardEleven: Enter its fee: ");
 		Fees = pIn->GetInteger(pOut);
+
+		while (Fees < 0)
+		{
+			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
+			Fees = pIn->GetInteger(pOut);
+		}
+		pOut->PrintMessage("Fees: " + to_string(Fees) + "  , Click to continue");
+		pIn->GetPointClicked(x, y);
+
+		// set IsExisted true after creating the card for first time
+		IsExisted = true;
+
+		// 3- Clear the status bar
+		pOut->ClearStatusBar();
 	}
-	pOut->PrintMessage("Fees: " + to_string(Fees) + "  , Click to continue");
-	pIn->GetPointClicked(x, y);
-
-
-
-	// 3- Clear the status bar
-	pOut->ClearStatusBar();
 }
 
 void CardEleven::Apply(Grid* pGrid, Player* pPlayer)

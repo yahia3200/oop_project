@@ -18,8 +18,10 @@ public:
 	Card(const CellPosition & pos); // A Constructor for card that takes the cell position of it
 
 	void SetCardNumber(int cnum);   // The setter of card number
-	int GetCardNumber();            // The getter of card number
+	int GetCardNumber();   // The getter of card number
+
 	void  SetCardposition(CellPosition& po, Card* c); //setting position of the card passed
+
 	void Draw(Output* pOut) const;  // Draws the card number in the cell position of the card
 	                                // It has the same implementation for all Card Types (Non-Virtual)
 
