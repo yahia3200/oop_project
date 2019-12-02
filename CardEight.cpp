@@ -1,5 +1,6 @@
 #include "CardEight.h"
 #include "Player.h"
+
 CardEight::CardEight(const CellPosition& cpos):Card(cpos)
 {
 	//setting card num with 8
@@ -17,17 +18,10 @@ void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 
 	Card::Apply(pGrid, pPlayer);
 	//prevent player from rolling 
-
-	//pPlayer = pGrid->GetCurrentPlayer();
-	//int turnnum = pPlayer->GetTurnCount();
-	//while (pPlayer->GetTurnCount()==turnnum+1)
-
-	//{
-	//pPlayer->SetturnCount(turnnum + 1);
-	//pPlayer->setpreventplayer(true);
-	//pPlayer->SetturnCount(turnnum + 1);
-//}
-//pPlayer->setpreventplayer(false);
+	int turnnum = pPlayer->GetTurnCount();
+	pPlayer->setpreventplayer(true);
+	pPlayer->SetturnCount(turnnum + 1);
+	pPlayer->setpreventplayer(false);
 }
 
 void CardEight::Save(ofstream& OutFile, int t)
