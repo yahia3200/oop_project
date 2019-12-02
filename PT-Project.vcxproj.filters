@@ -260,6 +260,7 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Lightning.cpp" />
+    <ClCompile Include="LoadAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -449,5 +450,6 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Lightning.h" />
+    <ClInclude Include="LoadAction.h" />
   </ItemGroup>
 </Project>
