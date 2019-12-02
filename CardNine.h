@@ -3,7 +3,7 @@
 class CardNine:public Card
 {
 
-	 CellPosition CellTomove;
+	CellPosition CellTomove;
 public :
 	CardNine(const CellPosition& pos);
 	~CardNine(void);
