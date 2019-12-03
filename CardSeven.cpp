@@ -4,6 +4,7 @@ CardSeven::CardSeven(const CellPosition& cpos):Card(cpos)
 {	
 	// setting the inherited cardNumber data member with 7
 	cardNumber = 7;
+	Cardpos = cpos;
 }
 
 void CardSeven::ReadCardParameters(Grid* pGrid)
@@ -19,10 +20,6 @@ void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 	}
 }
 
-void CardSeven::Save(ofstream& OutFile, int t)
-{
-
-}
 
 CardSeven::~CardSeven()
 {

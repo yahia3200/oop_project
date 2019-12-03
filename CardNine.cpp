@@ -6,6 +6,7 @@ CardNine::CardNine(const CellPosition& pos) : Card(pos) // set the cell position
 {
 	// setting the inherited cardNumber data member with 9
 	cardNumber = 9; 
+	Cardpos = pos;
 }
 
 

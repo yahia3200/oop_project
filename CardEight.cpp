@@ -5,6 +5,7 @@ CardEight::CardEight(const CellPosition& cpos):Card(cpos)
 {
 	//setting card num with 8
 	cardNumber = 8;
+	Cardpos = cpos;
 }
 
 void CardEight::ReadCardParameters(Grid* pGrid)
