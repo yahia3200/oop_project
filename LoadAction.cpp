@@ -18,7 +18,7 @@ void LoadAction::ReadActionParameters()
 
 	pOut->PrintMessage("Enter The File Name: ");
 	fileName = pIn->GetSrting(pOut);
-
+	
 	pOut->ClearStatusBar();
 }
 
@@ -30,7 +30,7 @@ void LoadAction::Execute()
 
 	ifstream InputFile;
 	InputFile.open(fileName);
-
+	//if(InputFile.is_open()) //This Line for checking if the file is Opened or not 
 	int LaddersNum;
 	int start, end;
 	InputFile >> LaddersNum;
