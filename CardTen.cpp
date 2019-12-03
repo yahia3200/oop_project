@@ -107,6 +107,14 @@ int CardTen::getfees()
 	return Fees;
 }
 
+void CardTen::SetCardParameter(istream& InputFile)
+{
+	int p, f;
+	InputFile >> p >> f;
+	price = p;
+	Fees = f;
+}
+
 void CardTen::Save(ofstream& OutFile, int t)
 {
 	if (t == 2)

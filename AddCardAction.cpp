@@ -121,7 +121,6 @@ void AddCardAction::Execute()
 	case 14:
 		pCard = new CardFourteen(cardPosition);
 		break;
-		// A- Add the remaining cases
 
 	}
 

@@ -23,6 +23,7 @@ public:
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applies the effect of CardTen on the passed Player
 													  // by either buying the cell if it's valid or force a fee
 	virtual void Save(ofstream& OutFile, int t);
+	virtual void SetCardParameter(istream& InputFile);
 	virtual ~CardFourteen(); // A Virtual Destructor
 
 	int getprice();

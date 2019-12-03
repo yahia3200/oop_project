@@ -114,6 +114,14 @@ void CardTwelve::Save(ofstream& OutFile, int t)
 	}
 }
 
+void CardTwelve::SetCardParameter(istream& InputFile)
+{
+	int p, f;
+	InputFile >> p >> f;
+	price = p;
+	Fees = f;
+}
+
 CardTwelve::~CardTwelve()
 {
 }

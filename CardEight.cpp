@@ -24,10 +24,6 @@ void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 	pPlayer->setpreventplayer(false);
 }
 
-void CardEight::Save(ofstream& OutFile, int t)
-{
-
-}
 CardEight::~CardEight()
 {
 }

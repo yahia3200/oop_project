@@ -13,14 +13,6 @@ void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 	delete Snakeptr; //Deallocation
 }
 
-void CardFour::Save(ofstream& OutFile, int t)
-{
-	if (t == 2)
-	{
-		OutFile << " " << Cardpos.GetCellNum() << cardNumber << '\n';
-	}
-}
-
 CardFour::~CardFour()
 {
 }
