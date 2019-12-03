@@ -66,10 +66,13 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 	{
 		pOut->PrintMessage("you have reached a bought station.Click to continue ?");
 		pIn->GetPointClicked(x, y);
+
 		// Deduct the amount of fees from the passing player. 
 		pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
+
 		//need to add fees to owner's wallet
 		ownerplayer->SetWallet(ownerplayer->GetWallet() + Fees);
+
 		// لو ابن كوم شكاير الشحاتين الى واقف ع الكارت معهوش فلوس 
 	}
 	//unless execute below
