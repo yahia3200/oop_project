@@ -66,6 +66,7 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 	{
 		pOut->PrintMessage("you have reached a bought station.Click to continue ?");
 		pIn->GetPointClicked(x, y);
+		pOut->ClearStatusBar();
 		// Deduct the amount of fees from the passing player. 
 		pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
 		//need to add fees to owner's wallet
