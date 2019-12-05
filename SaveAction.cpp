@@ -13,17 +13,21 @@ SaveAction::SaveAction(ApplicationManager* pApp) :Action(pApp)
 }
 void SaveAction::ReadActionParameters()
 {
-	
-}
-
-void SaveAction::Execute()
-{
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
 	pOut->PrintMessage("Enter The File Name: ");
 	fileName = pIn->GetSrting(pOut);
+
+	pOut->ClearStatusBar();
+}
+
+void SaveAction::Execute()
+{
+	ReadActionParameters();
+	Grid* pGrid = pManager->GetGrid();
+
 
 	ofstream OutFile;
 	OutFile.open(fileName,ios::out);

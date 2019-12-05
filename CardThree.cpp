@@ -16,13 +16,6 @@ void CardThree::Apply(Grid* pGrid, Player* pPlayer)
 	delete Lptr;
 }
 
-void CardThree::Save(ofstream& OutFile, int t)
-{
-	if (t == 2)
-	{
-		OutFile << cardNumber << " " << Cardpos.GetCellNum() << '\n';
-	}
-}
 
 CardThree::~CardThree()
 {

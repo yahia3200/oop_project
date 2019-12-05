@@ -33,6 +33,7 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 	int x, y;  //Int Variables to be used in GetPointClicked
 	pOut->PrintMessage("You have reached a ladder. Click to continue ..."); 
 	pIn->GetPointClicked(x, y); //Wating For User Click
+	pOut->ClearStatusBar();
 	pGrid->UpdatePlayerCell(pPlayer, endCellPos); //Applying Ladder Effect 
 	
 }

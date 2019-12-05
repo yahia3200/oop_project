@@ -11,7 +11,7 @@ class CardEleven : public Card
 	// CardEleven Parameters:
 	static int price; // Price of card the player want to buy
 	static int Fees; // Fees to pay by passing players
-	Player* ownerplayer; //the owner of the card(s)
+	static Player* ownerplayer; //the owner of the card(s)
 	static bool IsExisted;  // a bool refers if this card is created 
 
 
@@ -25,6 +25,7 @@ public:
 
 	virtual void Save(ofstream& OutFile, int t);
 	virtual ~CardEleven(); // A Virtual Destructor
+	virtual void SetCardParameter(istream& InputFile);
 
 	int getprice();
 	int getfees();

@@ -16,6 +16,7 @@
 #include "SaveAction.h"
 #include "Lightning.h"
 #include "NewGame.h"
+#include "LoadAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -127,10 +128,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case NEW_GAME:
 		pAct = new NewGame(this);
 		break;
-		
 
-		///TODO: Add a case for EACH Action type in the Design mode or Play mode
-
+	case OPEN_GRID:
+		pAct = new LoadAction(this);
+		break;
 
 
 	case STATUS:	// a click on the status bar ==> no action

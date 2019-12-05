@@ -1,6 +1,7 @@
 ﻿#include "CardFourteen.h"
 
 bool CardFourteen::IsExisted = false;  // set false for first time it's created
+Player* CardFourteen::ownerplayer = NULL;  // set the owner of the card pointint to null
 int CardFourteen::price = 0;
 int CardFourteen::Fees = 0;
 
@@ -65,12 +66,31 @@ void CardFourteen::Apply(Grid* pGrid, Player* pPlayer)
 	{
 		pOut->PrintMessage("you have reached a bought station.Click to continue ?");
 		pIn->GetPointClicked(x, y);
-		// Deduct the amount of fees from the passing player. 
-		pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
-		//need to add fees to owner's wallet
-		ownerplayer->SetWallet(ownerplayer->GetWallet() + Fees);
-		// لو ابن كوم شكاير الشحاتين الى واقف ع الكارت معهوش فلوس 
-		//غالبا هيفضل واقف ف السيل لحد ما يتشحنله فلوس كفاية تخرجه منها بس هناكد
+		pOut->ClearStatusBar();
+
+		//check if player has enough coins to pay fees
+		//if no he is preventd from moving till he pays
+		if (pPlayer->GetWallet() < Fees)
+		{
+			pGrid->GetCurrentPlayer()->setpreventplayer(true);
+			pOut->PrintMessage("you are prevented from move till you pay fees. click to contiue");
+			pIn->GetPointClicked(x, y);
+			pOut->ClearStatusBar();
+		}
+		//if yes he pays fees and move
+		else
+		{
+			// Deduct the amount of fees from the passing player. 
+			pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
+
+			//need to add fees to owner's wallet
+			ownerplayer->SetWallet(ownerplayer->GetWallet() + Fees);
+
+			//set preventedplayer false to make player able to move
+			pGrid->GetCurrentPlayer()->setpreventplayer(false);
+
+			
+		}
 	}
 	//unless execute below
 	else
@@ -80,16 +100,20 @@ void CardFourteen::Apply(Grid* pGrid, Player* pPlayer)
 		if (pPlayer->GetWallet() >= getprice())
 		{
 			pOut->PrintMessage("you have reached a station. Do you want to buy it? y/n");
-			while (pIn->GetSrting(pOut) != "y" && pIn->GetSrting(pOut) != "n" && pIn->GetSrting(pOut) != "Y" && pIn->GetSrting(pOut) != "N")
-			{
-				pOut->PrintMessage("Invalid Input. Please answer with y/n");
-			}
-			if (pIn->GetSrting(pOut) != "y" || pIn->GetSrting(pOut) != "Y")
+			string ans = pIn->GetSrting(pOut);
+			if (ans != "y" || ans != "Y")
 			{
 				ownerplayer = pPlayer;
 				pPlayer->SetWallet(pPlayer->GetWallet() - price);
 			}
-
+			else if (ans != "n" || ans != "N")
+			{
+				pGrid->AdvanceCurrentPlayer();
+			}
+			else
+			{
+				pOut->PrintMessage("Invalid Input. Please answer with y/n");
+			}
 		}
 
 	}
@@ -112,6 +136,14 @@ void CardFourteen::Save(ofstream& OutFile, int t)
 	{
 		OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << price << "  " << Fees << '\n';
 	}
+}
+
+void CardFourteen::SetCardParameter(istream& InputFile)
+{
+	int p, f;
+	InputFile >> p >> f;
+	price = p;
+	Fees = f;
 }
 
 CardFourteen::~CardFourteen()

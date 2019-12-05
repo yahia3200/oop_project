@@ -65,8 +65,8 @@ void Grid::RemoveObjectFromCell(const CellPosition & pos)
 	{
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
 		
+		delete CellList[pos.VCell()][pos.HCell()]->GetGameObject();
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
-		//GetOutput()->PrintMessage("Null pointer at cell " + to_string(pos.GetCellNum()));
 	
 	}
 	
@@ -301,3 +301,20 @@ void Grid::SaveAll(ofstream & OutFile,int t)
 		}
 	}
 }
+
+void Grid::ResetGrid()
+{
+	for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) // left to right
+		{
+
+			if (CellList[i][j]->GetGameObject())
+			{
+				delete CellList[i][j]->GetGameObject();
+				CellList[i][j]->SetGameObject(NULL);
+			}
+		}
+	}
+}
+

@@ -25,7 +25,10 @@ void Card::Draw(Output* pOut) const
 
 
 }
-
+void Card::SetCardposition(CellPosition& po, Card* c)
+{
+	c->position = po;
+}
 void Card::ReadCardParameters(Grid * pGrid)
 {
 	// we should not make it pure virtual because some Cards doesn't have parameters
@@ -41,9 +44,22 @@ void Card::Apply(Grid* pGrid, Player* pPlayer)
 }
 
 
+void Card::Save(ofstream& OutFile, int t)
+{
+	if (t == 2)
+	{
+		OutFile << cardNumber << " " << Cardpos.GetCellNum() << '\n';
+	}
+}
+
 void Card::SaveCardsNumber(ofstream& OutPut)
 {
 	OutPut << CardCounter << '\n';
+}
+
+
+void Card::SetCardParameter(istream& InputFile)
+{
 }
 
 void Card::DecrementCardCounter()

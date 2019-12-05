@@ -82,6 +82,7 @@ public:
 	int GetcurrPlayerNumber();					    // We added this function once here because it is used many times by other classes
 
 	void SaveAll(ofstream& OutFile,int t);
+	void ResetGrid();
 
 	~Grid(); // A destructor for any needed deallcations
 };

@@ -17,6 +17,7 @@ class Player
 	                       // and reset again when reached 3
 	                       // it is used to indicate when to move and when to add to your wallet
 	int NumberOfAttacks;//Determine how many times did the player Attack 
+	bool preventplayer; //bool data member to prevent player from moving
 public:
 
 	Player(Cell * pCell, int playerNum); // Constructor making any needed initializations
@@ -32,6 +33,8 @@ public:
 	int GetTurnCount() const;		// A getter for the turnCount
 	int GetRolledDiceNUm();
 
+	void setpreventplayer(bool prev); //A stter for prevent player
+	bool getpreventplayer();         //A getter for prevent player
 	///TODO: You can add setters and getters for data members here (if needed)
 
 	// ====== Drawing Functions ======

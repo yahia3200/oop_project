@@ -39,12 +39,25 @@ void InputDiceValue::Execute()
 	// Check if the Game is ended (Use the GetEndGame() function of pGrid), if yes, make the appropriate action
 	if (!pGrid->GetEndGame())
 	{
+		//Getting dice num from user 
+		pOut->PrintMessage("Enter dice value ...");
+
+		diceNumber = pIn->GetInteger(pOut);
+		while (diceNumber<0 || diceNumber>6)
+		{
+			pOut->PrintMessage("Enter correct dice value ...");
+			diceNumber = pIn->GetInteger(pOut);
+			
+
+		}
+		
 		// Get the "current" player from pGrid
 		Player* pPlayer = pGrid->GetCurrentPlayer();
 
 		// Move the currentPlayer using function Move of class player
-		pPlayer->Move(pGrid, diceNumber);
 
+		pPlayer->Move(pGrid, diceNumber);
+		pGrid->UpdateInterface();
 		// Advance the current player number of pGrid
 		pGrid->AdvanceCurrentPlayer();
 	}
