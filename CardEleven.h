@@ -26,8 +26,5 @@ public:
 	virtual void Save(ofstream& OutFile, int t);
 	virtual ~CardEleven(); // A Virtual Destructor
 	virtual void SetCardParameter(istream& InputFile);
-
-	int getprice();
-	int getfees();
 };
 

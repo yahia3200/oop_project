@@ -105,7 +105,7 @@ void CardTwelve::Apply(Grid* pGrid, Player* pPlayer)
 	{
 		//check if player's wallet has enough coins to buy the cell
 		//if has enough coins execute below else execute no thing
-		if (pPlayer->GetWallet() >= getprice())
+		if (pPlayer->GetWallet() >= price)
 		{
 			pOut->PrintMessage("you have reached a station. Do you want to buy it? y/n");
 			string ans = pIn->GetSrting(pOut);
@@ -128,17 +128,6 @@ void CardTwelve::Apply(Grid* pGrid, Player* pPlayer)
 		}
 
 	}
-}
-
-int CardTwelve::getprice()
-{
-	return price;
-}
-
-
-int CardTwelve::getfees()
-{
-	return Fees;
 }
 
 void CardTwelve::Save(ofstream& OutFile, int t)

@@ -62,10 +62,10 @@ void CardFourteen::Apply(Grid* pGrid, Player* pPlayer)
 	Card::Apply(pGrid, pPlayer);
 
 	//check if game was ended before to restart card(s) Property
-	if (pGrid->getcard13owner())
+	if (pGrid->getcard14owner())
 	{
 		ownerplayer = NULL;
-		pGrid->setcard13owner(false);
+		pGrid->setcard14owner(false);
 	}
 
 	//check if cell is owned by a player or not
@@ -105,7 +105,7 @@ void CardFourteen::Apply(Grid* pGrid, Player* pPlayer)
 	{
 		//check if player's wallet has enough coins to buy the cell
 		//if has enough coins execute below else execute no thing
-		if (pPlayer->GetWallet() >= getprice())
+		if (pPlayer->GetWallet() >= price)
 		{
 			pOut->PrintMessage("you have reached a station. Do you want to buy it? y/n");
 			string ans = pIn->GetSrting(pOut);
@@ -128,17 +128,6 @@ void CardFourteen::Apply(Grid* pGrid, Player* pPlayer)
 		}
 
 	}
-}
-
-int CardFourteen::getprice()
-{
-	return price;
-}
-
-
-int CardFourteen::getfees()
-{
-	return Fees;
 }
 
 void CardFourteen::Save(ofstream& OutFile, int t)

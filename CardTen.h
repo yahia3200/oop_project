@@ -25,7 +25,5 @@ public:
 	virtual void SetCardParameter(istream& InputFile);
 	virtual void Save(ofstream& OutFile, int t);
 	virtual ~CardTen(); // A Virtual Destructor
-
-	void restartownerplayer();
 };
 

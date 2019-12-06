@@ -108,7 +108,7 @@ void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 	{
 		//check if player's wallet has enough coins to buy the cell
 		//if has enough coins execute below else execute no thing
-		if (pPlayer->GetWallet() >= getprice())
+		if (pPlayer->GetWallet() >= price)
 		{
 			pOut->PrintMessage("you have reached a station. Do you want to buy it? y/n");
 			string ans = pIn->GetSrting(pOut);
@@ -132,18 +132,6 @@ void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 
 	}
 
-}
-
-
-int CardThirteen::getprice()
-{
-	return price;
-}
-
-
-int CardThirteen::getfees()
-{
-	return Fees;
 }
 
 void CardThirteen::Save(ofstream& OutFile, int t)
