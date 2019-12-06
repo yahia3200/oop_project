@@ -76,8 +76,11 @@ void RollDiceAction::Execute()
 
 		//setting endgame false to start a new game
 		pGrid->SetEndGame(false);
-		// -- If not ended, do the following --:
+
+		// Clear the status bar
+		pOut->ClearStatusBar();
 	}
+	// -- If not ended, do the following --:
 	else
 	{
 		// Generate a random number from 1 to 6 --> This step is done for you
