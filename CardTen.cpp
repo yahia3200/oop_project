@@ -134,12 +134,6 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 
 }
 
-
-void CardTen::restartownerplayer()
-{
-	ownerplayer = NULL;
-}
-
 void CardTen::SetCardParameter(istream& InputFile)
 {
 	int p, f;
