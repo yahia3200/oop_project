@@ -11,6 +11,7 @@ CardTen::CardTen(const CellPosition& pos) : Card(pos) // set the cell position o
 	Cardpos = pos;  //set the inherited Cardpos data member with the card position
 }
 
+
 void CardTen::ReadCardParameters(Grid* pGrid)
 {
 	// Get a Pointer to the Input / Output Interfaces from the Grid
@@ -54,11 +55,19 @@ void CardTen::ReadCardParameters(Grid* pGrid)
 
 void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 {
+	// Get a Pointer to the Input / Output Interfaces from the Grid
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	int x, y;
 
 	Card::Apply(pGrid, pPlayer);
+
+	//check if game was ended before to restart card(s) Property
+	if (pGrid->getcard10owner())
+	{
+		ownerplayer = NULL;
+		pGrid->setcard10owner(false);
+	}
 
 	//check if cell is owned by a player or not
 	//if owned execute below
@@ -99,38 +108,36 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 	{
 		//check if player's wallet has enough coins to buy the cell
 		//if has enough coins execute below else execute no thing
-		if (pPlayer->GetWallet() >= getprice())
+		if (pPlayer->GetWallet() >= price)
 		{
 			pOut->PrintMessage("you have reached a station. Do you want to buy it? y/n");
 			string ans = pIn->GetSrting(pOut);
-			if (ans != "y" || ans != "Y")
+			do
 			{
-				ownerplayer = pPlayer;
-				pPlayer->SetWallet(pPlayer->GetWallet() - price);
-			}
-			else if (ans != "n" || ans != "N")
-			{
-				pGrid->AdvanceCurrentPlayer();
-			}
-			else
-			{
-				pOut->PrintMessage("Invalid Input. Please answer with y/n");
-			}
+				if (ans == "y" || ans == "Y")
+				{
+					ownerplayer = pPlayer;
+					pPlayer->SetWallet(pPlayer->GetWallet() - price);
+				}
+				else if (ans == "n" || ans == "N")
+				{
+				}
+				else
+				{
+					pOut->PrintMessage("Invalid Input. Please answer with y/n");
+					ans = pIn->GetSrting(pOut);
+				}
+			} while (ans != "y" && ans != "Y" && ans != "n" && ans != "N");
 		}
 
 	}
 
 }
 
-int CardTen::getprice()
-{
-	return price;
-}
 
-
-int CardTen::getfees()
+void CardTen::restartownerplayer()
 {
-	return Fees;
+	ownerplayer = NULL;
 }
 
 void CardTen::SetCardParameter(istream& InputFile)

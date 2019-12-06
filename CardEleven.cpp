@@ -54,11 +54,19 @@ void CardEleven::ReadCardParameters(Grid* pGrid)
 
 void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 {
+	// Get a Pointer to the Input / Output Interfaces from the Grid
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	int x, y;
 
 	Card::Apply(pGrid, pPlayer);
+
+	//check if game was ended before to restart card(s) Property
+	if (pGrid->getcard11owner())
+	{
+		ownerplayer = NULL;
+		pGrid->setcard11owner(false);
+	}
 
 	//check if cell is owned by a player or not
 	//if owned execute below
@@ -102,19 +110,22 @@ void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 		{
 			pOut->PrintMessage("you have reached a station. Do you want to buy it? y/n");
 			string ans = pIn->GetSrting(pOut);
-			if (ans != "y" || ans != "Y")
+			do
 			{
-				ownerplayer = pPlayer;
-				pPlayer->SetWallet(pPlayer->GetWallet() - price);
-			}
-			else if (ans != "n" || ans != "N")
-			{
-				pGrid->AdvanceCurrentPlayer();
-			}
-			else
-			{
-				pOut->PrintMessage("Invalid Input. Please answer with y/n");
-			}
+				if (ans == "y" || ans == "Y")
+				{
+					ownerplayer = pPlayer;
+					pPlayer->SetWallet(pPlayer->GetWallet() - price);
+				}
+				else if (ans == "n" || ans == "N")
+				{
+				}
+				else
+				{
+					pOut->PrintMessage("Invalid Input. Please answer with y/n");
+					ans = pIn->GetSrting(pOut);
+				}
+			} while (ans != "y" && ans != "Y" && ans != "n" && ans != "N");
 		}
 
 	}

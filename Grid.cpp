@@ -35,6 +35,12 @@ Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pI
 	// Initialize endGame with false
 	endGame = false;
 	
+	// Initialize cards from 10 to 14 Property with false
+	card10owner = false;	
+	card11owner = false;
+	card12owner = false;     
+	card13owner = false;     
+	card14owner = false;
 }
 
 
@@ -133,6 +139,56 @@ void Grid::SetEndGame(bool endGame)
 bool Grid::GetEndGame() const
 {
 	return endGame;
+}
+
+void Grid::setcard10owner(bool x)
+{
+	card10owner = x;
+}
+
+bool Grid::getcard10owner() const
+{
+	return card10owner;
+}
+
+void Grid::setcard11owner(bool x)
+{
+	card11owner = x;
+}
+
+bool Grid::getcard11owner() const
+{
+	return card11owner;
+}
+
+void Grid::setcard12owner(bool x)
+{
+	card12owner = x;
+}
+
+bool Grid::getcard12owner() const
+{
+	return card12owner;
+}
+
+void Grid::setcard13owner(bool x)
+{
+	card13owner = x;
+}
+
+bool Grid::getcard13owner() const
+{
+	return card13owner;
+}
+
+void Grid::setcard14owner(bool x)
+{
+	card14owner = x;
+}
+
+bool Grid::getcard14owner() const
+{
+	return card14owner;
 }
 
 void Grid::AdvanceCurrentPlayer()

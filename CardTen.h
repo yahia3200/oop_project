@@ -26,7 +26,6 @@ public:
 	virtual void Save(ofstream& OutFile, int t);
 	virtual ~CardTen(); // A Virtual Destructor
 
-	int getprice();
-	int getfees();
+	void restartownerplayer();
 };
 

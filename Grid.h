@@ -31,7 +31,15 @@ class Grid
 	Card * Clipboard;	   // This is used in copy/cut/paste card (should be set in copy/cut and got in paste)
 
 	bool endGame;	       // A boolean indicating if the Game is ended or not (a player reaches the end cell of the grid or not)
+	
+	bool card10owner;     // A boolean indicating if the Game was ended or not to restart card(s) 10 Property
+	bool card11owner;     // A boolean indicating if the Game was ended or not to restart card(s) 11 Property
+	bool card12owner;     // A boolean indicating if the Game was ended or not to restart card(s) 12 Property
+	bool card13owner;     // A boolean indicating if the Game was ended or not to restart card(s) 13 Property
+	bool card14owner;     // A boolean indicating if the Game was ended or not to restart card(s) 14 Property
+
 	Lightning* Light;
+
 public:
 
 	Grid(Input * pIn, Output * pOut);	  // Gives the Grid a Pointer to the Output Object and the Input Object
@@ -60,6 +68,18 @@ public:
 
 	void SetEndGame(bool endGame);	 // A setter for endGame data member
 	bool GetEndGame() const;		 // A getter for endGame data member
+
+	void setcard10owner(bool x);	 // A setter for card10owner data member
+	bool getcard10owner() const;	 // A getter for card10owner data member
+	void setcard11owner(bool x);	 // A setter for card11owner data member
+	bool getcard11owner() const;	 // A getter for card11owner data member
+	void setcard12owner(bool x);	 // A setter for card12owner data member
+	bool getcard12owner() const;	 // A getter for card12owner data member
+	void setcard13owner(bool x);	 // A setter for card13owner data member
+	bool getcard13owner() const;	 // A getter for card13owner data member
+	void setcard14owner(bool x);	 // A setter for card14owner data member
+	bool getcard14owner() const;	 // A getter for card14owner data member
+
 
 	void AdvanceCurrentPlayer();     // Increments the currPlayerNum and if reaches MaxPlayerCount reset to 0 (using %)
  
