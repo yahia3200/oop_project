@@ -5,6 +5,7 @@
 #include "Snake.h"
 #include "Card.h"
 #include "Lightning.h"
+#include "Ice.h"
 Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum),preventplayer(false)
 {
 	this->pCell = pCell;
@@ -119,7 +120,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 	
-	if (turnCount == 3)
+	if (turnCount == 4)
 	{
 		turnCount = 0;
 		pOut->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
@@ -134,9 +135,12 @@ void Player::Move(Grid* pGrid, int diceNumber)
 			pOut->PrintMessage("Press 1.Ice, 2.Fire, 3.Poison, 4.Lightning...");
 			int Answer = pIn->GetInteger(pOut);
 			Lightning* Light = pGrid->GetLight();
+			Ice* ice = pGrid->GetIce();
+
 			switch (Answer)
 			{
 			case 1:
+				ice->Execute();
 				break;
 			case 2:
 				break;

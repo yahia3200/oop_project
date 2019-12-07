@@ -15,6 +15,7 @@ class Card;
 class Player;
 class Snake;
 class Lightning;
+class Ice;
 class Grid
 {
 	Output * pOut;   // A pointer to the Output object
@@ -39,7 +40,7 @@ class Grid
 	bool card14owner;     // A boolean indicating if the Game was ended or not to restart card(s) 14 Property
 
 	Lightning* Light;
-
+	Ice* ice;
 public:
 
 	Grid(Input * pIn, Output * pOut);	  // Gives the Grid a Pointer to the Output Object and the Input Object
@@ -57,6 +58,8 @@ public:
 	                                                                          // Clears the player's circle from the previous cell
 	    																	  // and  Draws it in the new cell
 	void SetLighting(Lightning* L);
+	void SetIce(Ice* i);
+	Ice* GetIce()const;
 	Lightning* GetLight()const;
 	// ========= Setters and Getters Functions =========
 

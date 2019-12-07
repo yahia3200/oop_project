@@ -5,6 +5,7 @@
 #include "Card.h"
 #include "Player.h"
 #include "Lightning.h"
+#include "Ice.h"
 #include <fstream>
 using namespace std;
 
@@ -99,6 +100,16 @@ void Grid::UpdatePlayerCell(Player * player, const CellPosition & newPosition)
 void Grid::SetLighting(Lightning* L)
 {
 	Light = L;
+}
+
+void Grid::SetIce(Ice* i)
+{
+	ice = i;
+}
+
+Ice* Grid::GetIce() const
+{
+	return ice;
 }
 
 Lightning* Grid::GetLight() const

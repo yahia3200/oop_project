@@ -17,6 +17,7 @@
 #include "Lightning.h"
 #include "NewGame.h"
 #include "LoadAction.h"
+#include "Ice.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -27,6 +28,7 @@ ApplicationManager::ApplicationManager()
 	pGrid = new Grid(pIn, pOut);
 	Lightingptr = new Lightning(this);
 	pGrid->SetLighting(Lightingptr);
+	pGrid->SetIce(iceptr);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
