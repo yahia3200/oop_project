@@ -5,6 +5,7 @@ CardEight::CardEight(const CellPosition& cpos):Card(cpos)
 {
 	//setting card num with 8
 	cardNumber = 8;
+	Cardpos = cpos;
 }
 
 void CardEight::ReadCardParameters(Grid* pGrid)
@@ -24,10 +25,6 @@ void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 	pPlayer->setpreventplayer(false);
 }
 
-void CardEight::Save(ofstream& OutFile, int t)
-{
-
-}
 CardEight::~CardEight()
 {
 }

@@ -35,6 +35,12 @@ Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pI
 	// Initialize endGame with false
 	endGame = false;
 	
+	// Initialize cards from 10 to 14 Property with false
+	card10owner = false;	
+	card11owner = false;
+	card12owner = false;     
+	card13owner = false;     
+	card14owner = false;
 }
 
 
@@ -65,8 +71,8 @@ void Grid::RemoveObjectFromCell(const CellPosition & pos)
 	{
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
 		
+		delete CellList[pos.VCell()][pos.HCell()]->GetGameObject();
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
-		//GetOutput()->PrintMessage("Null pointer at cell " + to_string(pos.GetCellNum()));
 	
 	}
 	
@@ -133,6 +139,56 @@ void Grid::SetEndGame(bool endGame)
 bool Grid::GetEndGame() const
 {
 	return endGame;
+}
+
+void Grid::setcard10owner(bool x)
+{
+	card10owner = x;
+}
+
+bool Grid::getcard10owner() const
+{
+	return card10owner;
+}
+
+void Grid::setcard11owner(bool x)
+{
+	card11owner = x;
+}
+
+bool Grid::getcard11owner() const
+{
+	return card11owner;
+}
+
+void Grid::setcard12owner(bool x)
+{
+	card12owner = x;
+}
+
+bool Grid::getcard12owner() const
+{
+	return card12owner;
+}
+
+void Grid::setcard13owner(bool x)
+{
+	card13owner = x;
+}
+
+bool Grid::getcard13owner() const
+{
+	return card13owner;
+}
+
+void Grid::setcard14owner(bool x)
+{
+	card14owner = x;
+}
+
+bool Grid::getcard14owner() const
+{
+	return card14owner;
 }
 
 void Grid::AdvanceCurrentPlayer()
@@ -301,3 +357,20 @@ void Grid::SaveAll(ofstream & OutFile,int t)
 		}
 	}
 }
+
+void Grid::ResetGrid()
+{
+	for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) // left to right
+		{
+
+			if (CellList[i][j]->GetGameObject())
+			{
+				delete CellList[i][j]->GetGameObject();
+				CellList[i][j]->SetGameObject(NULL);
+			}
+		}
+	}
+}
+

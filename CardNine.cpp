@@ -6,6 +6,7 @@ CardNine::CardNine(const CellPosition& pos) : Card(pos) // set the cell position
 {
 	// setting the inherited cardNumber data member with 9
 	cardNumber = 9; 
+	Cardpos = pos;
 }
 
 
@@ -18,17 +19,27 @@ void CardNine::ReadCardParameters(Grid* pGrid)
 
 	//Ptinting message to gide the user 
 	// get cell clicked and stored it in a paramewte CellTomove (object from  CellPosition )
-	int x, y;
 	pOut->PrintMessage("New CardNine: Click to the cell to move to it ...");
 	CellTomove = pIn->GetCellClicked();
-	pIn->GetPointClicked(x, y);
+
 	//Deletting the status Bar 
 	pOut->ClearStatusBar();
 }
 
 
+void CardNine::SetCardParameter(istream& InputFile)
+{
+	int pos;
+	InputFile >> pos;
+	CellTomove = CellPosition(pos);
+}
+
 void CardNine::Save(ofstream& OutFile, int t)
 {
+	if (t == 2)
+	{
+		OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << CellTomove.GetCellNum() << "\n";
+	}
 
 }
 

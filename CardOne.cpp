@@ -66,3 +66,10 @@ void CardOne::Save(ofstream& OutFile, int t)
 		OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << walletAmount << '\n';
 	}
 }
+
+void CardOne::SetCardParameter(istream& InputFile)
+{
+	int wallet;
+	InputFile >> wallet;
+	walletAmount = wallet;
+}

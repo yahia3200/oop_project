@@ -1,6 +1,7 @@
 ﻿#include "CardTen.h"
 
 bool CardTen::IsExisted = false;  // set false for first time it's created
+Player* CardTen::ownerplayer = NULL;  // set the owner of the card pointint to null
 int CardTen::price = 0;
 int CardTen::Fees = 0;
 
@@ -8,8 +9,8 @@ CardTen::CardTen(const CellPosition& pos) : Card(pos) // set the cell position o
 {
 	cardNumber = 10;  // set the inherited cardNumber data member with the card number (10 here)
 	Cardpos = pos;  //set the inherited Cardpos data member with the card position
-	ownerplayer = NULL;  // set the owner of the card pointint to null
 }
+
 
 void CardTen::ReadCardParameters(Grid* pGrid)
 {
@@ -54,11 +55,19 @@ void CardTen::ReadCardParameters(Grid* pGrid)
 
 void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 {
+	// Get a Pointer to the Input / Output Interfaces from the Grid
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	int x, y;
 
 	Card::Apply(pGrid, pPlayer);
+
+	//check if game was ended before to restart card(s) Property
+	if (pGrid->getcard10owner())
+	{
+		ownerplayer = NULL;
+		pGrid->setcard10owner(false);
+	}
 
 	//check if cell is owned by a player or not
 	//if owned execute below
@@ -67,45 +76,70 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 		pOut->PrintMessage("you have reached a bought station.Click to continue ?");
 		pIn->GetPointClicked(x, y);
 		pOut->ClearStatusBar();
-		// Deduct the amount of fees from the passing player. 
-		pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
-		//need to add fees to owner's wallet
-		ownerplayer->SetWallet(ownerplayer->GetWallet() + Fees);
-		// لو ابن كوم شكاير الشحاتين الى واقف ع الكارت معهوش فلوس 
+
+		//check if player has enough coins to pay fees
+		//if no he is preventd from moving till he pays
+		if (pPlayer->GetWallet() < Fees)
+		{
+			pGrid->GetCurrentPlayer()->setpreventplayer(true);
+			pOut->PrintMessage("you are prevented from move till you pay fees. click to contiue");
+			pIn->GetPointClicked(x, y);
+			pOut->ClearStatusBar();
+		}
+		//if yes he pays fees and move
+		else
+		{
+			// Deduct the amount of fees from the passing player. 
+			pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
+
+			//need to add fees to owner's wallet
+			ownerplayer->SetWallet(ownerplayer->GetWallet() + Fees);
+
+			//set preventedplayer false to make player able to move
+			pGrid->GetCurrentPlayer()->setpreventplayer(false);
+
+			
+		}
+		
+
 	}
 	//unless execute below
 	else
 	{
 		//check if player's wallet has enough coins to buy the cell
 		//if has enough coins execute below else execute no thing
-		if (pPlayer->GetWallet() >= getprice())
+		if (pPlayer->GetWallet() >= price)
 		{
 			pOut->PrintMessage("you have reached a station. Do you want to buy it? y/n");
-			while (pIn->GetSrting(pOut) != "y" && pIn->GetSrting(pOut) != "n" && pIn->GetSrting(pOut) != "Y" && pIn->GetSrting(pOut) != "N")
+			string ans = pIn->GetSrting(pOut);
+			do
 			{
-				pOut->PrintMessage("Invalid Input. Please answer with y/n");
-			}
-			if (pIn->GetSrting(pOut) != "y" || pIn->GetSrting(pOut) != "Y")
-			{
-				ownerplayer = pPlayer;
-				pPlayer->SetWallet(pPlayer->GetWallet() - price);
-			}
-
+				if (ans == "y" || ans == "Y")
+				{
+					ownerplayer = pPlayer;
+					pPlayer->SetWallet(pPlayer->GetWallet() - price);
+				}
+				else if (ans == "n" || ans == "N")
+				{
+				}
+				else
+				{
+					pOut->PrintMessage("Invalid Input. Please answer with y/n");
+					ans = pIn->GetSrting(pOut);
+				}
+			} while (ans != "y" && ans != "Y" && ans != "n" && ans != "N");
 		}
 
 	}
 
 }
 
-int CardTen::getprice()
+void CardTen::SetCardParameter(istream& InputFile)
 {
-	return price;
-}
-
-
-int CardTen::getfees()
-{
-	return Fees;
+	int p, f;
+	InputFile >> p >> f;
+	price = p;
+	Fees = f;
 }
 
 void CardTen::Save(ofstream& OutFile, int t)

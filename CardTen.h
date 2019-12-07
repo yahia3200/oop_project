@@ -11,7 +11,7 @@ class CardTen :	public Card
 	// CardTen Parameters:
 	static int price; // Price of card the player want to buy
 	static int Fees; // Fees to pay by passing players
-	Player* ownerplayer; //the owner of the card(s)
+	static Player* ownerplayer; //the owner of the card(s)
 	static bool IsExisted;  // a bool refers if this card is created 
 
 public:
@@ -22,10 +22,8 @@ public:
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applies the effect of CardTen on the passed Player
 													  // by either buying the cell if it's valid or force a fee
 
+	virtual void SetCardParameter(istream& InputFile);
 	virtual void Save(ofstream& OutFile, int t);
 	virtual ~CardTen(); // A Virtual Destructor
-
-	int getprice();
-	int getfees();
 };
 

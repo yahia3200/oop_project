@@ -37,6 +37,7 @@ void InputDiceValue::Execute()
 	Output* pOut = pGrid->GetOutput();
 
 	// Check if the Game is ended (Use the GetEndGame() function of pGrid), if yes, make the appropriate action
+	// -- If not ended, do the following --:
 	if (!pGrid->GetEndGame())
 	{
 		//Getting dice num from user 
@@ -110,9 +111,9 @@ void InputDiceValue::Execute()
 
 		//setting endgame false to start a new game
 		pGrid->SetEndGame(false);
-		// -- If not ended, do the following --:
 
-
+		// Clear the status bar
+		pOut->ClearStatusBar();
 	}
 }
 

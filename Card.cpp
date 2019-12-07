@@ -44,9 +44,22 @@ void Card::Apply(Grid* pGrid, Player* pPlayer)
 }
 
 
+void Card::Save(ofstream& OutFile, int t)
+{
+	if (t == 2)
+	{
+		OutFile << cardNumber << " " << Cardpos.GetCellNum() << '\n';
+	}
+}
+
 void Card::SaveCardsNumber(ofstream& OutPut)
 {
 	OutPut << CardCounter << '\n';
+}
+
+
+void Card::SetCardParameter(istream& InputFile)
+{
 }
 
 void Card::DecrementCardCounter()
