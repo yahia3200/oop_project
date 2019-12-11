@@ -30,6 +30,7 @@ void Lightning::Execute()
 				CurrPlayer->SetWallet(CurrPlayer->GetWallet() - 20);
 		}
 		pGrid->AdvanceCurrentPlayer();
+		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();
 	}
 	else {
 		pGrid->GetOutput()->PrintMessage("You Have Used This Attack Befroe,Click anywhere to continue..");

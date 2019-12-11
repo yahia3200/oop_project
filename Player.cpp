@@ -6,7 +6,7 @@
 #include "Card.h"
 #include "Lightning.h"
 #include "Ice.h"
-Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum),preventplayer(false)
+Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum), preventplayer(false)
 {
 	this->pCell = pCell;
 	this->turnCount = 0;
@@ -65,6 +65,11 @@ bool Player::getpreventplayer()
 	return preventplayer;
 }
 
+void Player::NumberOfAttacksincrements()
+{
+	NumberOfAttacks++;
+}
+
 // ====== Drawing Functions ======
 
 
@@ -116,45 +121,55 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	// 6- Apply() the game object of the reached cell (if any)
 
 	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)
-	turnCount++; 
+	turnCount++;
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
-	
+
 	if (turnCount == 4)
 	{
 		turnCount = 0;
-		pOut->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
-		string ans = pIn->GetSrting(pOut);
-		//while (ans != "y" || ans != "Y" || ans != "n" || ans != "N")
-		//{
-		//	pOut->PrintMessage("Invalid Input,Try Again...");
-		//	ans = pIn->GetSrting(pOut);
-		//}
-		if (ans == "y" || ans == "Y")
+		if (NumberOfAttacks < 2)
 		{
-			pOut->PrintMessage("Press 1.Ice, 2.Fire, 3.Poison, 4.Lightning...");
-			int Answer = pIn->GetInteger(pOut);
-			Lightning* Light = pGrid->GetLight();
-			Ice* ice = pGrid->GetIce();
-
-			switch (Answer)
+			pOut->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
+			string ans = pIn->GetSrting(pOut);
+			//while (ans != "y" || ans != "Y" || ans != "n" || ans != "N")
+			//{
+			//	pOut->PrintMessage("Invalid Input,Try Again...");
+			//	ans = pIn->GetSrting(pOut);
+			//}
+			if (ans == "y" || ans == "Y")
 			{
-			case 1:
-				ice->Execute();
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			case 4:
-				
-				Light->Execute();
-				break;
-			default:
-				break;
+				pOut->PrintMessage("Press 1.Ice, 2.Fire, 3.Poison, 4.Lightning...");
+				int Answer = pIn->GetInteger(pOut);
+				Lightning* Light = pGrid->GetLight();
+				Ice* ice = pGrid->GetIce();
+
+				switch (Answer)
+				{
+				case 1:
+					ice->Execute();
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					Light->Execute();
+					break;
+				default:
+					break;
+				}
+			}
+			else if (ans == "n" || ans == "N") {
+				SetWallet(wallet + 10 * diceNumber);
+				pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased,Click Anywhere to continue  ");
+				int x, y;
+				pIn->GetPointClicked(x, y);//Waiting user Action
+				pOut->ClearStatusBar();
 			}
 		}
-		else if (ans == "n" || ans == "N") {
+		else
+		{
 			SetWallet(wallet + 10 * diceNumber);
 			pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased,Click Anywhere to continue  ");
 			int x, y;
@@ -162,7 +177,6 @@ void Player::Move(Grid* pGrid, int diceNumber)
 			pOut->ClearStatusBar();
 		}
 	}
-
 	else
 	{
 		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99 && !preventplayer)
@@ -216,7 +230,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 			}
 		}
 	}
-	
+
 }
 
 void Player::AppendPlayerInfo(string& playersInfo) const

@@ -16,8 +16,9 @@ class Player
 	int turnCount;         // a counter that starts with 0, is incremented with each dice roll
 	                       // and reset again when reached 3
 	                       // it is used to indicate when to move and when to add to your wallet
-	int NumberOfAttacks;//Determine how many times did the player Attack 
-	bool preventplayer; //bool data member to prevent player from moving
+	int NumberOfAttacks; //Determine how many times did the player Attack 
+	bool preventplayer;  //bool data member to prevent player from moving
+
 public:
 
 	Player(Cell * pCell, int playerNum); // Constructor making any needed initializations
@@ -35,6 +36,8 @@ public:
 
 	void setpreventplayer(bool prev); //A stter for prevent player
 	bool getpreventplayer();         //A getter for prevent player
+
+	void NumberOfAttacksincrements();
 	///TODO: You can add setters and getters for data members here (if needed)
 
 	// ====== Drawing Functions ======
