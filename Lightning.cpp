@@ -29,6 +29,7 @@ void Lightning::Execute()
 			ReadActionParameters();
 				CurrPlayer->SetWallet(CurrPlayer->GetWallet() - 20);
 		}
+		pGrid->AdvanceCurrentPlayer();
 	}
 	else {
 		pGrid->GetOutput()->PrintMessage("You Have Used This Attack Befroe,Click anywhere to continue..");

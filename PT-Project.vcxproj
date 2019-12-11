@@ -192,6 +192,7 @@
     <ClCompile Include="EditCardAction.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="Ice.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InputDiceValue.cpp" />
     <ClCompile Include="Ladder.cpp" />
@@ -258,6 +259,7 @@
     <ClInclude Include="EditCardAction.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="Ice.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="InputDiceValue.h" />
     <ClInclude Include="Ladder.h" />

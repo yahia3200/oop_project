@@ -261,6 +261,7 @@
     </ClCompile>
     <ClCompile Include="Lightning.cpp" />
     <ClCompile Include="LoadAction.cpp" />
+    <ClCompile Include="Ice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -451,5 +452,6 @@
     </ClInclude>
     <ClInclude Include="Lightning.h" />
     <ClInclude Include="LoadAction.h" />
+    <ClInclude Include="Ice.h" />
   </ItemGroup>
 </Project>
