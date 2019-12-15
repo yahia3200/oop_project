@@ -263,6 +263,7 @@
     <ClCompile Include="LoadAction.cpp" />
     <ClCompile Include="Ice.cpp" />
     <ClCompile Include="Poison.cpp" />
+    <ClCompile Include="Fire.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -351,9 +352,6 @@
     </ClInclude>
     <ClInclude Include="AddCardAction.h">
       <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Grid.h">
-      <Filter>Grid</Filter>
     </ClInclude>
     <ClInclude Include="Cell.h">
       <Filter>Grid</Filter>
@@ -455,5 +453,9 @@
     <ClInclude Include="LoadAction.h" />
     <ClInclude Include="Ice.h" />
     <ClInclude Include="Poison.h" />
+    <ClInclude Include="Grid.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Fire.h" />
   </ItemGroup>
 </Project>

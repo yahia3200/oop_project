@@ -21,6 +21,7 @@ void Lightning::Execute()
 {
 	Grid* pGrid = pManager->GetGrid();
 	ReadActionParameters();
+	CurrPlayer->NumberOfAttacksincrements();
 	if (Used[CurrPlayerNum] == false) {
 		IsUsed(CurrPlayerNum);
 		for (int i = 0; i < MaxPlayerCount-1; i++)
@@ -30,7 +31,6 @@ void Lightning::Execute()
 				CurrPlayer->SetWallet(CurrPlayer->GetWallet() - 20);
 		}
 		pGrid->AdvanceCurrentPlayer();
-		CurrPlayer->NumberOfAttacksincrements();
 	}
 	else {
 		pGrid->GetOutput()->PrintMessage("You Have Used This Attack Befroe,Click anywhere to continue..");

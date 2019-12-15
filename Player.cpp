@@ -7,14 +7,17 @@
 #include "Lightning.h"
 #include "Ice.h"
 #include "Poison.h"
+#include "Fire.h"
 
 Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum), preventplayer(false)
 {
 	this->pCell = pCell;
 	this->turnCount = 0;
 	NumberOfAttacks = 0;
-	poisoncounter = 5;
+	poisoncounter = 0;
 	Ispoisoned = false;
+	firecounter = 0;
+	IsBurnt = false;
 	// Make all the needed initialization or validations
 }
 
@@ -74,11 +77,41 @@ void Player::setIspoisoned(bool poisonstatus)
 	Ispoisoned = poisonstatus;
 }
 
+void Player::increaseturnsofpoison()
+{
+	poisoncounter += 5;
+}
+
+void Player::resetPoisoncounter()
+{
+	poisoncounter = 0;
+}
+
+void Player::setIsBurnt(bool burntstatus)
+{
+	IsBurnt = burntstatus;
+}
+
+void Player::increaseturnsofFire()
+{
+	firecounter += 3;
+}
+
+void Player::resetFirecounter()
+{
+	firecounter = 0;
+}
+
 
 
 void Player::NumberOfAttacksincrements()
 {
 	NumberOfAttacks++;
+}
+
+void Player::resetNumberOfAttacks()
+{
+	NumberOfAttacks = 0;
 }
 
 // ====== Drawing Functions ======
@@ -109,7 +142,6 @@ void Player::ClearDrawing(Output* pOut) const
 
 void Player::Move(Grid* pGrid, int diceNumber)
 {
-
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below (Done)
 
 
@@ -139,8 +171,11 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	if (turnCount == 4)
 	{
 		turnCount = 0;
+		// check if player used all his chance to special attack
+		//if no:.......
 		if (NumberOfAttacks < 2)
 		{
+			//check if player wants to special attack
 			pOut->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
 			string ans = pIn->GetSrting(pOut);
 			//while (ans != "y" || ans != "Y" || ans != "n" || ans != "N")
@@ -155,23 +190,20 @@ void Player::Move(Grid* pGrid, int diceNumber)
 				Lightning* Light = pGrid->GetLight();
 				Ice* ice = pGrid->GetIce();
 				Poison* poison = pGrid->GetPoison();
+				Fire* fire = pGrid->GetFire();
 				switch (Answer)
 				{
 				case 1:
-					cout << "test player ice\n";
 					ice->Execute();
-					cout << "test player ice\n";
 					break;
 				case 2:
+					fire->Execute();
 					break;
 				case 3:
-					cout << "test player poison\n";
 					poison->Execute();
-					cout << "test player poison\n";
 					break;
 				case 4:
 					Light->Execute();
-					cout << "test player Light\n";
 					break;
 				default:
 					break;
@@ -199,13 +231,30 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99 && !preventplayer)
 		{
 			justRolledDiceNum = diceNumber;
+
+			//check if player is poisoned if yes
 			if (Ispoisoned)
 			{
+				//deduct 1 number from his dice roll and a poison counter 
 				--justRolledDiceNum;
 				--poisoncounter;
+				//if poison counters equal 0 means player is no poisoned any more
 				if (poisoncounter == 0)
 				{
-					poisoncounter = false;
+					Ispoisoned = false;
+				}
+			}
+
+			//check if player is burnt if yes
+			if (IsBurnt)
+			{
+				//deduct 1 number from his dice roll and a poison counter 
+				wallet -= 20;
+				--firecounter;
+				//if poison counters equal 0 means player is no poisoned any more
+				if (firecounter == 0)
+				{
+					IsBurnt = false;
 				}
 			}
 			this->ClearDrawing(pOut);

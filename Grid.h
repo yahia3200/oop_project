@@ -16,6 +16,7 @@ class Snake;
 class Lightning;
 class Ice;
 class Poison;
+class Fire;
 class Grid
 {
 	Output * pOut;   // A pointer to the Output object
@@ -39,9 +40,11 @@ class Grid
 	bool card13owner;     // A boolean indicating if the Game was ended or not to restart card(s) 13 Property
 	bool card14owner;     // A boolean indicating if the Game was ended or not to restart card(s) 14 Property
 
+	//setters and getters for special attack
 	Lightning* Light;
 	Ice* ice;
 	Poison* poison;
+	Fire* fire;
 public:
 
 	Grid(Input * pIn, Output * pOut);	  // Gives the Grid a Pointer to the Output Object and the Input Object
@@ -58,12 +61,16 @@ public:
 	void UpdatePlayerCell(Player * player, const CellPosition & newPosition); // Update the player's pCell with the CellList's Cell pointer of the "newPosition",
 	                                                                          // Clears the player's circle from the previous cell
 	    																	  // and  Draws it in the new cell
+
+	//setters and getters for special attack
 	void SetLighting(Lightning* L);
 	void SetIce(Ice* i);
 	void SetPoison(Poison* p);
+	void SetFire(Fire* f);
 	Ice* GetIce()const;
 	Lightning* GetLight()const;
 	Poison* GetPoison()const;
+	Fire* GetFire()const;
 	// ========= Setters and Getters Functions =========
 
 	Input * GetInput() const;	// Gets a Pointer to the Input

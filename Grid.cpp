@@ -6,8 +6,10 @@
 #include "Player.h"
 #include "Lightning.h"
 #include "Ice.h"
-#include <fstream>
-using namespace std;
+#include "Poison.h"
+#include "Fire.h"
+
+
 
 Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
 {
@@ -113,6 +115,11 @@ void Grid::SetPoison(Poison* p)
 	poison = p;
 }
 
+void Grid::SetFire(Fire* f)
+{
+	fire = f;
+}
+
 Ice* Grid::GetIce() const
 {
 	return ice;
@@ -126,6 +133,11 @@ Lightning* Grid::GetLight() const
 Poison* Grid::GetPoison() const
 {
 	return poison;
+}
+
+Fire* Grid::GetFire() const
+{
+	return fire;
 }
 
 

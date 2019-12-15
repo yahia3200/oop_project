@@ -19,6 +19,8 @@
 #include "LoadAction.h"
 #include "Ice.h"
 #include "Poison.h"
+#include "Fire.h"
+
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -30,9 +32,11 @@ ApplicationManager::ApplicationManager()
 	Lightingptr = new Lightning(this);
 	iceptr = new Ice(this);
 	poisonptr = new Poison(this);
+	fireptr = new Fire(this);
 	pGrid->SetLighting(Lightingptr);
 	pGrid->SetIce(iceptr);
 	pGrid->SetPoison(poisonptr);
+	pGrid->SetFire(fireptr);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////

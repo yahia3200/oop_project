@@ -190,6 +190,7 @@
     <ClCompile Include="CutCardAction.cpp" />
     <ClCompile Include="DeleteGameObject.cpp" />
     <ClCompile Include="EditCardAction.cpp" />
+    <ClCompile Include="Fire.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Ice.cpp" />
@@ -258,6 +259,7 @@
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="DeleteGameObject.h" />
     <ClInclude Include="EditCardAction.h" />
+    <ClInclude Include="Fire.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Ice.h" />

@@ -15,17 +15,16 @@ void Ice::ReadActionParameters()
 	Grid* pGrid = pManager->GetGrid();
 	CurrPlayer = pGrid->GetCurrentPlayer();
 	CurrPlayerNum = pGrid->GetcurrPlayerNumber();
-	cout << "test ice ReadActionParameters\n";
 }
 
 void Ice::Execute()
 {
 	Grid* pGrid = pManager->GetGrid();
 	ReadActionParameters();
-	cout << "test ice execute\n";
 	if (Used[CurrPlayerNum] == false) 
 	{
 		IsUsed(CurrPlayerNum);
+		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();
 		//Making The Player Choose a Player To Reduce his Wallet
 		pGrid->GetOutput()->PrintMessage("Ice Attack:Choose A player to prevent him from Dicing next time");
 		int AttackedPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
@@ -34,13 +33,15 @@ void Ice::Execute()
 			pGrid->AdvanceCurrentPlayer();
 			if (pGrid->GetcurrPlayerNumber() == AttackedPlayer)
 			{
-				pGrid->GetOutput()->PrintMessage("Player No. " + to_string(AttackedPlayer + 1) + " Is prevented from playing next time,Press anywhere to continue");
+				pGrid->GetOutput()->PrintMessage("Player No. " + to_string(AttackedPlayer) + " Is prevented from playing next time,Press anywhere to continue");
 				int x, y;
 				pGrid->GetInput()->GetPointClicked(x, y);
-				pGrid->GetCurrentPlayer()->setpreventplayer(true);
+				int turnnum = CurrPlayer->GetTurnCount();
+				CurrPlayer->setpreventplayer(true);
+				CurrPlayer->SetturnCount(turnnum + 1);
+				CurrPlayer->setpreventplayer(false);
 			}
 		}
-		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();
 	}
 	else {
 		pGrid->GetOutput()->PrintMessage("You Have Used This Attack Befroe,Click anywhere to continue..");

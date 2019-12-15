@@ -1,7 +1,7 @@
-#include "Poison.h"
+#include "Fire.h"
 #include "Grid.h"
 #include "Player.h"
-Poison::Poison(ApplicationManager* pApp) :Action(pApp)
+Fire::Fire(ApplicationManager* pApp) :Action(pApp)
 {
 	for (int i = 0; i < MaxPlayerCount; i++)
 	{
@@ -9,7 +9,7 @@ Poison::Poison(ApplicationManager* pApp) :Action(pApp)
 	}
 }
 
-void Poison::ReadActionParameters()
+void Fire::ReadActionParameters()
 {
 	//This Action Has no Parameters
 	Grid* pGrid = pManager->GetGrid();
@@ -17,7 +17,7 @@ void Poison::ReadActionParameters()
 	CurrPlayerNum = pGrid->GetcurrPlayerNumber();
 }
 
-void Poison::Execute()
+void Fire::Execute()
 {
 	Grid* pGrid = pManager->GetGrid();
 	ReadActionParameters();
@@ -26,17 +26,17 @@ void Poison::Execute()
 		IsUsed(CurrPlayerNum);
 		CurrPlayer->NumberOfAttacksincrements();
 		//Making The Player Choose a Player To Reduce his rolled dice value for 5 turns
-		pGrid->GetOutput()->PrintMessage("Poison Attack:Choose A player to deduct 1 number from his dice roll");
-		int PoisonedPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
+		pGrid->GetOutput()->PrintMessage("Fire Attack:Choose A player to Deduct 20 coins from his wallet for his next 3 turns");
+		int burntPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
 		for (int i = 0; i < MaxPlayerCount; i++)
 		{
 			pGrid->AdvanceCurrentPlayer();
 			ReadActionParameters();
-			if (CurrPlayerNum== PoisonedPlayer)
+			if (CurrPlayerNum == burntPlayer)
 			{
-				CurrPlayer->setIspoisoned(true);
-				CurrPlayer->increaseturnsofpoison();
-				pGrid->GetOutput()->PrintMessage("Player No. " + to_string(PoisonedPlayer) + " Is poisoned by deducting 1 number from his dice roll. ,Press anywhere to continue");
+				CurrPlayer->setIsBurnt(true);
+				CurrPlayer->increaseturnsofFire();
+				pGrid->GetOutput()->PrintMessage("Player No. " + to_string(burntPlayer) + " Is Fireed by deducting 20 coins from his wallet. ,Press anywhere to continue");
 				int x, y;
 				pGrid->GetInput()->GetPointClicked(x, y);
 				pGrid->GetOutput()->ClearStatusBar();
@@ -53,11 +53,12 @@ void Poison::Execute()
 	}
 }
 
-void Poison::IsUsed(int PlayerIndex)
+void Fire::IsUsed(int PlayerIndex)
 {
 	Used[PlayerIndex] = true;
 }
 
-Poison::~Poison()
+Fire::~Fire()
 {
 }
+

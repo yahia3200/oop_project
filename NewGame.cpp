@@ -23,6 +23,12 @@ void NewGame::Execute()
 	{
 		pGrid->GetCurrentPlayer()->SetWallet(100);
 		pGrid->GetCurrentPlayer()->SetturnCount(0);
+		pGrid->GetCurrentPlayer()->setIspoisoned(false);
+		pGrid->GetCurrentPlayer()->setIsBurnt(false);
+		pGrid->GetCurrentPlayer()->setpreventplayer(false);
+		pGrid->GetCurrentPlayer()->resetNumberOfAttacks();
+		pGrid->GetCurrentPlayer()->resetFirecounter();
+		pGrid->GetCurrentPlayer()->resetPoisoncounter();
 		pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), *startplayerscell);
 		pGrid->AdvanceCurrentPlayer();
 	}

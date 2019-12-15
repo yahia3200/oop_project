@@ -9,6 +9,7 @@ class Grid;
 class Lightning;
 class Ice;
 class Poison;
+class Fire;
 // Main class that manages everything in the application.
 class ApplicationManager
 {
@@ -21,6 +22,7 @@ class ApplicationManager
 	Lightning* Lightingptr;
 	Ice* iceptr;
 	Poison* poisonptr;
+	Fire* fireptr;
 public:
 
 	ApplicationManager();  // Constructor: where the Input, Ouput and Grid are allocated
