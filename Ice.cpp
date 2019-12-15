@@ -15,12 +15,14 @@ void Ice::ReadActionParameters()
 	Grid* pGrid = pManager->GetGrid();
 	CurrPlayer = pGrid->GetCurrentPlayer();
 	CurrPlayerNum = pGrid->GetcurrPlayerNumber();
+	cout << "test ice ReadActionParameters\n";
 }
 
 void Ice::Execute()
 {
 	Grid* pGrid = pManager->GetGrid();
 	ReadActionParameters();
+	cout << "test ice execute\n";
 	if (Used[CurrPlayerNum] == false) 
 	{
 		IsUsed(CurrPlayerNum);

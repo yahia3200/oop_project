@@ -8,6 +8,7 @@ class Output;
 class Grid;
 class Lightning;
 class Ice;
+class Poison;
 // Main class that manages everything in the application.
 class ApplicationManager
 {
@@ -19,6 +20,7 @@ class ApplicationManager
 	Output *pOut;
 	Lightning* Lightingptr;
 	Ice* iceptr;
+	Poison* poisonptr;
 public:
 
 	ApplicationManager();  // Constructor: where the Input, Ouput and Grid are allocated

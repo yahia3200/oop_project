@@ -18,6 +18,7 @@
 #include "NewGame.h"
 #include "LoadAction.h"
 #include "Ice.h"
+#include "Poison.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -27,8 +28,11 @@ ApplicationManager::ApplicationManager()
 	pIn = pOut->CreateInput();
 	pGrid = new Grid(pIn, pOut);
 	Lightingptr = new Lightning(this);
+	iceptr = new Ice(this);
+	poisonptr = new Poison(this);
 	pGrid->SetLighting(Lightingptr);
 	pGrid->SetIce(iceptr);
+	pGrid->SetPoison(poisonptr);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////

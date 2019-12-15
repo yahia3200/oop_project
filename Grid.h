@@ -2,7 +2,6 @@
 
 #include "UI_Info.h"
 #include "DEFS.h"
-
 #include "Input.h"
 #include "Output.h"
 #include "CellPosition.h"
@@ -16,6 +15,7 @@ class Player;
 class Snake;
 class Lightning;
 class Ice;
+class Poison;
 class Grid
 {
 	Output * pOut;   // A pointer to the Output object
@@ -41,6 +41,7 @@ class Grid
 
 	Lightning* Light;
 	Ice* ice;
+	Poison* poison;
 public:
 
 	Grid(Input * pIn, Output * pOut);	  // Gives the Grid a Pointer to the Output Object and the Input Object
@@ -59,8 +60,10 @@ public:
 	    																	  // and  Draws it in the new cell
 	void SetLighting(Lightning* L);
 	void SetIce(Ice* i);
+	void SetPoison(Poison* p);
 	Ice* GetIce()const;
 	Lightning* GetLight()const;
+	Poison* GetPoison()const;
 	// ========= Setters and Getters Functions =========
 
 	Input * GetInput() const;	// Gets a Pointer to the Input

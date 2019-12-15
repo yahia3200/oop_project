@@ -42,6 +42,7 @@ Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pI
 	card12owner = false;     
 	card13owner = false;     
 	card14owner = false;
+
 }
 
 
@@ -107,6 +108,11 @@ void Grid::SetIce(Ice* i)
 	ice = i;
 }
 
+void Grid::SetPoison(Poison* p)
+{
+	poison = p;
+}
+
 Ice* Grid::GetIce() const
 {
 	return ice;
@@ -115,6 +121,11 @@ Ice* Grid::GetIce() const
 Lightning* Grid::GetLight() const
 {
 	return Light;
+}
+
+Poison* Grid::GetPoison() const
+{
+	return poison;
 }
 
 

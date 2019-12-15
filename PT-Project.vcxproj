@@ -203,6 +203,7 @@
     <ClCompile Include="PasteCardAction.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Poison.cpp" />
     <ClCompile Include="RollDiceAction.cpp" />
     <ClCompile Include="SaveAction.cpp" />
     <ClCompile Include="Snake.cpp" />
@@ -269,6 +270,7 @@
     <ClInclude Include="Output.h" />
     <ClInclude Include="PasteCardAction.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Poison.h" />
     <ClInclude Include="RollDiceAction.h" />
     <ClInclude Include="SaveAction.h" />
     <ClInclude Include="Snake.h" />

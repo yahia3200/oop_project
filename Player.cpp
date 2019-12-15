@@ -6,11 +6,15 @@
 #include "Card.h"
 #include "Lightning.h"
 #include "Ice.h"
+#include "Poison.h"
+
 Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNum(playerNum), preventplayer(false)
 {
 	this->pCell = pCell;
 	this->turnCount = 0;
 	NumberOfAttacks = 0;
+	poisoncounter = 5;
+	Ispoisoned = false;
 	// Make all the needed initialization or validations
 }
 
@@ -64,6 +68,13 @@ bool Player::getpreventplayer()
 {
 	return preventplayer;
 }
+
+void Player::setIspoisoned(bool poisonstatus)
+{
+	Ispoisoned = poisonstatus;
+}
+
+
 
 void Player::NumberOfAttacksincrements()
 {
@@ -143,18 +154,24 @@ void Player::Move(Grid* pGrid, int diceNumber)
 				int Answer = pIn->GetInteger(pOut);
 				Lightning* Light = pGrid->GetLight();
 				Ice* ice = pGrid->GetIce();
-
+				Poison* poison = pGrid->GetPoison();
 				switch (Answer)
 				{
 				case 1:
+					cout << "test player ice\n";
 					ice->Execute();
+					cout << "test player ice\n";
 					break;
 				case 2:
 					break;
 				case 3:
+					cout << "test player poison\n";
+					poison->Execute();
+					cout << "test player poison\n";
 					break;
 				case 4:
 					Light->Execute();
+					cout << "test player Light\n";
 					break;
 				default:
 					break;
@@ -182,6 +199,15 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99 && !preventplayer)
 		{
 			justRolledDiceNum = diceNumber;
+			if (Ispoisoned)
+			{
+				--justRolledDiceNum;
+				--poisoncounter;
+				if (poisoncounter == 0)
+				{
+					poisoncounter = false;
+				}
+			}
 			this->ClearDrawing(pOut);
 
 			//CellPosition pos = pCell->GetCellPosition();

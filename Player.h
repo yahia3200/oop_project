@@ -3,6 +3,9 @@
 #include "Grid.h"
 #include "Cell.h"
 
+#include <iostream>
+using namespace std;
+
 class Player
 {
 	Cell * pCell;		   // pointer to the current Cell of the player
@@ -18,6 +21,8 @@ class Player
 	                       // it is used to indicate when to move and when to add to your wallet
 	int NumberOfAttacks; //Determine how many times did the player Attack 
 	bool preventplayer;  //bool data member to prevent player from moving
+	int poisoncounter;
+	bool Ispoisoned;
 
 public:
 
@@ -36,6 +41,8 @@ public:
 
 	void setpreventplayer(bool prev); //A stter for prevent player
 	bool getpreventplayer();         //A getter for prevent player
+
+	void setIspoisoned(bool poisonstatus);
 
 	void NumberOfAttacksincrements();
 	///TODO: You can add setters and getters for data members here (if needed)
