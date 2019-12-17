@@ -53,6 +53,7 @@ void CutCardAction::Execute()
 		pGrid->SetClipboard(CutCard);
 		pGrid->RemoveObjectFromCell(position);
 		pOut->DrawCell(position);
+		Card::DecrementCardCounter();
 
 	}
 }
