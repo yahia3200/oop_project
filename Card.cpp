@@ -5,7 +5,6 @@ int Card::CardCounter = 0;
 Card::Card(const CellPosition & pos) : GameObject(pos) // sets the cell position of the GameObject
 {
 	CardCounter++;
-
 }
 
 void Card::SetCardNumber(int cnum)

@@ -12,7 +12,7 @@ void CardSix::ReadCardParameters(Grid* pGrid)
 
 void CardSix::Apply(Grid* pGrid, Player* pPlayer)
 {
-	pPlayer->Move(pGrid, pPlayer->GetRolledDiceNUm());
+	pPlayer->Move(pGrid, - pPlayer->GetRolledDiceNUm());
 }
 
 CardSix::~CardSix()
