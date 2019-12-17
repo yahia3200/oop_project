@@ -36,6 +36,7 @@ void PasteCardAction::ReadActionParameters()
 
 	//getting position of the clicked cell
 	//settig the Game object with the card cpied||cutted
+
 	pOut->PrintMessage("Click On The Cell To Paste The Card On It..");
 	position = pIn->GetCellClicked();
 	cardnum = pGrid->GetClipboard()->GetCardNumber();
@@ -55,16 +56,66 @@ void PasteCardAction::Execute()
 
 	ReadActionParameters();
 
-	//Paste the card to clicked After check  
-	//Draw the card in the clicked cell
+	
+	//creat the card with the clicked position
 	if (pGrid->GetClipboard() != NULL)
 	{
-	pGrid->GetClipboard()->SetCardposition(position, pGrid->GetClipboard());
-		bool valid = pGrid->AddObjectToCell(pGrid->GetClipboard());
+		Card* pCard = NULL; // will point to the card object type
+		switch (cardnum)
+		{
+		case 1:
+			pCard = new CardOne(position);
+			break;
+		case 2:
+			pCard = new CardTwo(position);
+			break;
+		case 3:
+			pCard = new CardThree(position);
+			break;
+		case 4:
+			pCard = new CardFour(position);
+			break;
+		case 5:
+			pCard = new CardFive(position);
+			break;
+		case 6:
+			pCard = new CardSix(position);
+			break;
+		case 7:
+			pCard = new CardSeven(position);
+			break;
+		case 8:
+			pCard = new CardEight(position);
+			break;
+		case 9:
+			pCard = new CardNine(position);
+			break;
+		case 10:
+			pCard = new CardTen(position);
+			break;
+		case 11:
+			pCard = new CardEleven(position);
+			break;
+		case 12:
+			pCard = new CardTwelve(position);
+			break;
+		case 13:
+			pCard = new CardThirteen(position);
+			break;
+		case 14:
+			pCard = new CardFourteen(position);
+			break;
+
+		}
+		//paste the card to the clicked cell after cheaking
+		bool valid = pGrid->AddObjectToCell(pCard);
 		if (valid)
 		{
+			
+	      //Draw the card in the clicked cell
+			pCard->Draw(pOut);
+			pCard = pGrid->GetClipboard();
 			pOut->DrawCell(position, cardnum);
-			pGrid->UpdateInterface();
 
 		}
 	}

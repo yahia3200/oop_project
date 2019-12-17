@@ -25,10 +25,7 @@ void Card::Draw(Output* pOut) const
 
 
 }
-void Card::SetCardposition(CellPosition& po, Card* c)
-{
-	c->position = po;
-}
+
 void Card::ReadCardParameters(Grid * pGrid)
 {
 	// we should not make it pure virtual because some Cards doesn't have parameters
