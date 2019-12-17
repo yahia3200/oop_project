@@ -38,8 +38,7 @@ void Ice::Execute()
 				pGrid->GetInput()->GetPointClicked(x, y);
 				int turnnum = CurrPlayer->GetTurnCount();
 				CurrPlayer->setpreventplayer(true);
-				CurrPlayer->SetturnCount(turnnum + 1);
-				CurrPlayer->setpreventplayer(false);
+				
 			}
 		}
 	}

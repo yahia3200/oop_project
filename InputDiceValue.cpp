@@ -14,16 +14,26 @@ void InputDiceValue::ReadActionParameters()
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	int x, y;
-
-	// get dice value from user
-	pOut->PrintMessage("Enter dice value: ");
-	diceNumber = pIn->GetInteger(pOut);
-	while (!(diceNumber >= 0 && diceNumber <= 6))
+	if (pGrid->GetCurrentPlayer()->getpreventplayer())
 	{
-		pOut->PrintMessage("Invalid Input. Please enter a positive integer between 0 to 6: ");
-		diceNumber = pIn->GetInteger(pOut);
-	}
+		//let the current player availabel to play int the next turn
 
+		pGrid->GetCurrentPlayer()->setpreventplayer(false);
+
+		// Advance the current player number of pGrid
+		pGrid->AdvanceCurrentPlayer();
+	}
+	else
+	{
+		// get dice value from user
+		pOut->PrintMessage("Enter dice value: ");
+		diceNumber = pIn->GetInteger(pOut);
+		while (!(diceNumber >= 0 && diceNumber <= 6))
+		{
+			pOut->PrintMessage("Invalid Input. Please enter a positive integer between 0 to 6: ");
+			diceNumber = pIn->GetInteger(pOut);
+		}
+	}
 	// Clear the status bar
 	pOut->ClearStatusBar();
 

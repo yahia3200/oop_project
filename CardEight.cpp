@@ -19,10 +19,10 @@ void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 
 	Card::Apply(pGrid, pPlayer);
 	//prevent player from rolling 
+	
 	int turnnum = pPlayer->GetTurnCount();
-	pPlayer->setpreventplayer(true);
-	//pPlayer->SetturnCount(turnnum + 1);
-	//pPlayer->setpreventplayer(false);
+	pGrid->GetCurrentPlayer()->setpreventplayer(true);
+	
 }
 
 CardEight::~CardEight()
