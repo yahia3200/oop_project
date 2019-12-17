@@ -2,6 +2,20 @@
 #include "Input.h"
 #include "Output.h"
 #include"Card.h"
+#include "CardOne.h"
+#include "CardTwo.h"
+#include "CardThree.h"
+#include "CardFour.h"
+#include "CardFive.h"
+#include "CardSix.h"
+#include "CardSeven.h"
+#include "CardEight.h"
+#include "CardNine.h"
+#include "CardTen.h"
+#include "CardEleven.h"
+#include "CardTwelve.h"
+#include "CardThirteen.h"
+#include "CardFourteen.h"
 PasteCardAction::PasteCardAction(ApplicationManager* pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer
@@ -45,7 +59,7 @@ void PasteCardAction::Execute()
 	//Draw the card in the clicked cell
 	if (pGrid->GetClipboard() != NULL)
 	{
-		pGrid->GetClipboard()->SetCardposition(position, pGrid->GetClipboard());
+	pGrid->GetClipboard()->SetCardposition(position, pGrid->GetClipboard());
 		bool valid = pGrid->AddObjectToCell(pGrid->GetClipboard());
 		if (valid)
 		{
