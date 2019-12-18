@@ -53,7 +53,6 @@ void Card::SaveCardsNumber(ofstream& OutPut)
 	OutPut << CardCounter << '\n';
 }
 
-
 void Card::SetCardParameter(istream& InputFile)
 {
 }

@@ -156,6 +156,11 @@ void CardFourteen::SetCardParameter(istream& InputFile)
 	}
 }
 
+void CardFourteen::SetIsSaved(bool s)
+{
+	IsSaved = s;
+}
+
 CardFourteen::~CardFourteen()
 {
 }

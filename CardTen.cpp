@@ -12,7 +12,6 @@ CardTen::CardTen(const CellPosition& pos) : Card(pos) // set the cell position o
 	Cardpos = pos;  //set the inherited Cardpos data member with the card position
 }
 
-
 void CardTen::ReadCardParameters(Grid* pGrid)
 {
 	// Get a Pointer to the Input / Output Interfaces from the Grid
@@ -24,7 +23,7 @@ void CardTen::ReadCardParameters(Grid* pGrid)
 	if (!IsExisted)
 	{
 		// get parameters for card
-		pOut->PrintMessage("New CardTen: Enter its price: ");
+		pOut->PrintMessage("New CardTwelve: Enter its price: ");
 		price = pIn->GetInteger(pOut);
 		while (price < 0)
 		{
@@ -34,7 +33,7 @@ void CardTen::ReadCardParameters(Grid* pGrid)
 		pOut->PrintMessage("Price: " + to_string(price) + "  , Click to continue");
 		pIn->GetPointClicked(x, y);
 
-		pOut->PrintMessage("New CardTen: Enter its fee: ");
+		pOut->PrintMessage("New CardTwelve: Enter its fee: ");
 		Fees = pIn->GetInteger(pOut);
 
 		while (Fees < 0)
@@ -51,7 +50,6 @@ void CardTen::ReadCardParameters(Grid* pGrid)
 		// Clear the status bar
 		pOut->ClearStatusBar();
 	}
-	
 }
 
 void CardTen::Apply(Grid* pGrid, Player* pPlayer)
@@ -161,6 +159,11 @@ void CardTen::Save(ofstream& OutFile, int t)
 		else
 			OutFile << cardNumber << " " << Cardpos.GetCellNum() << '\n';
 	}
+}
+
+void CardTen::SetIsSaved(bool s)
+{
+	IsSaved = s;
 }
 
 CardTen::~CardTen()

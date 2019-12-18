@@ -42,6 +42,11 @@ void LoadAction::Execute()
 
 	Grid* pGrid = pManager->GetGrid();
 	pGrid->ResetGrid();
+	CardTen::IsExisted = false;
+	CardEleven::IsExisted = false;
+	CardTwelve::IsExisted = false;
+	CardThirteen::IsExisted = false;
+	CardFourteen::IsExisted = false;
 
 	ifstream InputFile;
 	InputFile.open(fileName);

@@ -147,6 +147,11 @@ void CardEleven::Save(ofstream& OutFile, int t)
 	}
 }
 
+void CardEleven::SetIsSaved(bool s)
+{
+	IsSaved = s;
+}
+
 void CardEleven::SetCardParameter(istream& InputFile)
 {
 	if (!IsExisted)

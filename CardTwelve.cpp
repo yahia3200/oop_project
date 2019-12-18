@@ -158,6 +158,11 @@ void CardTwelve::SetCardParameter(istream& InputFile)
 	}
 }
 
+void CardTwelve::SetIsSaved(bool s)
+{
+	IsSaved = s;
+}
+
 CardTwelve::~CardTwelve()
 {
 }

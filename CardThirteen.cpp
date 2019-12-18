@@ -162,6 +162,11 @@ void CardThirteen::SetCardParameter(istream& InputFile)
 	
 }
 
+void CardThirteen::SetIsSaved(bool s)
+{
+	IsSaved = s;
+}
+
 CardThirteen::~CardThirteen()
 {
 }

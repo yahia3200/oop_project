@@ -5,6 +5,11 @@
 #include "Ladder.h"
 #include "Snake.h"
 #include "Card.h"
+#include "CardTen.h"
+#include "CardEleven.h"
+#include "CardTwelve.h"
+#include "CardThirteen.h"
+#include "CardFourteen.h"
 #include <fstream>
 
 SaveAction::SaveAction(ApplicationManager* pApp) :Action(pApp)
@@ -36,6 +41,12 @@ void SaveAction::Execute()
 	pGrid->SaveAll(OutFile,0);
 	Snake::SaveSnakesNumber(OutFile);
 	pGrid->SaveAll(OutFile, 1);
+
+	CardTen::SetIsSaved(false);
+	CardEleven::SetIsSaved(false);
+	CardTwelve::SetIsSaved(false);
+	CardThirteen::SetIsSaved(false);
+	CardFourteen::SetIsSaved(false);
 	Card::SaveCardsNumber(OutFile);
 	pGrid->SaveAll(OutFile, 2);
 

@@ -14,6 +14,7 @@ class CardFourteen : public Card
 	static Player* ownerplayer; //the owner of the card(s)
 	static bool IsExisted;  // a bool refers if this card is created 
 	static bool IsSaved; // bool to save the card parameters only once
+	friend class LoadAction;
 
 public:
 	CardFourteen(const CellPosition& pos); // A Constructor takes card position
@@ -24,6 +25,7 @@ public:
 													  // by either buying the cell if it's valid or force a fee
 	virtual void Save(ofstream& OutFile, int t);
 	virtual void SetCardParameter(istream& InputFile);
+	static void SetIsSaved(bool s);
 	virtual ~CardFourteen(); // A Virtual Destructor
 };
 
