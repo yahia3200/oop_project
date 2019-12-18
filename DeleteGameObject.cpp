@@ -21,6 +21,7 @@ void DeleteGameObject::Execute()
 	ReadActionParameters();
 	Grid* pGrid = pManager->GetGrid();
 	
+	pGrid->deleteObject(cellPos);
 	pGrid->RemoveObjectFromCell(cellPos);
 	//pGrid->GetOutput()->ClearGridArea(); //Wrong
 	//pGrid->GetOutput()->DrawCell(cellPos);

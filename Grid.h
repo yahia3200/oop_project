@@ -116,6 +116,7 @@ public:
 
 	void SaveAll(ofstream& OutFile,int t);
 	void ResetGrid();
+	void deleteObject(CellPosition pos);
 
 	~Grid(); // A destructor for any needed deallcations
 };

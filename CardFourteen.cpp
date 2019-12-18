@@ -4,6 +4,7 @@ bool CardFourteen::IsExisted = false;  // set false for first time it's created
 Player* CardFourteen::ownerplayer = NULL;  // set the owner of the card pointint to null
 int CardFourteen::price = 0;
 int CardFourteen::Fees = 0;
+bool CardFourteen::IsSaved = false;
 
 CardFourteen::CardFourteen(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
@@ -134,16 +135,25 @@ void CardFourteen::Save(ofstream& OutFile, int t)
 {
 	if (t == 2)
 	{
-		OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << price << "  " << Fees << '\n';
+		if (!IsSaved)
+		{
+			OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << price << "  " << Fees << '\n';
+			IsSaved = true;
+		}
+		else
+			OutFile << cardNumber << " " << Cardpos.GetCellNum() << '\n';
 	}
 }
 
 void CardFourteen::SetCardParameter(istream& InputFile)
 {
-	int p, f;
-	InputFile >> p >> f;
-	price = p;
-	Fees = f;
+	if (!IsExisted)
+	{
+		int p, f;
+		InputFile >> p >> f;
+		price = p;
+		Fees = f;
+	}
 }
 
 CardFourteen::~CardFourteen()

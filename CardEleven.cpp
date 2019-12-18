@@ -4,6 +4,7 @@ bool CardEleven::IsExisted = false;  // set false for first time it's created
 Player* CardEleven::ownerplayer = NULL;  // set the owner of the card pointint to null
 int CardEleven::price = 0;
 int CardEleven::Fees = 0;
+bool CardEleven::IsSaved = false;
 
 CardEleven::CardEleven(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
@@ -136,16 +137,27 @@ void CardEleven::Save(ofstream& OutFile, int t)
 {
 	if (t == 2)
 	{
-		OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << price << " " << Fees << '\n';
+		if (!IsSaved)
+		{
+			OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << price << " " << Fees << '\n';
+			IsSaved = true;
+		}
+		else
+			OutFile << cardNumber << " " << Cardpos.GetCellNum() << '\n';
 	}
 }
 
 void CardEleven::SetCardParameter(istream& InputFile)
 {
-	int p, f;
-	InputFile >> p >> f;
-	price = p;
-	Fees = f;
+	if (!IsExisted)
+	{
+		int p, f;
+		InputFile >> p >> f;
+		price = p;
+		Fees = f;
+		IsExisted = true;
+	}
+	
 }
 
 CardEleven::~CardEleven()

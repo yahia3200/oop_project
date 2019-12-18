@@ -12,7 +12,7 @@ class CardTwelve : public Card
 	static int Fees; // Fees to pay by passing players
 	static Player* ownerplayer; //the owner of the card(s)
 	static bool IsExisted;  // a bool refers if this card is created 
-
+	static bool IsSaved; // bool to save the card parameters only once
 
 public:
 	CardTwelve(const CellPosition& pos); // A Constructor takes card position

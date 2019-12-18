@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "Output.h"
 
+
 CutCardAction::CutCardAction(ApplicationManager* pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer
@@ -54,6 +55,5 @@ void CutCardAction::Execute()
 		pGrid->RemoveObjectFromCell(position);
 		pOut->DrawCell(position);
 		Card::DecrementCardCounter();
-
 	}
 }

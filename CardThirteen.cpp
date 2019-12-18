@@ -4,6 +4,7 @@ bool CardThirteen::IsExisted = false;  // set false for first time it's created
 Player* CardThirteen::ownerplayer = NULL;  // set the owner of the card pointint to null
 int CardThirteen::price = 0;
 int CardThirteen::Fees = 0;
+bool CardThirteen::IsSaved = false;
 
 CardThirteen::CardThirteen(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
@@ -138,16 +139,27 @@ void CardThirteen::Save(ofstream& OutFile, int t)
 {
 	if (t == 2)
 	{
-		OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << price << " " << Fees << '\n';
+		if (!IsSaved)
+		{
+			OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << price << " " << Fees << '\n';
+			IsSaved = true;
+		}
+		else
+			OutFile << cardNumber << " " << Cardpos.GetCellNum() << '\n';
 	}
 }
 
 void CardThirteen::SetCardParameter(istream& InputFile)
 {
-	int p, f;
-	InputFile >> p >> f;
-	price = p;
-	Fees = f;
+	if (!IsExisted)
+	{
+		int p, f;
+		InputFile >> p >> f;
+		price = p;
+		Fees = f;
+		IsExisted = true;
+	}
+	
 }
 
 CardThirteen::~CardThirteen()
