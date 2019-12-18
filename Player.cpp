@@ -228,7 +228,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	}
 	else
 	{
-		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99 && !preventplayer)
+		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99&& !preventplayer)
 		{
 			justRolledDiceNum = diceNumber;
 
