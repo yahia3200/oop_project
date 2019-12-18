@@ -6,12 +6,14 @@ CardSix::CardSix(const CellPosition& cpos):Card(cpos)
 	Cardpos = cpos;
 }
 
-void CardSix::ReadCardParameters(Grid* pGrid)
-{
-}
-
 void CardSix::Apply(Grid* pGrid, Player* pPlayer)
 {
+	Input* pIn = pGrid->GetInput();
+	Output* pOut = pGrid->GetOutput();
+	int x, y;
+	pOut->PrintMessage("you have reached card six. click to contiue ");
+	pIn->GetPointClicked(x, y);
+	pOut->ClearStatusBar();
 	pPlayer->Move(pGrid, - pPlayer->GetRolledDiceNUm());
 }
 
