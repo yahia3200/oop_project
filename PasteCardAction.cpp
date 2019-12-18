@@ -39,7 +39,12 @@ void PasteCardAction::ReadActionParameters()
 
 	pOut->PrintMessage("Click On The Cell To Paste The Card On It..");
 	position = pIn->GetCellClicked();
-	cardnum = pGrid->GetClipboard()->GetCardNumber();
+
+	if (pGrid->GetClipboard() != NULL)
+	{
+		cardnum = pGrid->GetClipboard()->GetCardNumber();
+	}
+	
     pOut->ClearStatusBar();
 
 }
@@ -111,12 +116,21 @@ void PasteCardAction::Execute()
 		bool valid = pGrid->AddObjectToCell(pCard);
 		if (valid)
 		{
-			
-	      //Draw the card in the clicked cell
+
+			//Draw the card in the clicked cell
 			pCard->Draw(pOut);
 			pCard = pGrid->GetClipboard();
 			pOut->DrawCell(position, cardnum);
 
 		}
+		else
+		{
+			pOut->PrintMessage("Invalid Cell. click to continue ");
+			int x, y;
+			pIn->GetPointClicked(x, y);
+			pOut->ClearStatusBar();
+			delete pCard;
+		}
+			
 	}
 }
