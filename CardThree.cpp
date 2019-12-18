@@ -11,9 +11,15 @@ CardThree::CardThree(const CellPosition& cpos):Card(cpos)
 
 void CardThree::Apply(Grid* pGrid, Player* pPlayer)
 {
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+	int x, y;
+
+	pOut->PrintMessage("Go To Next Ladder. click to continue");
+	pIn->GetPointClicked(x, y);
 	Ladder* Lptr = pGrid->GetNextLadder(position); //Getting the position of endCell of Next Ladder
 	pGrid->UpdatePlayerCell(pPlayer, Lptr->GetEndPosition()); //Updating The Player's Cell
-	delete Lptr;
+	pOut->ClearStatusBar();
 }
 
 

@@ -8,7 +8,6 @@ class CardThree :
 public:
 	CardThree(const CellPosition& cpos);  //Constructor
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applies the effect of CardThree on the passed Player
-													  // by inCrement the player's wallet by the walletAmount data member
 	virtual ~CardThree(); //Virtual Destructor 
 };
 
