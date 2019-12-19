@@ -30,7 +30,6 @@ void Ice::Execute()
 		int AttackedPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
 		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();
 		//Preventing Player from playing next time:
-		int AttackedPlayer;
 		do
 		{
 			pGrid->GetOutput()->PrintMessage("Ice Attack:Choose A player to prevent him from Dicing next time");
