@@ -8,7 +8,8 @@ public:
 	CardSix(const CellPosition& cpos);
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applies the effect of CardOne on the passed Player
 													  // Moves the player backward the same number of steps that he just rolled
-	
+	virtual Card* GetCard(CellPosition& pos);
+
 	virtual ~CardSix(); //Virtual Destructor 
 };
 

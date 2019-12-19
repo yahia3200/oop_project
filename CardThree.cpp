@@ -26,3 +26,9 @@ void CardThree::Apply(Grid* pGrid, Player* pPlayer)
 CardThree::~CardThree()
 {
 }
+
+Card* CardThree::GetCard(CellPosition& pos)
+{
+	Card* ptr = new CardThree(pos);
+	return ptr;
+}

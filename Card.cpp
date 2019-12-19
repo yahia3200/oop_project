@@ -17,11 +17,12 @@ int Card::GetCardNumber()
 	return cardNumber;
 }
 
+
 void Card::Draw(Output* pOut) const
 {
 
 	///TODO: call the appropriate Ouput function that draws a cell containing the "cardNumber" in "position"
-
+	
 
 }
 

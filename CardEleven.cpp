@@ -133,6 +133,18 @@ void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 
 }
 
+Card* CardEleven::GetCard(CellPosition& pos)
+{
+	Card* cptr = new CardEleven(pos);
+	((CardEleven*)cptr)->price = price;
+	((CardEleven*)cptr)->Fees = Fees;
+	((CardEleven*)cptr)->ownerplayer = ownerplayer;
+	((CardEleven*)cptr)->IsExisted = IsExisted;
+	((CardEleven*)cptr)->IsSaved = IsSaved;
+
+	return cptr;
+}
+
 void CardEleven::Save(ofstream& OutFile, int t)
 {
 	if (t == 2)

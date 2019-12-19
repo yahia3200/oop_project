@@ -13,6 +13,12 @@ void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 	delete Snakeptr; //Deallocation
 }
 
+Card* CardFour::GetCard(CellPosition& pos)
+{
+	Card* cptr = new CardFour(pos);
+	return cptr;
+}
+
 CardFour::~CardFour()
 {
 }

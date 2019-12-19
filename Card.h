@@ -19,7 +19,7 @@ public:
 
 	void SetCardNumber(int cnum);   // The setter of card number
 	int GetCardNumber();   // The getter of card number
-
+	virtual Card * GetCard(CellPosition& pos)=0;
 
 	void Draw(Output* pOut) const;  // Draws the card number in the cell position of the card
 	                                // It has the same implementation for all Card Types (Non-Virtual)

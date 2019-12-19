@@ -19,6 +19,12 @@ void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 	
 }
 
+Card* CardEight::GetCard(CellPosition& pos)
+{
+	Card* cptr = new CardEight(pos);
+	return cptr;
+}
+
 CardEight::~CardEight()
 {
 }

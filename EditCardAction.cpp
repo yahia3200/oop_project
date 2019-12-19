@@ -28,7 +28,7 @@ void EditCardAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	pOut->PrintMessage("Click on The Sourse To Edit ..");
 	cardPosition = pIn->GetCellClicked();
-	Cardptr = pGrid->Getcard(cardPosition); //Get the card of clicked Cell position 
+	Cardptr = pGrid->Getclickedcard(cardPosition); //Get the card of clicked Cell position 
 	
 	if (Cardptr!=NULL) //Check of not null pointer 
 	{
