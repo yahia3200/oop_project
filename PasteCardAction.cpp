@@ -30,23 +30,30 @@ PasteCardAction::~PasteCardAction()
 }
 
 void PasteCardAction::ReadActionParameters()
-{
-	//getting pointer to output && input class
+{	
+
+	//getting pointer to output && input Interfaces from the Grid
+
 	Grid *pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
-	//getting position of the clicked cell
-	//settig the Game object with the card cpied||cutted
+	//getting position of the clicked cell to paste in it 
 
 	pOut->PrintMessage("Click On The Cell To Paste The Card On It..");
+
 	position = pIn->GetCellClicked();
+
+	//check if clicked copied or cutted cell is has a card (is not equal null)
 
 	if (pGrid->GetClipboard() != NULL)
 	{
+		//getting card clicked number 
+
 		cardnum = pGrid->GetClipboard()->GetCardNumber();
 	}
 	
+	//clear statusbar
     pOut->ClearStatusBar();
 
 }
@@ -56,25 +63,32 @@ void PasteCardAction::Execute()
 	
 
 	//getting pointer to Grid
+	
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
+
 	//calling read action parameters
 
 	ReadActionParameters();
 
 	
-	//creat the card with the clicked position
+	//creat pointer to card with the clicked position
+	//using GetCard function that return pointer to the card
+	//with same parameter of copied or cutted card 
+	//with the new position 
+
 	Card* cptr = pGrid->GetClipboard()->GetCard(position);
-		//paste the card to the clicked cell after cheaking
+
+	//paste the card to the clicked cell after cheaking
+	// it is valid to paste card in the clicked position 
+
 		bool valid = pGrid->AddObjectToCell(cptr);
 		if (valid)
 		{
+			//Draw the card in the clicked position
 
-			//Draw the card in the clicked cell
-			//pCard->Draw(pOut);
-			pOut->DrawCell(position, cardnum);
-
+			cptr->Draw(pOut);
 		}
 		else
 		{

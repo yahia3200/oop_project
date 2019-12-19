@@ -59,19 +59,37 @@ void EditCardAction::Execute()
 			Cardptr->ReadCardParameters(pGrid);
 			break;
 		case 10:
+			((CardTen*)Cardptr)->setIsExisted(false);
 			Cardptr->ReadCardParameters(pGrid);
+			((CardTen*)Cardptr)->setIsExisted(true);
+
 			break;
 		case 11:
+			((CardEleven*)Cardptr)->setIsExisted(false);
 			Cardptr->ReadCardParameters(pGrid);
+			((CardEleven*)Cardptr)->setIsExisted(true);
+
 			break;
 		case 12:
+			((CardTwelve*)Cardptr)->setIsExisted(false);
+
 			Cardptr->ReadCardParameters(pGrid);
+			((CardTwelve*)Cardptr)->setIsExisted(true);
+
 			break;
 		case 13:
+			((CardThirteen*)Cardptr)->setIsExisted(false);
+
 			Cardptr->ReadCardParameters(pGrid);
+			((CardThirteen*)Cardptr)->setIsExisted(true);
+
 			break;
 		case 14:
+			((CardFourteen*)Cardptr)->setIsExisted(false);
+
 			Cardptr->ReadCardParameters(pGrid);
+			((CardFourteen*)Cardptr)->setIsExisted(true);
+
 			break;
 		default:
 			pOut->PrintMessage("This Card Cannot Be Editted,Press any where to continue..");

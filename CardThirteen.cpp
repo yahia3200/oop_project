@@ -95,7 +95,7 @@ void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 		if (pPlayer->GetWallet() < 0)
 		{
 			pPlayer->setpreventplayer(true);
-			pOut->PrintMessage("You Are Prevented From Move Till You Pay Fees. Click To Contiue");
+			pOut->PrintMessage("You Are Prevented From Move Till You Pay Fees. Click To Continue");
 			pIn->GetPointClicked(x, y);
 			pOut->ClearStatusBar();
 
@@ -145,6 +145,11 @@ Card* CardThirteen::GetCard(CellPosition& pos)
 
 		return cptr;
 	
+}
+
+void CardThirteen::setIsExisted(bool Existed)
+{
+	IsExisted = Existed;
 }
 
 void CardThirteen::Save(ofstream& OutFile, int t)

@@ -24,6 +24,7 @@ public:
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applies the effect of CardTen on the passed Player
 													  // by either buying the cell if it's valid or force a fee
 	virtual Card* GetCard(CellPosition& pos);
+	static void setIsExisted(bool Existed);
 
 	virtual void Save(ofstream& OutFile, int t);
 	static void SetIsSaved(bool s);

@@ -33,7 +33,7 @@ void CardTen::ReadCardParameters(Grid* pGrid)
 		pOut->PrintMessage("Price: " + to_string(price) + "  , Click to continue");
 		pIn->GetPointClicked(x, y);
 
-		pOut->PrintMessage("New CardTwelve: Enter its fee: ");
+		pOut->PrintMessage("New CardTwelve: Enter its fees: ");
 		Fees = pIn->GetInteger(pOut);
 
 		while (Fees < 0)
@@ -92,7 +92,7 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 		if (pPlayer->GetWallet() < 0)
 		{
 			pPlayer->setpreventplayer(true);
-			pOut->PrintMessage("You Are Prevented From Move Till You Pay Fees. Click To Contiue");
+			pOut->PrintMessage("You Are Prevented From Move Till You Pay Fees. Click To Continue");
 			pIn->GetPointClicked(x, y);
 			pOut->ClearStatusBar();
 		
@@ -141,6 +141,11 @@ Card* CardTen::GetCard(CellPosition& pos)
 	((CardTen*)cptr)->IsSaved = IsSaved;
 
 	return cptr;
+}
+
+void CardTen::setIsExisted(bool Existed)
+{
+	IsExisted = Existed;
 }
 
 void CardTen::Load(istream& InputFile)

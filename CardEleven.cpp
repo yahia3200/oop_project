@@ -15,6 +15,8 @@ CardEleven::CardEleven(const CellPosition& pos) : Card(pos) // set the cell posi
 
 void CardEleven::ReadCardParameters(Grid* pGrid)
 {
+	
+
 	// Get a Pointer to the Input / Output Interfaces from the Grid
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
@@ -64,7 +66,6 @@ void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 	Output* pOut = pGrid->GetOutput();
 	int x, y;
 
-	Card::Apply(pGrid, pPlayer);
 
 	//check if game was ended before to restart card(s) Property
 	if (pGrid->getcard11owner())
@@ -95,7 +96,7 @@ void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 		if (pPlayer->GetWallet() < 0)
 		{
 			pPlayer->setpreventplayer(true);
-			pOut->PrintMessage("You Are Prevented From Move Till You Pay Fees. Click To Contiue");
+			pOut->PrintMessage("You Are Prevented From Move Till You Pay Fees. Click To Continue");
 			pIn->GetPointClicked(x, y);
 			pOut->ClearStatusBar();
 
@@ -145,6 +146,11 @@ Card* CardEleven::GetCard(CellPosition& pos)
 	((CardEleven*)cptr)->IsSaved = IsSaved;
 
 	return cptr;
+}
+
+void CardEleven::setIsExisted(bool Existed)
+{
+	IsExisted = Existed;
 }
 
 void CardEleven::Save(ofstream& OutFile, int t)

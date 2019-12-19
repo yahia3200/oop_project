@@ -20,7 +20,10 @@ public:
 	void SetCardNumber(int cnum);   // The setter of card number
 
 	int GetCardNumber();   // The getter of card number
-	virtual Card * GetCard(CellPosition& pos)=0;
+
+	virtual Card * GetCard(CellPosition& pos)=0; //pure virual function which return pointer to new card with 
+	                                            // the parameter of copied or cutted card with the new
+	                                           //position clicked 
 
 	void Draw(Output* pOut) const;  // Draws the card number in the cell position of the card
 	                                // It has the same implementation for all Card Types (Non-Virtual)
