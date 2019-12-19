@@ -191,6 +191,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 				Ice* ice = pGrid->GetIce();
 				Poison* poison = pGrid->GetPoison();
 				Fire* fire = pGrid->GetFire();
+
 				switch (Answer)
 				{
 				case 1:

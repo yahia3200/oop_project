@@ -24,7 +24,6 @@ void Fire::Execute()
 	if (Used[CurrPlayerNum] == false)
 	{
 		IsUsed(CurrPlayerNum);
-		CurrPlayer->NumberOfAttacksincrements();
 		//Making The Player Choose a Player To Reduce his rolled dice value for 5 turns
 		pGrid->GetOutput()->PrintMessage("Fire Attack:Choose A player to Deduct 20 coins from his wallet for his next 3 turns");
 		int burntPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
@@ -42,7 +41,7 @@ void Fire::Execute()
 				pGrid->GetOutput()->ClearStatusBar();
 			}
 		}
-
+		CurrPlayer->NumberOfAttacksincrements();
 	}
 	else
 	{
@@ -56,6 +55,14 @@ void Fire::Execute()
 void Fire::IsUsed(int PlayerIndex)
 {
 	Used[PlayerIndex] = true;
+}
+
+void Fire::restart()
+{
+	for (int i = 0; i < MaxPlayerCount; i++)
+	{
+		Used[i] = false;
+	}
 }
 
 Fire::~Fire()
