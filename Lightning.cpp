@@ -21,7 +21,6 @@ void Lightning::Execute()
 {
 	Grid* pGrid = pManager->GetGrid();
 	ReadActionParameters();
-	CurrPlayer->NumberOfAttacksincrements();
 	if (Used[CurrPlayerNum] == false) {
 		IsUsed(CurrPlayerNum);
 		for (int i = 0; i < MaxPlayerCount-1; i++)
@@ -30,6 +29,7 @@ void Lightning::Execute()
 			ReadActionParameters();
 				CurrPlayer->SetWallet(CurrPlayer->GetWallet() - 20);
 		}
+		CurrPlayer->NumberOfAttacksincrements();
 		pGrid->AdvanceCurrentPlayer();
 	}
 	else {
@@ -43,6 +43,14 @@ void Lightning::Execute()
 void Lightning::IsUsed(int PlayerIndex)
 {
 	Used[PlayerIndex] = true;
+}
+
+void Lightning::restart()
+{
+	for (int i = 0; i < MaxPlayerCount; i++)
+	{
+		Used[i] = false;
+	}
 }
 
 Lightning::~Lightning()

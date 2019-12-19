@@ -17,6 +17,7 @@ public:
 
 	virtual void Execute();  // Executes action (code depends on action type so virtual)
 	void IsUsed(int PlayerIndex);
+	void restart();  //restart Used array
 	virtual ~Ice();  // Virtual Destructor
 };
 

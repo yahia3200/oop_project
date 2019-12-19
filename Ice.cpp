@@ -1,6 +1,7 @@
 #include "Ice.h"
 #include "Grid.h"
 #include "Player.h"
+
 Ice::Ice(ApplicationManager* pApp) :Action(pApp)
 {
 	for (int i = 0; i < MaxPlayerCount; i++)
@@ -24,9 +25,9 @@ void Ice::Execute()
 	if (Used[CurrPlayerNum] == false) 
 	{
 		IsUsed(CurrPlayerNum);
-		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();
-		//Preventing Player from playing next time:
+		//Making The Player Choose a Player To Reduce his Wallet
 		int AttackedPlayer;
+		//Preventing Player from playing next time:
 		do
 		{
 			pGrid->GetOutput()->PrintMessage("Ice Attack:Choose A player to prevent him from Dicing next time");
@@ -46,11 +47,12 @@ void Ice::Execute()
 				pGrid->GetOutput()->PrintMessage("Player No. " + to_string(AttackedPlayer) + " Is prevented from playing next time,Press anywhere to continue");
 				int x, y;
 				pGrid->GetInput()->GetPointClicked(x, y);
-				int turnnum = CurrPlayer->GetTurnCount();
-				CurrPlayer->setpreventplayer(true);
-				
+				pGrid->GetOutput()->ClearStatusBar();
+				int turnnum = pGrid->GetCurrentPlayer()->GetTurnCount();
+				pGrid->GetCurrentPlayer()->setpreventplayer(true);
 			}
 		}
+		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();
 	}
 	else {
 		pGrid->GetOutput()->PrintMessage("You Have Used This Attack Befroe,Click anywhere to continue..");
@@ -63,6 +65,14 @@ void Ice::Execute()
 void Ice::IsUsed(int PlayerIndex)
 {
 	Used[PlayerIndex] = true;
+}
+
+void Ice::restart()
+{
+	for (int i = 0; i < MaxPlayerCount; i++)
+	{
+		Used[i] = false;
+	}
 }
 
 Ice::~Ice()

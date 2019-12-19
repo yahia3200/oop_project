@@ -2,7 +2,10 @@
 
 #include "Grid.h"
 #include "Player.h"
-
+#include "Lightning.h"
+#include "Ice.h"
+#include "Poison.h"
+#include "Fire.h"
 #include <time.h> // used to in srand to generate random numbers with different seed
 
 RollDiceAction::RollDiceAction(ApplicationManager* pApp) : Action(pApp)
@@ -16,12 +19,13 @@ void RollDiceAction::ReadActionParameters()
 
 void RollDiceAction::Execute()
 {
-
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
 	//Get a Pointer to the Input / Output Interfaces from the Grid
 	Grid* pGrid = pManager->GetGrid();
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
+
+
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
 
@@ -71,6 +75,10 @@ void RollDiceAction::Execute()
 			pGrid->GetCurrentPlayer()->resetFirecounter();
 			pGrid->GetCurrentPlayer()->resetPoisoncounter();
 			pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), *startplayerscell);
+			pGrid->GetLight()->restart();
+			pGrid->GetIce()->restart();
+			pGrid->GetPoison()->restart();
+			pGrid->GetFire()->restart();
 			pGrid->AdvanceCurrentPlayer();
 		}
 

@@ -25,10 +25,7 @@ void Poison::Execute()
 	if (Used[CurrPlayerNum] == false)
 	{
 		IsUsed(CurrPlayerNum); //Making the attacker player use this attack to prevent him from using it again
-		CurrPlayer->NumberOfAttacksincrements(); //Making the player attack counter increase not to exceed 2 atacks during the game
 		//Making The Player Choose a Player To Reduce his rolled dice value for 5 turns
-
-		pGrid->GetOutput()->PrintMessage("Poison Attack:Choose A player to deduct 1 number from his dice roll");
 		int PoisonedPlayer;
 		do
 		{
@@ -40,7 +37,7 @@ void Poison::Execute()
 				pGrid->GetInput()->GetPointClicked(x, y);
 				pGrid->GetOutput()->ClearStatusBar();
 			}
-		} while (PoisonedPlayer>3||PoisonedPlayer<3||PoisonedPlayer==CurrPlayerNum);
+		} while (PoisonedPlayer>3||PoisonedPlayer<0||PoisonedPlayer==CurrPlayerNum);
 		for (int i = 0; i < MaxPlayerCount; i++)
 		{
 			pGrid->AdvanceCurrentPlayer();
@@ -55,7 +52,7 @@ void Poison::Execute()
 				pGrid->GetOutput()->ClearStatusBar();
 			}
 		}
-
+		CurrPlayer->NumberOfAttacksincrements();
 	}
 	else
 	{
@@ -69,6 +66,14 @@ void Poison::Execute()
 void Poison::IsUsed(int PlayerIndex)
 {
 	Used[PlayerIndex] = true;
+}
+
+void Poison::restart()
+{
+	for (int i = 0; i < MaxPlayerCount; i++)
+	{
+		Used[i] = false;
+	}
 }
 
 Poison::~Poison()

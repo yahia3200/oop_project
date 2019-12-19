@@ -1,6 +1,10 @@
 ﻿#include "InputDiceValue.h"
 #include "Player.h"
 #include "Grid.h"
+#include "Lightning.h"
+#include "Ice.h"
+#include "Poison.h"
+#include "Fire.h"
 #include <time.h> // used to in srand to generate random numbers with different seed
 
 InputDiceValue::InputDiceValue(ApplicationManager* pApp) :Action(pApp)
@@ -119,6 +123,10 @@ void InputDiceValue::Execute()
 			pGrid->GetCurrentPlayer()->resetFirecounter();
 			pGrid->GetCurrentPlayer()->resetPoisoncounter();
 			pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), *startplayerscell);
+			pGrid->GetLight()->restart();
+			pGrid->GetIce()->restart();
+			pGrid->GetPoison()->restart();
+			pGrid->GetFire()->restart();
 			pGrid->AdvanceCurrentPlayer();
 		} 
 

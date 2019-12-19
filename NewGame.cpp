@@ -1,4 +1,8 @@
 #include "NewGame.h"
+#include "Lightning.h"
+#include "Ice.h"
+#include "Poison.h"
+#include "Fire.h"
 
 NewGame::NewGame(ApplicationManager* pApp) : Action(pApp)
 {
@@ -15,7 +19,10 @@ void NewGame::Execute()
 	Grid* pGrid = pManager->GetGrid();
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
-
+	Lightning* Light = pGrid->GetLight();
+	Ice* ice = pGrid->GetIce();
+	Poison* poison = pGrid->GetPoison();
+	Fire* fire = pGrid->GetFire();
 	// restart thePlayer Objects
 	CellPosition* startplayerscell;
 	startplayerscell = new CellPosition(NumVerticalCells - 1, 0);
@@ -30,6 +37,10 @@ void NewGame::Execute()
 		pGrid->GetCurrentPlayer()->resetFirecounter();
 		pGrid->GetCurrentPlayer()->resetPoisoncounter();
 		pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), *startplayerscell);
+		pGrid->GetLight()->restart();
+		pGrid->GetIce()->restart();
+		pGrid->GetPoison()->restart();
+		pGrid->GetFire()->restart();
 		pGrid->AdvanceCurrentPlayer();
 	}
 
