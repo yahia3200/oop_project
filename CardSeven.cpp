@@ -2,15 +2,13 @@
 
 CardSeven::CardSeven(const CellPosition& cpos):Card(cpos)
 {	
-	// setting the inherited cardNumber data member with 7
 	cardNumber = 7;
-	Cardpos = cpos;
 }
 
 void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 {
-	//Calling Apply() of the base class Card to print the message that I reached this card number
 
+	//Calling Apply() of the base class Card to print the message that I reached this card number
 	Card::Apply(pGrid, pPlayer);
 
 	//do 4 loops to return to the player who reached the card
@@ -18,6 +16,9 @@ void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 	{
 		pGrid->AdvanceCurrentPlayer();
 	}
+
+	Output* Out = pGrid->GetOutput();
+	Out->PrintMessage("You Have Another Dice Roll");
 }
 
 Card* CardSeven::GetCard(CellPosition& pos)

@@ -1,12 +1,8 @@
 #include "CardNine.h"
-#include "CardOne.h"
 
-
-CardNine::CardNine(const CellPosition& pos) : Card(pos) // set the cell position of the card
+CardNine::CardNine(const CellPosition& pos) : Card(pos) 
 {
-	// setting the inherited cardNumber data member with 9
 	cardNumber = 9; 
-	Cardpos = pos;
 }
 
 
@@ -19,11 +15,9 @@ void CardNine::ReadCardParameters(Grid* pGrid)
 
 	//Ptinting message to gide the user 
 	// get cell clicked and stored it in a paramewte CellTomove (object from  CellPosition )
-	pOut->PrintMessage("New CardNine: Click to the cell to move to it ...");
+	pOut->PrintMessage("New CardNine: Click to the cell to move to it  ");
 	CellTomove = pIn->GetCellClicked();
 
-	//Deletting the status Bar 
-	pOut->ClearStatusBar();
 }
 
 
@@ -45,7 +39,7 @@ void CardNine::Save(ofstream& OutFile, int t)
 {
 	if (t == 2)
 	{
-		OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << CellTomove.GetCellNum() << "\n";
+		OutFile << cardNumber << " " << position.GetCellNum() << " " << CellTomove.GetCellNum() << "\n";
 	}
 
 }
@@ -53,11 +47,9 @@ void CardNine::Save(ofstream& OutFile, int t)
 void CardNine::Apply(Grid* pGrid, Player* pPlayer)
 {
 	//Calling Apply() of the base class Card to print the message that I reached this card number
-
 	Card::Apply(pGrid ,pPlayer);
 
 	//Update player cell with the new clicked position 
-	
 	pGrid->UpdatePlayerCell(pPlayer, CellTomove);
 }
 

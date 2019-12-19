@@ -3,14 +3,14 @@
 CardFour::CardFour(const CellPosition& cpos):Card(cpos)
 {
 	cardNumber = 4;
-	Cardpos = cpos;
 }
 
 void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 {
+	Card::Apply(pGrid, pPlayer);
+
 	Snake* Snakeptr = pGrid->GetNextSnake(position); //Getting the position of endCell of Next Snake
 	pGrid->UpdatePlayerCell(pPlayer, Snakeptr->GetEndPosition()); //Updating The Player's Cell
-
 }
 
 Card* CardFour::GetCard(CellPosition& pos)

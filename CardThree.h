@@ -1,15 +1,21 @@
 #pragma once
 #include "Card.h"
-class CardThree :
-	public Card
+
+// [ CardThree ] Summary:
+// Its Apply() Function: Moves the player forward to the start of the next ladder. (If no ladders ahead, do nothing)
+// Its Parameters: This Card Has No Parameters
+
+class CardThree : public Card
 {
-	//Card Description : Moves the player forward to the start of the next ladder. (If no ladders ahead, do nothing)
 
 public:
-	CardThree(const CellPosition& cpos);  //Constructor
-	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applies the effect of CardThree on the passed Player
-	virtual ~CardThree(); //Virtual Destructor 
+	CardThree(const CellPosition& cpos);
+
+	virtual void Apply(Grid* pGrid, Player* pPlayer); 
+
 	virtual Card* GetCard(CellPosition& pos);
+
+	virtual ~CardThree();
 
 };
 

@@ -9,7 +9,6 @@ bool CardFourteen::IsSaved = false;
 CardFourteen::CardFourteen(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 14;  // set the inherited cardNumber data member with the card number (14 here)
-	Cardpos = pos;  //set the inherited Cardpos data member with the card position
 	ownerplayer = NULL;  // set the owner of the card pointint to null
 }
 
@@ -154,11 +153,11 @@ void CardFourteen::Save(ofstream& OutFile, int t)
 	{
 		if (!IsSaved)
 		{
-			OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << price << "  " << Fees << '\n';
+			OutFile << cardNumber << " " << position.GetCellNum() << " " << price << "  " << Fees << '\n';
 			IsSaved = true;
 		}
 		else
-			OutFile << cardNumber << " " << Cardpos.GetCellNum() << '\n';
+			OutFile << cardNumber << " " << position.GetCellNum() << '\n';
 	}
 }
 

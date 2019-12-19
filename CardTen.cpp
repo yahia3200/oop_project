@@ -9,7 +9,7 @@ bool CardTen::IsSaved = false;
 CardTen::CardTen(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 10;  // set the inherited cardNumber data member with the card number (10 here)
-	Cardpos = pos;  //set the inherited Cardpos data member with the card position
+	ownerplayer = NULL;  // set the owner of the card pointint to null
 }
 
 void CardTen::ReadCardParameters(Grid* pGrid)
@@ -167,12 +167,12 @@ void CardTen::Save(ofstream& OutFile, int t)
 	{
 		if (!IsSaved)
 		{
-			OutFile << cardNumber << " " << Cardpos.GetCellNum() << " " << price << " " << Fees << '\n';
+			OutFile << cardNumber << " " << position.GetCellNum() << " " << price << " " << Fees << '\n';
 			IsSaved = true;
 		}
 			
 		else
-			OutFile << cardNumber << " " << Cardpos.GetCellNum() << '\n';
+			OutFile << cardNumber << " " << position.GetCellNum() << '\n';
 	}
 }
 

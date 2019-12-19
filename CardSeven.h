@@ -1,16 +1,20 @@
 #pragma once
 #include "Card.h"
-class CardSeven :
-	public Card
+
+// [ CardSeven ] Summary:
+// Its Apply() Function: Gives the player another dice roll
+// Its Parameters: This Card Has No Parameters
+
+class CardSeven : public Card
 {
-	//Data Members (TODO)
 
 public:
 	CardSeven(const CellPosition& cpos);
-	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applies the effect of CardOne on the passed Player
-													  // by inCrement the player's wallet by the walletAmount data member
+
+	virtual void Apply(Grid* pGrid, Player* pPlayer); 
+
 	virtual Card* GetCard(CellPosition& pos);
 
-	virtual ~CardSeven(); //Virtual Destructor 
+	virtual ~CardSeven();  
 };
 
