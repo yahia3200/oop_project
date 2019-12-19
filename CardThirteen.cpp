@@ -56,12 +56,15 @@ void CardThirteen::ReadCardParameters(Grid* pGrid)
 
 void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 {
+	//Calling Apply() of the base class Card to print the message that I reached this card number
+
+	Card::Apply(pGrid, pPlayer);
+
 	// Get a Pointer to the Input / Output Interfaces from the Grid
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	int x, y;
 
-	Card::Apply(pGrid, pPlayer);
 
 	//check if game was ended before to restart card(s) Property
 	if (pGrid->getcard13owner())
@@ -79,7 +82,7 @@ void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 		pIn->GetPointClicked(x, y);
 		pOut->ClearStatusBar();
 
-		// Deduct the amount of fees from the passing player. 
+		// Deduce the amount of fees from the passing player. 
 
 		pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
 
