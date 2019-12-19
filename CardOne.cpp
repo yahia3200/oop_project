@@ -1,8 +1,8 @@
 #include "CardOne.h"
 
-CardOne::CardOne(const CellPosition & pos) : Card(pos) // set the cell position of the card
+CardOne::CardOne(const CellPosition & pos) : Card(pos) 
 {
-	cardNumber = 1; // set the inherited cardNumber data member with the card number (1 here)
+	cardNumber = 1;
 }
 
 CardOne::~CardOne(void)
@@ -20,7 +20,7 @@ void CardOne::ReadCardParameters(Grid * pGrid)
 	// 2- Read an Integer from the user using the Input class and set the walletAmount parameter with it
 	//    Don't forget to first print to a descriptive message to the user like:"New CardOne: Enter its wallet amount ..."
 	Pout->PrintMessage("New CardOne: Enter its wallet amount ");
-	walletAmount=Pin->GetInteger(Pout);
+	walletAmount =Pin->GetInteger(Pout);
 	while (walletAmount < 0)
 	{
 		Pout->PrintMessage("Invalid Input. Please Enter Correct Value : ");
@@ -52,6 +52,7 @@ void CardOne::Apply(Grid* pGrid, Player* pPlayer)
 
 	// 1- Call Apply() of the base class Card to print the message that you reached this card number
 	Card::Apply(pGrid, pPlayer);
+
 	// 2- Decrement the wallet of pPlayer by the walletAmount data member of CardOne
 	//This Step Need Validation (What If Wallet Is Negative ? ) (Note In Player.cpp)
 	pPlayer->SetWallet(pPlayer->GetWallet() - walletAmount);

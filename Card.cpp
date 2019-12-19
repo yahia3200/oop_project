@@ -46,7 +46,7 @@ void Card::Save(ofstream& OutFile, int t)
 {
 	if (t == 2)
 	{
-		OutFile << cardNumber << " " << Cardpos.GetCellNum() << '\n';
+		OutFile << cardNumber << " " << position.GetCellNum() << '\n';
 	}
 }
 

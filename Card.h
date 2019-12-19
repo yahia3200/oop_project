@@ -11,16 +11,16 @@ class Card : public GameObject
 	
 protected:
 	int cardNumber;  // an integer representing the card number
-	CellPosition Cardpos;  // Postion Of Card 
 	static int CardCounter;  // Number Of Cards In The Grid
 
 public:
-	Card(const CellPosition & pos);   // A Constructor for card that takes the cell position of it
+	Card(const CellPosition & pos);   // set the cell position and the number of the card
 
 	void SetCardNumber(int cnum);   // The setter of card number
 
 	int GetCardNumber();   // The getter of card number
-	virtual Card * GetCard(CellPosition& pos)=0;
+
+	virtual Card * GetCard(CellPosition& pos) = 0;   // Return A New Card With The Same Parameters Of the Card (Used In Paste)
 
 	void Draw(Output* pOut) const;  // Draws the card number in the cell position of the card
 	                                // It has the same implementation for all Card Types (Non-Virtual)
