@@ -34,7 +34,7 @@ void CardFourteen::ReadCardParameters(Grid* pGrid)
 		pOut->PrintMessage("Price: " + to_string(price) + "  , Click to continue");
 		pIn->GetPointClicked(x, y);
 
-		pOut->PrintMessage("New CardFourteen: Enter its fee: ");
+		pOut->PrintMessage("New CardFourteen: Enter its Fees: ");
 		Fees = pIn->GetInteger(pOut);
 
 		while (Fees < 0)
@@ -78,7 +78,7 @@ void CardFourteen::Apply(Grid* pGrid, Player* pPlayer)
 		pIn->GetPointClicked(x, y);
 		pOut->ClearStatusBar();
 
-		// Deduct the amount of fees from the passing player. 
+		// Deduce the amount of fees from the passing player. 
 
 		pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
 
@@ -91,7 +91,7 @@ void CardFourteen::Apply(Grid* pGrid, Player* pPlayer)
 		if (pPlayer->GetWallet() < 0)
 		{
 			pPlayer->setpreventplayer(true);
-			pOut->PrintMessage("You Are Prevented From Move Till You Pay Fees. Click To Contiue");
+			pOut->PrintMessage("You Are Prevented From Move Till You Pay Fees. Click To Continue");
 			pIn->GetPointClicked(x, y);
 			pOut->ClearStatusBar();
 
@@ -105,7 +105,7 @@ void CardFourteen::Apply(Grid* pGrid, Player* pPlayer)
 		//if has enough coins execute below else execute no thing
 		if (pPlayer->GetWallet() >= price)
 		{
-			pOut->PrintMessage("you have reached a station. Do you want to buy it? y/n");
+			pOut->PrintMessage("You Have Reached a Station. Do you want to buy it? y/n");
 			string ans = pIn->GetSrting(pOut);
 			do
 			{

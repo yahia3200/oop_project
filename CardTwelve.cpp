@@ -55,12 +55,15 @@ void CardTwelve::ReadCardParameters(Grid* pGrid)
 
 void CardTwelve::Apply(Grid* pGrid, Player* pPlayer)
 {	
+	//Calling Apply() of the base class Card to print the message that I reached this card number
+
+	Card::Apply(pGrid, pPlayer);
+
 	// Get a Pointer to the Input / Output Interfaces from the Grid
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	int x, y;
 
-	Card::Apply(pGrid, pPlayer);
 
 	//check if game was ended before to restart card(s) Property
 	if (pGrid->getcard12owner())
@@ -78,7 +81,7 @@ void CardTwelve::Apply(Grid* pGrid, Player* pPlayer)
 		pIn->GetPointClicked(x, y);
 		pOut->ClearStatusBar();
 
-		// Deduct the amount of fees from the passing player. 
+		// Deduce the amount of fees from the passing player. 
 
 		pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
 
@@ -105,7 +108,7 @@ void CardTwelve::Apply(Grid* pGrid, Player* pPlayer)
 		//if has enough coins execute below else execute no thing
 		if (pPlayer->GetWallet() >= price)
 		{
-			pOut->PrintMessage("you have reached a station. Do you want to buy it? y/n");
+			pOut->PrintMessage("You Have Reached a Station. Do you want to buy it? y/n");
 			string ans = pIn->GetSrting(pOut);
 			do
 			{
