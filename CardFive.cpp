@@ -17,6 +17,12 @@ void CardFive::Apply(Grid* pGrid, Player* pPlayer)
 	pPlayer->Move(pGrid,pPlayer->GetRolledDiceNUm());
 }
 
+Card* CardFive::GetCard(CellPosition& pos)
+{
+	Card* cptr = new CardFive(pos);
+	return cptr;
+}
+
 
 CardFive::~CardFive()
 {

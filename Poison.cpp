@@ -3,7 +3,7 @@
 #include "Player.h"
 Poison::Poison(ApplicationManager* pApp) :Action(pApp)
 {
-	for (int i = 0; i < MaxPlayerCount; i++)
+	for (int i = 0; i < MaxPlayerCount; i++) //Making all player initially didn't use this attack
 	{
 		Used[i] = false;
 	}
@@ -12,6 +12,7 @@ Poison::Poison(ApplicationManager* pApp) :Action(pApp)
 void Poison::ReadActionParameters()
 {
 	//This Action Has no Parameters
+	//Getting pointers to Grid, Player 
 	Grid* pGrid = pManager->GetGrid();
 	CurrPlayer = pGrid->GetCurrentPlayer();
 	CurrPlayerNum = pGrid->GetcurrPlayerNumber();
@@ -23,10 +24,27 @@ void Poison::Execute()
 	ReadActionParameters();
 	if (Used[CurrPlayerNum] == false)
 	{
+<<<<<<< HEAD
 		IsUsed(CurrPlayerNum);
+=======
+		IsUsed(CurrPlayerNum); //Making the attacker player use this attack to prevent him from using it again
+		CurrPlayer->NumberOfAttacksincrements(); //Making the player attack counter increase not to exceed 2 atacks during the game
+>>>>>>> dc3e0e8091790e8727e5b7553081cebaeba49693
 		//Making The Player Choose a Player To Reduce his rolled dice value for 5 turns
+
 		pGrid->GetOutput()->PrintMessage("Poison Attack:Choose A player to deduct 1 number from his dice roll");
-		int PoisonedPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
+		int PoisonedPlayer;
+		do
+		{
+			pGrid->GetOutput()->PrintMessage("Poison Attack:Choose A player to deduct 1 number from his dice roll");
+			PoisonedPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
+			if (PoisonedPlayer == CurrPlayerNum) {
+				pGrid->GetOutput()->PrintMessage("You cannot Attack yourslef !,press anywhere to continue..");
+				int x, y;
+				pGrid->GetInput()->GetPointClicked(x, y);
+				pGrid->GetOutput()->ClearStatusBar();
+			}
+		} while (PoisonedPlayer>3||PoisonedPlayer<3||PoisonedPlayer==CurrPlayerNum);
 		for (int i = 0; i < MaxPlayerCount; i++)
 		{
 			pGrid->AdvanceCurrentPlayer();

@@ -2,14 +2,17 @@
 #include <fstream>
 
 int Card::CardCounter = 0;
-Card::Card(const CellPosition & pos) : GameObject(pos) // sets the cell position of the GameObject
+Card::Card(const CellPosition & pos) : GameObject(pos)
 {
-	CardCounter++;
+	CardCounter++; // Increment Cards Number When Creating A Card
 }
 
 void Card::SetCardNumber(int cnum)
 {
-	cardNumber = cnum; // needs validation
+	if (cnum <= 1 && cnum >= 14)
+		cardNumber = cnum;
+	else
+		cardNumber = -1;
 }
 
 int Card::GetCardNumber()
@@ -17,12 +20,11 @@ int Card::GetCardNumber()
 	return cardNumber;
 }
 
+
 void Card::Draw(Output* pOut) const
 {
-
-	///TODO: call the appropriate Ouput function that draws a cell containing the "cardNumber" in "position"
-
-
+	///DONE: call the appropriate Ouput function that draws a cell containing the "cardNumber" in "position"
+	pOut->DrawCell(position, cardNumber);
 }
 
 void Card::ReadCardParameters(Grid * pGrid)
@@ -62,13 +64,7 @@ void Card::DecrementCardCounter()
 	CardCounter--;
 }
 
-void Card::IncrementCardCounter()
-{
-	CardCounter++;
-}
-
-
 Card::~Card()
 {
-	CardCounter--;
+	CardCounter--; // Decrement Cards Number When A Card Is Deleted 
 }

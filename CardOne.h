@@ -12,15 +12,15 @@ class CardOne :	public Card
 	int walletAmount; // the wallet value to decrease from the player
 
 public:
-	CardOne(const CellPosition & pos); // A Constructor takes card position
+	CardOne(const CellPosition & pos);
 
-	virtual void Load(Grid * pGrid); // Reads the parameters of CardOne which is: walletAmount
-
+	virtual void ReadCardParameters(Grid * pGrid); // Reads the parameters of CardOne which is: walletAmount
+	virtual Card* GetCard(CellPosition& pos);
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applies the effect of CardOne on the passed Player
 	                                                  // by decrementing the player's wallet by the walletAmount data member
-	void SetWalletAmount(int);
+	
 	virtual void Save(ofstream& OutFile, int t);
-	virtual void SetCardParameter(istream& InputFile);
+	virtual void Load(istream& InputFile);
 	virtual ~CardOne(); // A Virtual Destructor
 };
 

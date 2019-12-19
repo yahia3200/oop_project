@@ -32,6 +32,20 @@ void Ice::Execute()
 		pGrid->GetOutput()->PrintMessage("Ice Attack:Choose A player to prevent him from Dicing next time");
 		int AttackedPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
 		cout << AttackedPlayer << endl;
+		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();
+		//Preventing Player from playing next time:
+		int AttackedPlayer;
+		do
+		{
+			pGrid->GetOutput()->PrintMessage("Ice Attack:Choose A player to prevent him from Dicing next time");
+			AttackedPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
+			if (AttackedPlayer == CurrPlayerNum) {
+				pGrid->GetOutput()->PrintMessage("You cannot Attack yourslef !,press anywhere to continue..");
+				int x, y;
+				pGrid->GetInput()->GetPointClicked(x, y);
+				pGrid->GetOutput()->ClearStatusBar();
+			}
+		} while (AttackedPlayer>3||AttackedPlayer<0||AttackedPlayer==CurrPlayerNum);
 		for (int i = 0; i <= 3; i++)
 		{
 			pGrid->AdvanceCurrentPlayer();

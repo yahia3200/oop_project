@@ -23,6 +23,13 @@ void CardTwo::Apply(Grid* pGrid, Player* pPlayer)
 	pPlayer->SetWallet(pPlayer->GetWallet() + walletAmount);
 }
 
+Card* CardTwo::GetCard(CellPosition& pos)
+{
+	Card* cptr = new CardTwo(pos);
+	((CardTwo*)cptr)->walletAmount;
+	return cptr;
+}
+
 void CardTwo::Save(ofstream& OutFile, int t)
 {
 	if (t == 2)

@@ -10,16 +10,17 @@ class Card : public GameObject
 {
 	
 protected:
-	int cardNumber; // an integer representing the card number
-	CellPosition Cardpos;
-	static int CardCounter;
+	int cardNumber;  // an integer representing the card number
+	CellPosition Cardpos;  // Postion Of Card 
+	static int CardCounter;  // Number Of Cards In The Grid
 
 public:
-	Card(const CellPosition & pos); // A Constructor for card that takes the cell position of it
+	Card(const CellPosition & pos);   // A Constructor for card that takes the cell position of it
 
 	void SetCardNumber(int cnum);   // The setter of card number
-	int GetCardNumber();   // The getter of card number
 
+	int GetCardNumber();   // The getter of card number
+	virtual Card * GetCard(CellPosition& pos)=0;
 
 	void Draw(Output* pOut) const;  // Draws the card number in the cell position of the card
 	                                // It has the same implementation for all Card Types (Non-Virtual)
@@ -29,11 +30,15 @@ public:
 
 	virtual void Apply(Grid* pGrid, Player* pPlayer);  // It applies the effect of the Card Type on the passed player
 	                                                   // It is a virtual function (implementation depends on Card Type)
+
 	virtual void Load(istream & InputFile);  // Load Card Parameters From A File
-	static void DecrementCardCounter();
-	static void IncrementCardCounter();
+
+	static void DecrementCardCounter();   // Decrement Cards Number (Used In Cut Action)
+
 	virtual void Save(ofstream& OutFile, int t); // Save Card Info To A File
-	static void SaveCardsNumber(ofstream& OutPut);
+
+	static void SaveCardsNumber(ofstream& OutPut);   // Save Cards Number To The File
+
 	virtual ~Card(); // A Virtual Destructor
 };
 

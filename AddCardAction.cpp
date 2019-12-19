@@ -56,7 +56,7 @@ void AddCardAction::ReadActionParameters()
 	
 	while (cardNumber < 1 || cardNumber > 14)
 	{
-		pOut->PrintMessage("Invalid Input. Please enter a number between 1:14 : ");
+		pOut->PrintMessage("Invalid Input. Please enter a number between 1 and 14 : ");
 		cardNumber = pIn->GetInteger(pOut);
 	}
 
@@ -142,9 +142,6 @@ void AddCardAction::Execute()
 			pGrid->PrintErrorMessage("This Cell Is Invalid");
 			delete pCard;
 		}
-			
-
-		else pGrid->GetOutput()->DrawCell(cardPosition, cardNumber);
 
 	}
 

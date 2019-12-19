@@ -27,6 +27,13 @@ void CardNine::ReadCardParameters(Grid* pGrid)
 }
 
 
+Card* CardNine::GetCard(CellPosition& pos)
+{
+	Card* cptr = new CardNine(pos);
+	((CardNine*)cptr)->CellTomove = CellTomove;
+	return cptr;
+}
+
 void CardNine::Load(istream& InputFile)
 {
 	int pos;

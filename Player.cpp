@@ -35,9 +35,7 @@ Cell* Player::GetCell() const
 
 void Player::SetWallet(int wallet)
 {
-	//this->wallet = wallet;
-	this->wallet = wallet > 0 ? wallet : 0;
-	// Make any needed validations
+	this->wallet = wallet;
 }
 
 int Player::GetWallet() const
@@ -168,7 +166,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
-	if (turnCount == 4)
+	if (turnCount == 3)
 	{
 		turnCount = 0;
 		// check if player used all his chance to special attack
@@ -211,7 +209,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 				}
 			}
 			else if (ans == "n" || ans == "N") {
-				SetWallet(wallet + 10 * diceNumber);
+				wallet = wallet + diceNumber * 100;
 				pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased. Click Anywhere to continue  ");
 				int x, y;
 				pIn->GetPointClicked(x, y);//Waiting user Action
@@ -220,7 +218,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		}
 		else
 		{
-			SetWallet(wallet + 10 * diceNumber);
+			wallet = wallet + diceNumber * 100;
 			pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased,Click Anywhere to continue  ");
 			int x, y;
 			pIn->GetPointClicked(x, y);//Waiting user Action
@@ -229,7 +227,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	}
 	else
 	{
-		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99&& !preventplayer)
+		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99  &&  !preventplayer)
 		{
 			justRolledDiceNum = diceNumber;
 
@@ -270,7 +268,6 @@ void Player::Move(Grid* pGrid, int diceNumber)
 				pos.AddCellNum(justRolledDiceNum);
 			pGrid->UpdatePlayerCell(this, pos);
 
-			//Draw(pOut);
 			color playerColor = UI.PlayerColors[playerNum];
 
 

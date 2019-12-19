@@ -72,32 +72,27 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 	//if owned execute below
 	if (ownerplayer != NULL)
 	{
-		pOut->PrintMessage("you have reached a bought station.Click to continue ?");
+		pOut->PrintMessage("You Have Reached A Bought Station. Click To Continue ");
 		pIn->GetPointClicked(x, y);
 		pOut->ClearStatusBar();
 
+		// Deduct the amount of fees from the passing player. 
+
+		pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
+
+		//adding fees to the card owner 's wallet
+
+		ownerplayer->SetWallet(ownerplayer->GetWallet() + Fees);
+
 		//check if player has enough coins to pay fees
-		//if no he is preventd from moving till he pays
-		if (pPlayer->GetWallet() < Fees)
+		//if no he is preventd from moving till he has enough wallet 
+		if (pPlayer->GetWallet() < 0)
 		{
-			pGrid->GetCurrentPlayer()->setpreventplayer(true);
-			pOut->PrintMessage("you are prevented from move till you pay fees. click to contiue");
+			pPlayer->setpreventplayer(true);
+			pOut->PrintMessage("You Are Prevented From Move Till You Pay Fees. Click To Contiue");
 			pIn->GetPointClicked(x, y);
 			pOut->ClearStatusBar();
-		}
-		//if yes he pays fees and move
-		else
-		{
-			// Deduct the amount of fees from the passing player. 
-			pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
-
-			//need to add fees to owner's wallet
-			ownerplayer->SetWallet(ownerplayer->GetWallet() + Fees);
-
-			//set preventedplayer false to make player able to move
-			pGrid->GetCurrentPlayer()->setpreventplayer(false);
-
-			
+		
 		}
 		
 
@@ -109,7 +104,7 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 		//if has enough coins execute below else execute no thing
 		if (pPlayer->GetWallet() >= price)
 		{
-			pOut->PrintMessage("you have reached a station. Do you want to buy it? y/n");
+			pOut->PrintMessage("You Have Reached A Station. Do You Want To Buy It? y/n ");
 			string ans = pIn->GetSrting(pOut);
 			do
 			{
@@ -123,7 +118,7 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 				}
 				else
 				{
-					pOut->PrintMessage("Invalid Input. Please answer with y/n");
+					pOut->PrintMessage("Invalid Input. Please Answer Choose y/n");
 					ans = pIn->GetSrting(pOut);
 				}
 			} while (ans != "y" && ans != "Y" && ans != "n" && ans != "N");
@@ -131,6 +126,18 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 
 	}
 
+}
+
+Card* CardTen::GetCard(CellPosition& pos)
+{
+	Card* cptr = new CardTen(pos);
+	((CardTen*)cptr)->price = price;
+	((CardTen*)cptr)->Fees = Fees;
+	((CardTen*)cptr)->ownerplayer = ownerplayer;
+	((CardTen*)cptr)->IsExisted = IsExisted;
+	((CardTen*)cptr)->IsSaved = IsSaved;
+
+	return cptr;
 }
 
 void CardTen::Load(istream& InputFile)

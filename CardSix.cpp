@@ -17,6 +17,12 @@ void CardSix::Apply(Grid* pGrid, Player* pPlayer)
 	pPlayer->Move(pGrid, - pPlayer->GetRolledDiceNUm());
 }
 
+Card* CardSix::GetCard(CellPosition& pos)
+{
+	Card* cptr = new CardSix(pos);
+	return cptr;
+}
+
 CardSix::~CardSix()
 {
 }
