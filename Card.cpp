@@ -62,6 +62,11 @@ void Card::DecrementCardCounter()
 	CardCounter--;
 }
 
+void Card::IncrementCardCounter()
+{
+	CardCounter++;
+}
+
 
 Card::~Card()
 {

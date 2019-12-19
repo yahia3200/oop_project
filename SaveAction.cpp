@@ -39,6 +39,7 @@ void SaveAction::Execute()
 
 	Ladder::SaveLaddersNumber(OutFile);
 	pGrid->SaveAll(OutFile,0);
+
 	Snake::SaveSnakesNumber(OutFile);
 	pGrid->SaveAll(OutFile, 1);
 

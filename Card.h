@@ -29,12 +29,10 @@ public:
 
 	virtual void Apply(Grid* pGrid, Player* pPlayer);  // It applies the effect of the Card Type on the passed player
 	                                                   // It is a virtual function (implementation depends on Card Type)
-
-	virtual void Load(istream & InputFile);
-	
+	virtual void Load(istream & InputFile);  // Load Card Parameters From A File
 	static void DecrementCardCounter();
-
-	virtual void Save(ofstream& OutFile, int t);
+	static void IncrementCardCounter();
+	virtual void Save(ofstream& OutFile, int t); // Save Card Info To A File
 	static void SaveCardsNumber(ofstream& OutPut);
 	virtual ~Card(); // A Virtual Destructor
 };
