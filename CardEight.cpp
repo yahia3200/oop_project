@@ -10,7 +10,7 @@ CardEight::CardEight(const CellPosition& cpos):Card(cpos)
 
 void CardEight::ReadCardParameters(Grid* pGrid)
 {
-	//no parameter to read
+	//no parameter needed to read
 }
 
 void CardEight::Apply(Grid* pGrid, Player* pPlayer)
@@ -18,9 +18,8 @@ void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 	//Calling Apply() of the base class Card to print the message that I reached this card number
 
 	Card::Apply(pGrid, pPlayer);
-	//prevent player from rolling 
-	
-	int turnnum = pPlayer->GetTurnCount();
+
+	//prevent player from rolling next turn 
 	pGrid->GetCurrentPlayer()->setpreventplayer(true);
 	
 }

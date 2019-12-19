@@ -16,6 +16,8 @@
 #include "CardTwelve.h"
 #include "CardThirteen.h"
 #include "CardFourteen.h"
+#include <iostream>
+using namespace std;
 PasteCardAction::PasteCardAction(ApplicationManager* pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer
@@ -70,45 +72,73 @@ void PasteCardAction::Execute()
 		{
 		case 1:
 			pCard = new CardOne(position);
+			*((CardOne*)pCard) = *((CardOne*)pGrid->GetClipboard());
+
 			break;
 		case 2:
 			pCard = new CardTwo(position);
+			*((CardTwo*)pCard) = *((CardTwo*)pGrid->GetClipboard());
+
 			break;
 		case 3:
 			pCard = new CardThree(position);
+			*((CardThree*)pCard) = *((CardThree*)pGrid->GetClipboard());
+
 			break;
 		case 4:
 			pCard = new CardFour(position);
+			*((CardFour*)pCard) = *((CardFour*)pGrid->GetClipboard());
+
 			break;
 		case 5:
 			pCard = new CardFive(position);
+			*((CardFive*)pCard) = *((CardFive*)pGrid->GetClipboard());
+
 			break;
 		case 6:
 			pCard = new CardSix(position);
+			*((CardSix*)pCard) = *((CardSix*)pGrid->GetClipboard());
+
 			break;
 		case 7:
 			pCard = new CardSeven(position);
+			*((CardSeven*)pCard) = *((CardSeven*)pGrid->GetClipboard());
+
 			break;
 		case 8:
 			pCard = new CardEight(position);
+			*((CardEight*)pCard) = *((CardEight*)pGrid->GetClipboard());
+
 			break;
 		case 9:
 			pCard = new CardNine(position);
+			*((CardNine*)pCard) = *((CardNine*)pGrid->GetClipboard());
+
 			break;
 		case 10:
 			pCard = new CardTen(position);
+			*((CardTen*)pCard) = *((CardTen*)pGrid->GetClipboard());
+
 			break;
 		case 11:
 			pCard = new CardEleven(position);
+			*((CardEleven*)pCard) = *((CardEleven*)pGrid->GetClipboard());
+
 			break;
 		case 12:
 			pCard = new CardTwelve(position);
+			*((CardTwelve*)pCard) = *((CardTwelve*)pGrid->GetClipboard());
+
 			break;
 		case 13:
 			pCard = new CardThirteen(position);
+			*((CardThirteen*)pCard) = *((CardThirteen*)pGrid->GetClipboard());
+
 			break;
 		case 14:
 			pCard = new CardFourteen(position);
+			*((CardFourteen*)pCard) = *((CardFourteen*)pGrid->GetClipboard());
+
 			break;
 
 		}
@@ -119,7 +149,8 @@ void PasteCardAction::Execute()
 
 			//Draw the card in the clicked cell
 			pCard->Draw(pOut);
-			pCard = pGrid->GetClipboard();
+			
+			*((CardNine*)pCard) = *((CardNine*)pGrid->GetClipboard());
 			pOut->DrawCell(position, cardnum);
 
 		}

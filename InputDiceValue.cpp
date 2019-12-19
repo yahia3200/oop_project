@@ -16,6 +16,9 @@ void InputDiceValue::ReadActionParameters()
 	int x, y;
 	if (pGrid->GetCurrentPlayer()->getpreventplayer())
 	{
+		//prevent player from rolling dice by gettng 0 for dicenumber 
+		pGrid->GetCurrentPlayer()->Move(pGrid, 0);
+
 		//let the current player availabel to play int the next turn
 
 		pGrid->GetCurrentPlayer()->setpreventplayer(false);
