@@ -10,11 +10,7 @@ CopyCardAction::CopyCardAction(ApplicationManager* pApp) : Action(pApp)
 
 CopyCardAction::~CopyCardAction()
 {
-	//delete CpiedCardcell;
-	//delete CpiedCardcell;
-	//position = NULL;
-	//CpiedCardcell = NULL;
-	//CpiedCardinfo = NULL;
+	
 }
 
 void CopyCardAction::ReadActionParameters()

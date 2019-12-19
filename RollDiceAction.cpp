@@ -99,7 +99,10 @@ void RollDiceAction::Execute()
 	{
 		if (pGrid->GetCurrentPlayer()->getpreventplayer())
 		{
-			//let the current player availabel to play int the next turn
+			//prevent player from rolling dice by gettng 0 for dicenumber 
+			pGrid->GetCurrentPlayer()->Move(pGrid, 0);
+
+			//let the current player availabel to play in the next turn
 			pGrid->GetCurrentPlayer()->setpreventplayer(false);
 
 			// Advance the current player number of pGrid
