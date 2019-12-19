@@ -145,7 +145,7 @@ void LoadAction::Execute()
 
 
 		pGrid->AddObjectToCell(pCard);
-		pGrid->GetOutput()->DrawCell(cardPosition, cardType);
+		//pGrid->GetOutput()->DrawCell(cardPosition, cardType);
 	}
 }
 

@@ -20,13 +20,9 @@ public:
 
 	int GetCardNumber();   // The getter of card number
 
-<<<<<<< HEAD
 	virtual Card * GetCard(CellPosition& pos)=0; //pure virual function which return pointer to new card with 
-	                                            // the parameter of copied or cutted card with the new
-	                                           //position clicked 
-=======
-	virtual Card * GetCard(CellPosition& pos) = 0;   // Return A New Card With The Same Parameters Of the Card (Used In Paste)
->>>>>>> 25a992169ab9e953d29432bc504b8ba4f7735431
+	                                             // the parameter of copied or cutted card with the new
+	                                            //position clicked 
 
 	void Draw(Output* pOut) const;  // Draws the card number in the cell position of the card
 	                                // It has the same implementation for all Card Types (Non-Virtual)
