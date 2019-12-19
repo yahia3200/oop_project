@@ -99,15 +99,36 @@ void RollDiceAction::Execute()
 	{
 		if (pGrid->GetCurrentPlayer()->getpreventplayer())
 		{
-			//prevent player from rolling dice by gettng 0 for dicenumber 
-			pGrid->GetCurrentPlayer()->Move(pGrid, 0);
 
-			//let the current player availabel to play in the next turn
-			pGrid->GetCurrentPlayer()->setpreventplayer(false);
+			if (pGrid->GetCurrentPlayer()->GetWallet() > 0)
+			{
+				//prevent player from rolling dice by gettng 0 for dicenumber 
+				pGrid->GetCurrentPlayer()->Move(pGrid, 0);
+
+				//let the current player availabel to play in the next turn
+				pGrid->GetCurrentPlayer()->setpreventplayer(false);
+			}
+			else
+			{
+				// Generate a random number from 1 to 6 --> This step is done for you
+				srand((int)time(NULL)); // time is for different seed each run
+				int diceNumber = 1 + rand() % 6; // from 1 to 6 --> should change seed
+				pOut->PrintMessage("Dice Number Is " + to_string(diceNumber));
+
+				// Get the "current" player from pGrid
+				Player* pPlayer = pGrid->GetCurrentPlayer();
+
+				// Move the currentPlayer using function Move of class player
+				pPlayer->Move(pGrid, diceNumber);
+				
+				if (pGrid->GetCurrentPlayer()->GetWallet() > 0)
+					pGrid->GetCurrentPlayer()->setpreventplayer(false);
+
+			}
 
 			// Advance the current player number of pGrid
 			pGrid->AdvanceCurrentPlayer();
-		}
+		}	
 		else
 		{
 			// Generate a random number from 1 to 6 --> This step is done for you
