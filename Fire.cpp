@@ -44,7 +44,7 @@ void Fire::Execute()
 			{
 				CurrPlayer->setIsBurnt(true);
 				CurrPlayer->increaseturnsofFire();
-				pGrid->GetOutput()->PrintMessage("Player No. " + to_string(burntPlayer) + " Is Fireed by deducting 20 coins from his wallet. ,Press anywhere to continue");
+				pGrid->GetOutput()->PrintMessage("Player No. " + to_string(burntPlayer) + " Is burnt by deducting 20 coins from his wallet. ,Press anywhere to continue");
 				int x, y;
 				pGrid->GetInput()->GetPointClicked(x, y);
 				pGrid->GetOutput()->ClearStatusBar();

@@ -24,11 +24,8 @@ void Poison::Execute()
 	ReadActionParameters();
 	if (Used[CurrPlayerNum] == false)
 	{
-		IsUsed(CurrPlayerNum);
 		IsUsed(CurrPlayerNum); //Making the attacker player use this attack to prevent him from using it again
-		CurrPlayer->NumberOfAttacksincrements(); //Making the player attack counter increase not to exceed 2 atacks during the game
 		//Making The Player Choose a Player To Reduce his rolled dice value for 5 turns
-
 		int PoisonedPlayer;
 		do
 		{
@@ -40,7 +37,7 @@ void Poison::Execute()
 				pGrid->GetInput()->GetPointClicked(x, y);
 				pGrid->GetOutput()->ClearStatusBar();
 			}
-		} while (PoisonedPlayer>3||PoisonedPlayer<3||PoisonedPlayer==CurrPlayerNum);
+		} while (PoisonedPlayer>3||PoisonedPlayer<0||PoisonedPlayer==CurrPlayerNum);
 		for (int i = 0; i < MaxPlayerCount; i++)
 		{
 			pGrid->AdvanceCurrentPlayer();
