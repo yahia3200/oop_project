@@ -29,7 +29,6 @@ void Poison::Execute()
 		CurrPlayer->NumberOfAttacksincrements(); //Making the player attack counter increase not to exceed 2 atacks during the game
 		//Making The Player Choose a Player To Reduce his rolled dice value for 5 turns
 
-		pGrid->GetOutput()->PrintMessage("Poison Attack:Choose A player to deduct 1 number from his dice roll");
 		int PoisonedPlayer;
 		do
 		{

@@ -26,9 +26,7 @@ void Ice::Execute()
 	{
 		IsUsed(CurrPlayerNum);
 		//Making The Player Choose a Player To Reduce his Wallet
-		pGrid->GetOutput()->PrintMessage("Ice Attack:Choose A player to prevent him from Dicing next time");
-		int AttackedPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
-		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();
+		int AttackedPlayer;
 		//Preventing Player from playing next time:
 		do
 		{

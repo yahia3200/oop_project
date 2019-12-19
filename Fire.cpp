@@ -24,9 +24,7 @@ void Fire::Execute()
 	if (Used[CurrPlayerNum] == false)
 	{
 		IsUsed(CurrPlayerNum);
-		//Making The Player Choose a Player To Reduce his rolled dice value for 5 turns
-		pGrid->GetOutput()->PrintMessage("Fire Attack:Choose A player to Deduct 20 coins from his wallet for his next 3 turns");
-		
+		//Making The Player Choose a Player To Reduce his rolled dice value for 5 turns		
 		int burntPlayer;
 		do {
 			pGrid->GetOutput()->PrintMessage("Fire Attack:Choose A player to Deduct 20 coins from his wallet for his next 3 turns");
