@@ -76,30 +76,23 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 		pIn->GetPointClicked(x, y);
 		pOut->ClearStatusBar();
 
-		//check if player has enough coins to pay fees
-		//if no he is preventd from moving till he pays
-
 		// Deduct the amount of fees from the passing player. 
+
 		pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
 
+		//adding fees to the card owner 's wallet
+
+		ownerplayer->SetWallet(ownerplayer->GetWallet() + Fees);
+
+		//check if player has enough coins to pay fees
+		//if no he is preventd from moving till he has enough wallet 
 		if (pPlayer->GetWallet() < 0)
 		{
 			pPlayer->setpreventplayer(true);
 			pOut->PrintMessage("You Are Prevented From Move Till You Pay Fees. Click To Contiue");
 			pIn->GetPointClicked(x, y);
 			pOut->ClearStatusBar();
-		}
-
-		else
-		{
-
-			//need to add fees to owner's wallet
-			ownerplayer->SetWallet(ownerplayer->GetWallet() + Fees);
-
-			//set preventedplayer false to make player able to move
-			pGrid->GetCurrentPlayer()->setpreventplayer(false);
-
-			
+		
 		}
 		
 
