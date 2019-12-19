@@ -20,6 +20,7 @@ int Card::GetCardNumber()
 	return cardNumber;
 }
 
+
 void Card::Draw(Output* pOut) const
 {
 	///DONE: call the appropriate Ouput function that draws a cell containing the "cardNumber" in "position"

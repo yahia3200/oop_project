@@ -239,7 +239,7 @@ void Grid::AdvanceCurrentPlayer()
 
 
 
-Card* Grid::Getcard(CellPosition& position)
+Card* Grid::Getclickedcard(CellPosition& position)
 {
 	//getting vcell and hcell of the position
 	int Vcell = position.VCell();

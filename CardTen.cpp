@@ -135,6 +135,18 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 
 }
 
+Card* CardTen::GetCard(CellPosition& pos)
+{
+	Card* cptr = new CardTen(pos);
+	((CardTen*)cptr)->price = price;
+	((CardTen*)cptr)->Fees = Fees;
+	((CardTen*)cptr)->ownerplayer = ownerplayer;
+	((CardTen*)cptr)->IsExisted = IsExisted;
+	((CardTen*)cptr)->IsSaved = IsSaved;
+
+	return cptr;
+}
+
 void CardTen::Load(istream& InputFile)
 {
 	if (!IsExisted)

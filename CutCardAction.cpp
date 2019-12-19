@@ -28,7 +28,7 @@ void CutCardAction::ReadActionParameters()
 	position = pIn->GetCellClicked();
 
 	//getting card in the clicked cell
-	CutCard = pGrid->Getcard(position);
+	CutCard = pGrid->Getclickedcard(position);
 	pOut->ClearStatusBar();
 
 	

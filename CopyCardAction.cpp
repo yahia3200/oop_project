@@ -26,7 +26,7 @@ void CopyCardAction::ReadActionParameters()
 	position = pIn->GetCellClicked();
 
 	//getting card in the clicked cell
-	CpiedCardinfo = pGrid->Getcard(position);
+	CpiedCardinfo = pGrid->Getclickedcard(position);
 	pOut->ClearStatusBar();
 
 	

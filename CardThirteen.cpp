@@ -135,6 +135,19 @@ void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 
 }
 
+Card* CardThirteen::GetCard(CellPosition& pos)
+{
+		Card* cptr = new CardThirteen(pos);
+		((CardThirteen*)cptr)->price = price;
+		((CardThirteen*)cptr)->Fees = Fees;
+		((CardThirteen*)cptr)->ownerplayer = ownerplayer;
+		((CardThirteen*)cptr)->IsExisted = IsExisted;
+		((CardThirteen*)cptr)->IsSaved = IsSaved;
+
+		return cptr;
+	
+}
+
 void CardThirteen::Save(ofstream& OutFile, int t)
 {
 	if (t == 2)

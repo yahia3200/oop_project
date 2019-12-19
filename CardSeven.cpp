@@ -16,6 +16,12 @@ void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 	}
 }
 
+Card* CardSeven::GetCard(CellPosition& pos)
+{
+	Card* cptr = new CardSeven(pos);
+	return cptr;
+}
+
 
 CardSeven::~CardSeven()
 {

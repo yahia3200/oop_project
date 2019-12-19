@@ -9,5 +9,7 @@ public:
 	CardThree(const CellPosition& cpos);  //Constructor
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applies the effect of CardThree on the passed Player
 	virtual ~CardThree(); //Virtual Destructor 
+	virtual Card* GetCard(CellPosition& pos);
+
 };
 

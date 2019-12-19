@@ -27,7 +27,18 @@ void Fire::Execute()
 		CurrPlayer->NumberOfAttacksincrements();
 		//Making The Player Choose a Player To Reduce his rolled dice value for 5 turns
 		pGrid->GetOutput()->PrintMessage("Fire Attack:Choose A player to Deduct 20 coins from his wallet for his next 3 turns");
-		int burntPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
+		
+		int burntPlayer;
+		do {
+			pGrid->GetOutput()->PrintMessage("Fire Attack:Choose A player to Deduct 20 coins from his wallet for his next 3 turns");
+			burntPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
+			if (burntPlayer == CurrPlayerNum) {
+				pGrid->GetOutput()->PrintMessage("You cannot Attack yourslef !,press anywhere to continue..");
+				int x, y;
+				pGrid->GetInput()->GetPointClicked(x, y);
+				pGrid->GetOutput()->ClearStatusBar();
+			}
+		} while (burntPlayer > 3 || burntPlayer < 0 || burntPlayer == CurrPlayerNum);
 		for (int i = 0; i < MaxPlayerCount; i++)
 		{
 			pGrid->AdvanceCurrentPlayer();

@@ -99,7 +99,7 @@ public:
 	///TODO: add any needed setter/getter "EXCEPT" ANY setters or getters of "CellList" or "PlayerList" (Forbidden for class Responsibilities)
 
 	// ========= Other Getters =========
-	Card* Getcard(CellPosition& position); //getting the card in the cell
+	Card* Getclickedcard(CellPosition& position); //getting the card in the cell
 	Player * GetCurrentPlayer() const;	// Gets a Pointer to the Current Player	                                    
 	Ladder * GetNextLadder(const CellPosition & position);  // Gets a Pointer to the first Ladder after the passed "position"
 	Snake* GetNextSnake(const CellPosition& position); //Gets a Point to the first Snake after the passed "position"

@@ -36,6 +36,14 @@ void CardOne::ReadCardParameters(Grid * pGrid)
 	Pout->ClearStatusBar();
 }
 
+Card* CardOne::GetCard(CellPosition& pos)
+{
+	Card* pcard = new CardOne(pos);
+	((CardOne*)pcard )->walletAmount = walletAmount;
+	return pcard;
+
+}
+
 void CardOne::Apply(Grid* pGrid, Player* pPlayer)
 {
 		
