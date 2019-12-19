@@ -10,7 +10,7 @@ CardOne::~CardOne(void)
 {
 }
 
-void CardOne::ReadCardParameters(Grid * pGrid)
+void CardOne::Load(Grid * pGrid)
 {
 	
 	

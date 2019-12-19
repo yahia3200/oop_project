@@ -211,7 +211,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 			}
 			else if (ans == "n" || ans == "N") {
 				SetWallet(wallet + 10 * diceNumber);
-				pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased,Click Anywhere to continue  ");
+				pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased. Click Anywhere to continue  ");
 				int x, y;
 				pIn->GetPointClicked(x, y);//Waiting user Action
 				pOut->ClearStatusBar();

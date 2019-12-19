@@ -141,7 +141,7 @@ void LoadAction::Execute()
 
 		}
 
-		pCard->SetCardParameter(InputFile);
+		pCard->Load(InputFile);
 
 
 		pGrid->AddObjectToCell(pCard);

@@ -8,11 +8,6 @@ CardEight::CardEight(const CellPosition& cpos):Card(cpos)
 	Cardpos = cpos;
 }
 
-void CardEight::ReadCardParameters(Grid* pGrid)
-{
-	//no parameter to read
-}
-
 void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 {
 	//Calling Apply() of the base class Card to print the message that I reached this card number

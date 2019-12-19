@@ -24,7 +24,7 @@ public:
 													  // by either buying the cell if it's valid or force a fee
 
 	virtual void Save(ofstream& OutFile, int t);
-	virtual void SetCardParameter(istream& InputFile);
+	virtual void Load(istream& InputFile);
 	static void SetIsSaved(bool s);
 	virtual ~CardTwelve(); // A Virtual Destructor
 };

@@ -7,10 +7,6 @@ CardSeven::CardSeven(const CellPosition& cpos):Card(cpos)
 	Cardpos = cpos;
 }
 
-void CardSeven::ReadCardParameters(Grid* pGrid)
-{
-}
-
 void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 {
 	//do 4 loops to return to the player who reached the card

@@ -152,7 +152,7 @@ void CardEleven::SetIsSaved(bool s)
 	IsSaved = s;
 }
 
-void CardEleven::SetCardParameter(istream& InputFile)
+void CardEleven::Load(istream& InputFile)
 {
 	if (!IsExisted)
 	{

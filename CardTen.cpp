@@ -133,7 +133,7 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 
 }
 
-void CardTen::SetCardParameter(istream& InputFile)
+void CardTen::Load(istream& InputFile)
 {
 	if (!IsExisted)
 	{

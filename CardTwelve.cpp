@@ -146,7 +146,7 @@ void CardTwelve::Save(ofstream& OutFile, int t)
 	}
 }
 
-void CardTwelve::SetCardParameter(istream& InputFile)
+void CardTwelve::Load(istream& InputFile)
 {
 	if (!IsExisted)
 	{

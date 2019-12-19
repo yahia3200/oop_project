@@ -145,7 +145,7 @@ void CardFourteen::Save(ofstream& OutFile, int t)
 	}
 }
 
-void CardFourteen::SetCardParameter(istream& InputFile)
+void CardFourteen::Load(istream& InputFile)
 {
 	if (!IsExisted)
 	{

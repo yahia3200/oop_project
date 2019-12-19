@@ -31,7 +31,7 @@ void CardTwo::Save(ofstream& OutFile, int t)
 	}
 }
 
-void CardTwo::SetCardParameter(istream& InputFile)
+void CardTwo::Load(istream& InputFile)
 {
 	int wallet;
 	InputFile >> wallet;

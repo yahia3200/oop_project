@@ -149,7 +149,7 @@ void CardThirteen::Save(ofstream& OutFile, int t)
 	}
 }
 
-void CardThirteen::SetCardParameter(istream& InputFile)
+void CardThirteen::Load(istream& InputFile)
 {
 	if (!IsExisted)
 	{

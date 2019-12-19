@@ -27,6 +27,6 @@ public:
 	virtual void Save(ofstream& OutFile, int t);
 	static void SetIsSaved(bool s);
 	virtual ~CardEleven(); // A Virtual Destructor
-	virtual void SetCardParameter(istream& InputFile);
+	virtual void Load(istream& InputFile);
 };
 

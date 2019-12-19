@@ -27,7 +27,7 @@ void CardNine::ReadCardParameters(Grid* pGrid)
 }
 
 
-void CardNine::SetCardParameter(istream& InputFile)
+void CardNine::Load(istream& InputFile)
 {
 	int pos;
 	InputFile >> pos;
