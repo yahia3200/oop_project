@@ -2,9 +2,6 @@
 #include "Grid.h"
 #include "Player.h"
 
-#include <iostream>
-using namespace std;
-
 Ice::Ice(ApplicationManager* pApp) :Action(pApp)
 {
 	for (int i = 0; i < MaxPlayerCount; i++)
@@ -31,7 +28,6 @@ void Ice::Execute()
 		//Making The Player Choose a Player To Reduce his Wallet
 		pGrid->GetOutput()->PrintMessage("Ice Attack:Choose A player to prevent him from Dicing next time");
 		int AttackedPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
-		cout << AttackedPlayer << endl;
 		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();
 		//Preventing Player from playing next time:
 		int AttackedPlayer;
@@ -57,7 +53,6 @@ void Ice::Execute()
 				pGrid->GetOutput()->ClearStatusBar();
 				int turnnum = pGrid->GetCurrentPlayer()->GetTurnCount();
 				pGrid->GetCurrentPlayer()->setpreventplayer(true);
-				cout << pGrid->GetcurrPlayerNumber() << endl;
 			}
 		}
 		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();

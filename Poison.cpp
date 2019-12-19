@@ -24,12 +24,9 @@ void Poison::Execute()
 	ReadActionParameters();
 	if (Used[CurrPlayerNum] == false)
 	{
-<<<<<<< HEAD
 		IsUsed(CurrPlayerNum);
-=======
 		IsUsed(CurrPlayerNum); //Making the attacker player use this attack to prevent him from using it again
 		CurrPlayer->NumberOfAttacksincrements(); //Making the player attack counter increase not to exceed 2 atacks during the game
->>>>>>> dc3e0e8091790e8727e5b7553081cebaeba49693
 		//Making The Player Choose a Player To Reduce his rolled dice value for 5 turns
 
 		pGrid->GetOutput()->PrintMessage("Poison Attack:Choose A player to deduct 1 number from his dice roll");
