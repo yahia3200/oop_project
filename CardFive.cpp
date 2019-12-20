@@ -1,4 +1,6 @@
 #include "CardFive.h"
+#include <iostream>
+using namespace std;
 
 CardFive::CardFive(const CellPosition& cpos):Card(cpos)
 {
@@ -9,7 +11,10 @@ void CardFive::Apply(Grid* pGrid, Player* pPlayer)
 {
 	Card::Apply(pGrid, pPlayer);
 
+	pPlayer->SetturnCount(pPlayer->GetTurnCount() - 1);
+
 	pPlayer->Move(pGrid,pPlayer->GetRolledDiceNUm());
+
 }
 
 Card* CardFive::GetCard(CellPosition& pos)
