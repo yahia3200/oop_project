@@ -121,9 +121,14 @@ void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 				{
 					ownerplayer = pPlayer;
 					pPlayer->SetWallet(pPlayer->GetWallet() - price);
+					pOut->PrintMessage("Congratulations you have bought all cards 11 in grid. Press anywhere to continue  ");
+					int x, y;
+					pIn->GetPointClicked(x, y);
+					pOut->ClearStatusBar();
 				}
 				else if (ans == "n" || ans == "N")
 				{
+					pOut->ClearStatusBar();
 				}
 				else
 				{
