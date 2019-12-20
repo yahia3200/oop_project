@@ -26,35 +26,37 @@ void Ice::Execute()
 	{
 		IsUsed(CurrPlayerNum);
 		//Making The Player Choose a Player To Reduce his Wallet
-		int AttackedPlayer;
+		int icedPlayer;
 		//Preventing Player from playing next time:
 		do
 		{
 			pGrid->GetOutput()->PrintMessage("Ice Attack:Choose A player to prevent him from Dicing next time");
-			AttackedPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
-			if (AttackedPlayer == CurrPlayerNum) {
+			icedPlayer = pGrid->GetInput()->GetInteger(pGrid->GetOutput());
+			if (icedPlayer == CurrPlayerNum) {
 				pGrid->GetOutput()->PrintMessage("You cannot Attack yourslef !,press anywhere to continue..");
 				int x, y;
 				pGrid->GetInput()->GetPointClicked(x, y);
 				pGrid->GetOutput()->ClearStatusBar();
 			}
-		} while (AttackedPlayer>3||AttackedPlayer<0||AttackedPlayer==CurrPlayerNum);
+		} while (icedPlayer > 3 || icedPlayer < 0 || icedPlayer == CurrPlayerNum);
 		for (int i = 0; i <= 3; i++)
 		{
 			pGrid->AdvanceCurrentPlayer();
-			if (pGrid->GetcurrPlayerNumber() == AttackedPlayer)
+			ReadActionParameters();
+			if (CurrPlayerNum == icedPlayer)
 			{
-				pGrid->GetOutput()->PrintMessage("Player No. " + to_string(AttackedPlayer) + " Is prevented from playing next time,Press anywhere to continue");
+				CurrPlayer->setIsiced(true);
+				CurrPlayer->increaseturnsoice();
+				pGrid->GetOutput()->PrintMessage("Player No. " + to_string(icedPlayer) + " Is iced for " + to_string(pGrid->GetCurrentPlayer()->Geticecounter()) + " turns by preventing him from rolling dice next turn. ,Press anywhere to continue");
 				int x, y;
 				pGrid->GetInput()->GetPointClicked(x, y);
 				pGrid->GetOutput()->ClearStatusBar();
-				int turnnum = pGrid->GetCurrentPlayer()->GetTurnCount();
-				pGrid->GetCurrentPlayer()->setpreventplayer(true);
 			}
 		}
-		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();
+		CurrPlayer->NumberOfAttacksincrements();
 	}
-	else {
+	else 
+	{
 		pGrid->GetOutput()->PrintMessage("You Have Used This Attack Befroe,Click anywhere to continue..");
 		int x, y;
 		pGrid->GetInput()->GetPointClicked(x, y);

@@ -37,7 +37,7 @@ void Poison::Execute()
 				pGrid->GetInput()->GetPointClicked(x, y);
 				pGrid->GetOutput()->ClearStatusBar();
 			}
-		} while (PoisonedPlayer>3||PoisonedPlayer<0||PoisonedPlayer==CurrPlayerNum);
+		} while (PoisonedPlayer > 3 || PoisonedPlayer < 0 || PoisonedPlayer == CurrPlayerNum);
 		for (int i = 0; i < MaxPlayerCount; i++)
 		{
 			pGrid->AdvanceCurrentPlayer();

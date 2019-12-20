@@ -18,6 +18,8 @@ Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNu
 	Ispoisoned = false;
 	firecounter = 0;
 	IsBurnt = false;
+	icecounter = 0;
+	Isiced = false;
 	// Make all the needed initialization or validations
 }
 
@@ -110,6 +112,26 @@ int Player::GetFirecounter()
 	return firecounter;
 }
 
+void Player::setIsiced(bool icedstatus)
+{
+	Isiced = icedstatus;
+}
+
+void Player::increaseturnsoice()
+{
+	icecounter++;
+}
+
+void Player::reseticecounter()
+{
+	icecounter = 0;
+}
+
+int Player::Geticecounter()
+{
+	return icecounter;
+}
+
 
 
 void Player::NumberOfAttacksincrements()
@@ -176,6 +198,18 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
+	//check if player is iced if yes
+	if (Isiced)
+	{
+		//deduct 1 number from his dice roll and a poison counter 
+		diceNumber = 0;
+		--icecounter;
+		pOut->PrintMessage("You are prevented from moving, you can't use a special attack this turn or recharging. Click Anywhere to continue  ");
+		int x, y;
+		pIn->GetPointClicked(x, y);//Waiting user Action
+		pOut->ClearStatusBar();		//if poison counters equal 0 means player is no poisoned any more
+	}
+
 	if (turnCount == 3)
 	{
 		turnCount = 0;
@@ -183,8 +217,10 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		//if no:.......
 		if (NumberOfAttacks < 2)
 		{
-			if (!pGrid->GetCurrentPlayer()->getpreventplayer())
-			{ //check if player wants to special attack
+			//check if player is iced or not ti indicate to ask him if he want to recharge or use special attack
+			if (!Isiced)
+			{
+				//check if player wants to special attack
 				pOut->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
 				string ans = pIn->GetSrting(pOut);
 				//while (ans != "y" || ans != "Y" || ans != "n" || ans != "N")
@@ -227,27 +263,14 @@ void Player::Move(Grid* pGrid, int diceNumber)
 					pOut->ClearStatusBar();
 				}
 			}
-			else
-			{
-				pOut->PrintMessage("You are prevented from moving, you can't use a special attack this turn or recharging. Click Anywhere to continue  ");
-				int x, y;
-				pIn->GetPointClicked(x, y);//Waiting user Action
-				pOut->ClearStatusBar();
-			}
 		}
 		else
 		{
-			if (!pGrid->GetCurrentPlayer()->getpreventplayer())
+			//check if player is iced or not ti indicate to ask him if he recharges
+			if (!Isiced)
 			{
 				wallet = wallet + diceNumber * 100;
 				pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased,Click Anywhere to continue  ");
-				int x, y;
-				pIn->GetPointClicked(x, y);//Waiting user Action
-				pOut->ClearStatusBar();
-			}
-			else
-			{
-				pOut->PrintMessage("You are prevented from moving, you can't use a special attack this turn or recharging. Click Anywhere to continue  ");
 				int x, y;
 				pIn->GetPointClicked(x, y);//Waiting user Action
 				pOut->ClearStatusBar();
@@ -256,10 +279,9 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	}
 	else
 	{
+		justRolledDiceNum = diceNumber;
 		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99 && !preventplayer)
 		{
-			justRolledDiceNum = diceNumber;
-
 			//check if player is poisoned if yes
 			if (Ispoisoned)
 			{
@@ -285,6 +307,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 					IsBurnt = false;
 				}
 			}
+
 			this->ClearDrawing(pOut);
 
 			//CellPosition pos = pCell->GetCellPosition();
@@ -335,10 +358,13 @@ void Player::Move(Grid* pGrid, int diceNumber)
 			if (pGrid->GetEndGame())
 				pOut->PrintMessage("Player " + to_string(this->playerNum) + " Won the Game...");
 		}
-
-
 	}
 
+	//check if icecounters are finished to remove iced status on him
+	if (icecounter == 0)
+	{
+		Isiced = false;
+	}
 }
 
 void Player::AppendPlayerInfo(string& playersInfo) const

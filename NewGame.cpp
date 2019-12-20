@@ -32,10 +32,12 @@ void NewGame::Execute()
 		pGrid->GetCurrentPlayer()->SetturnCount(0);
 		pGrid->GetCurrentPlayer()->setIspoisoned(false);
 		pGrid->GetCurrentPlayer()->setIsBurnt(false);
+		pGrid->GetCurrentPlayer()->setIsiced(false);
 		pGrid->GetCurrentPlayer()->setpreventplayer(false);
 		pGrid->GetCurrentPlayer()->resetNumberOfAttacks();
 		pGrid->GetCurrentPlayer()->resetFirecounter();
 		pGrid->GetCurrentPlayer()->resetPoisoncounter();
+		pGrid->GetCurrentPlayer()->reseticecounter();
 		pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), *startplayerscell);
 		pGrid->GetLight()->restart();
 		pGrid->GetIce()->restart();
