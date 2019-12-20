@@ -5,11 +5,13 @@ Player* CardTwelve::ownerplayer = NULL;  // set the owner of the card pointint t
 int CardTwelve::price = 0;
 int CardTwelve::Fees = 0;
 bool CardTwelve::IsSaved = false;
+int CardTwelve::CardTwelveCounter = 0;
 
 CardTwelve::CardTwelve(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 12;  // set the inherited cardNumber data member with the card number (12 here)
 	ownerplayer = NULL;  // set the owner of the card pointint to null
+	CardTwelveCounter++;
 }
 
 void CardTwelve::ReadCardParameters(Grid* pGrid)
@@ -23,14 +25,14 @@ void CardTwelve::ReadCardParameters(Grid* pGrid)
 	if (!IsExisted)
 	{
 		// get parameters for card
-		pOut->PrintMessage("New CardTwelve: Enter its price: ");
+		pOut->PrintMessage("CardTwelve: Enter It's Price: ");
 		price = pIn->GetInteger(pOut);
 		while (price < 0)
 		{
 			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
 			price = pIn->GetInteger(pOut);
 		}
-		pOut->PrintMessage("Price: " + to_string(price) + "  , Click to continue");
+		pOut->PrintMessage("Price: " + to_string(price) + "  . Click to continue");
 		pIn->GetPointClicked(x, y);
 
 		pOut->PrintMessage("New CardTwelve: Enter its fee: ");
@@ -41,7 +43,7 @@ void CardTwelve::ReadCardParameters(Grid* pGrid)
 			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
 			Fees = pIn->GetInteger(pOut);
 		}
-		pOut->PrintMessage("Fees: " + to_string(Fees) + "  , Click to continue");
+		pOut->PrintMessage("Fees: " + to_string(Fees) + "  . Click to continue");
 		pIn->GetPointClicked(x, y);
 
 		// set IsExisted true after creating the card for first time
@@ -179,8 +181,20 @@ void CardTwelve::SetIsSaved(bool s)
 	IsSaved = s;
 }
 
+void CardTwelve::DecrementCardTwelveCounter()
+{
+	CardTwelveCounter--;
+
+	if (CardTwelveCounter == 0)
+		IsExisted = false;
+}
+
 CardTwelve::~CardTwelve()
 {
+	CardTwelveCounter--;
+
+	if (CardTwelveCounter == 0)
+		IsExisted = false;
 }
 
 

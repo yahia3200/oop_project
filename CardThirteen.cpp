@@ -5,11 +5,13 @@ Player* CardThirteen::ownerplayer = NULL;  // set the owner of the card pointint
 int CardThirteen::price = 0;
 int CardThirteen::Fees = 0;
 bool CardThirteen::IsSaved = false;
+int CardThirteen::CardThirteenCounter = 0;
 
 CardThirteen::CardThirteen(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 13;  // set the inherited cardNumber data member with the card number (13 here)
 	ownerplayer = NULL;  // set the owner of the card pointint to null
+	CardThirteenCounter++;
 }
 
 void CardThirteen::ReadCardParameters(Grid* pGrid)
@@ -23,17 +25,17 @@ void CardThirteen::ReadCardParameters(Grid* pGrid)
 	if (!IsExisted)
 	{
 		// get parameters for card
-		pOut->PrintMessage("New CardThirteen: Enter its price: ");
+		pOut->PrintMessage("CardThirteen: Enter It's Price: ");
 		price = pIn->GetInteger(pOut);
 		while (price < 0)
 		{
-			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
+			pOut->PrintMessage("Invalid Input. Please Enter A Positive Integer: ");
 			price = pIn->GetInteger(pOut);
 		}
-		pOut->PrintMessage("Price: " + to_string(price) + "  , Click to continue");
+		pOut->PrintMessage("Price: " + to_string(price) + "  . Click to continue");
 		pIn->GetPointClicked(x, y);
 
-		pOut->PrintMessage("New CardThirteen: Enter its fee: ");
+		pOut->PrintMessage("New CardThirteen: Enter It's Fees: ");
 		Fees = pIn->GetInteger(pOut);
 
 		while (Fees < 0)
@@ -41,7 +43,7 @@ void CardThirteen::ReadCardParameters(Grid* pGrid)
 			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
 			Fees = pIn->GetInteger(pOut);
 		}
-		pOut->PrintMessage("Fees: " + to_string(Fees) + "  , Click to continue");
+		pOut->PrintMessage("Fees: " + to_string(Fees) + "  . Click to continue");
 		pIn->GetPointClicked(x, y);
 
 		// set IsExisted true after creating the card for first time
@@ -182,8 +184,20 @@ void CardThirteen::SetIsSaved(bool s)
 	IsSaved = s;
 }
 
+void CardThirteen::DecrementCardThirteenCounter()
+{
+	CardThirteenCounter--;
+
+	if (CardThirteenCounter == 0)
+		IsExisted = false;
+}
+
 CardThirteen::~CardThirteen()
 {
+	CardThirteenCounter--;
+
+	if (CardThirteenCounter == 0)
+		IsExisted = false;
 }
 
 

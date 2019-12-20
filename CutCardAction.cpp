@@ -1,7 +1,11 @@
 #include "CutCardAction.h"
 #include "Input.h"
 #include "Output.h"
-
+#include "CardTen.h"
+#include "CardEleven.h"
+#include "CardTwelve.h"
+#include "CardThirteen.h"
+#include "CardFourteen.h"
 
 CutCardAction::CutCardAction(ApplicationManager* pApp) : Action(pApp)
 {
@@ -55,6 +59,27 @@ void CutCardAction::Execute()
 		pGrid->RemoveObjectFromCell(position);
 		pOut->DrawCell(position);
 		Card::DecrementCardCounter();
+
+		CardTen* IsCardTen = dynamic_cast<CardTen*>(CutCard);
+		CardEleven* IsCardEleven = dynamic_cast<CardEleven*>(CutCard);
+		CardTwelve* IsCardTwelve = dynamic_cast<CardTwelve*>(CutCard);
+		CardThirteen* IsCardThirteen = dynamic_cast<CardThirteen*>(CutCard);
+		CardFourteen* IsCardFourteen = dynamic_cast<CardFourteen*>(CutCard);
+
+		if (IsCardTen)
+			IsCardTen->DecrementCardTenCounter();
+
+		else if (IsCardEleven)
+			IsCardEleven->DecrementCardElevenCounter();
+
+		else if (IsCardTwelve)
+			IsCardTwelve->DecrementCardTwelveCounter();
+
+		else if (IsCardThirteen)
+			IsCardThirteen->DecrementCardThirteenCounter();
+
+		else if (IsCardFourteen)
+			IsCardFourteen->DecrementCardFourteenCounter();
 	}
 	else
 	{

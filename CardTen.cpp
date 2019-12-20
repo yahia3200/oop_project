@@ -5,11 +5,13 @@ Player* CardTen::ownerplayer = NULL;  // set the owner of the card pointint to n
 int CardTen::price = 0;
 int CardTen::Fees = 0;
 bool CardTen::IsSaved = false;
+int CardTen::CardTenCounter = 0;
 
 CardTen::CardTen(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 10;  // set the inherited cardNumber data member with the card number (10 here)
 	ownerplayer = NULL;  // set the owner of the card pointint to null
+	CardTenCounter++;
 }
 
 void CardTen::ReadCardParameters(Grid* pGrid)
@@ -23,17 +25,17 @@ void CardTen::ReadCardParameters(Grid* pGrid)
 	if (!IsExisted)
 	{
 		// get parameters for card
-		pOut->PrintMessage("New CardTwelve: Enter its price: ");
+		pOut->PrintMessage("CardTen: Enter It's price: ");
 		price = pIn->GetInteger(pOut);
 		while (price < 0)
 		{
-			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
+			pOut->PrintMessage("Invalid Input. Please Enter A Positive Integer: ");
 			price = pIn->GetInteger(pOut);
 		}
-		pOut->PrintMessage("Price: " + to_string(price) + "  , Click to continue");
+		pOut->PrintMessage("Price: " + to_string(price) + "  . Click To Continue");
 		pIn->GetPointClicked(x, y);
 
-		pOut->PrintMessage("New CardTwelve: Enter its fees: ");
+		pOut->PrintMessage("CardTen: Enter It's Fees: ");
 		Fees = pIn->GetInteger(pOut);
 
 		while (Fees < 0)
@@ -41,7 +43,7 @@ void CardTen::ReadCardParameters(Grid* pGrid)
 			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
 			Fees = pIn->GetInteger(pOut);
 		}
-		pOut->PrintMessage("Fees: " + to_string(Fees) + "  , Click to continue");
+		pOut->PrintMessage("Fees: " + to_string(Fees) + "  . Click To Continue");
 		pIn->GetPointClicked(x, y);
 
 		// set IsExisted true after creating the card for first time
@@ -55,7 +57,6 @@ void CardTen::ReadCardParameters(Grid* pGrid)
 void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 {
 	//Calling Apply() of the base class Card to print the message that I reached this card number
-
 	Card::Apply(pGrid, pPlayer);
 
 	// Get a Pointer to the Input / Output Interfaces from the Grid
@@ -181,6 +182,18 @@ void CardTen::SetIsSaved(bool s)
 	IsSaved = s;
 }
 
+void CardTen::DecrementCardTenCounter()
+{
+	CardTenCounter--;
+
+	if (CardTenCounter == 0)
+		IsExisted = false;
+}
+
 CardTen::~CardTen()
 {
+	CardTenCounter--;
+
+	if (CardTenCounter == 0)
+		IsExisted = false;
 }
