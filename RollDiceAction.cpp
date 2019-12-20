@@ -8,9 +8,6 @@
 #include "Fire.h"
 #include <time.h> // used to in srand to generate random numbers with different seed
 
-#include <iostream>
-using namespace std;
-
 RollDiceAction::RollDiceAction(ApplicationManager* pApp) : Action(pApp)
 {
 }
@@ -28,7 +25,6 @@ void RollDiceAction::Execute()
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 
-	cout << pGrid->GetcurrPlayerNumber() << "   " << pGrid->GetCurrentPlayer()->getpreventplayer() << endl;
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
 

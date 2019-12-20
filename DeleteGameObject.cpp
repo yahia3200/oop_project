@@ -23,8 +23,6 @@ void DeleteGameObject::Execute()
 	
 	pGrid->deleteObject(cellPos);
 	pGrid->RemoveObjectFromCell(cellPos);
-	//pGrid->GetOutput()->ClearGridArea(); //Wrong
-	//pGrid->GetOutput()->DrawCell(cellPos);
 	pGrid->UpdateInterface();
 }
 

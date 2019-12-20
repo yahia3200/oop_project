@@ -46,24 +46,13 @@ void PasteCardAction::ReadActionParameters()
 
 	//check if clicked copied or cutted cell is has a card (is not equal null)
 
-	//if (pGrid->GetClipboard() != NULL)
-	//{
-	//	//getting card clicked number 
-
-	//	cardnum = pGrid->GetClipboard()->GetCardNumber();
-	//}
-	switch (pGrid->GetClipboard() != NULL)
+	if (pGrid->GetClipboard() != NULL)
 	{
-	case true:
-		pGrid->SetClipboard(pGrid->GetClipboard());
-		pGrid->RemoveObjectFromCell(position);
-		pOut->DrawCell(position);
-		Card::DecrementCardCounter();
-		break;
-	case false:
-		pGrid->GetOutput()->PrintMessage("No copy/cyt data to paste it.");
-		break;
+		//getting card clicked number 
+
+		cardnum = pGrid->GetClipboard()->GetCardNumber();
 	}
+	
 	//clear statusbar
     pOut->ClearStatusBar();
 

@@ -22,7 +22,7 @@ void CopyCardAction::ReadActionParameters()
 
 	//getting position of the cell clicked 
 
-	pOut->PrintMessage("Click On The Card To Copy it..");
+	pOut->PrintMessage("Click On The Source Cell..to Copy the Card");
 	position = pIn->GetCellClicked();
 
 	//getting card in the clicked cell
@@ -40,6 +40,14 @@ void CopyCardAction::Execute()
 	//copy the card clicked After check there is card in clicked 
 	if (CpiedCardinfo != NULL)
 		pGrid->SetClipboard(CpiedCardinfo);
-	
+	else
+	{
+		int x, y;
+		pGrid->PrintErrorMessage("There is No Card In The Clicked Cell...Click to Continue");
+		pGrid->GetInput()->GetPointClicked(x, y);
+		pGrid->GetOutput()->ClearStatusBar();
+	}
+
+
 
 }
