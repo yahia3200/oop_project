@@ -27,55 +27,32 @@ AddCardAction::~AddCardAction()
 
 void AddCardAction::ReadActionParameters()
 {
-
-	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below (Done)
-
-
-	// == Here are some guideline steps (numbered below) to implement this function ==
-
-	// 1- Get a Pointer to the Input / Output Interfaces
-
-	// 2- Read the "cardNumber" parameter and set its data member
-
-	// 3- Read the "cardPosition" parameter (its cell position) and set its data member
-
-	// 4- Make the needed validations on the read parameters
-
-	// 5- Clear status bar
-
+	//Get a Pointer to the Input / Output Interfaces
 	Grid* pGrid = pManager->GetGrid();
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
-
+	//Read the "cardNumber" parameter and set its data member
 	pOut->PrintMessage("Enter Card Number : ");
 	cardNumber = pIn->GetInteger(pOut);
-
+	//Read the "cardPosition" parameter (its cell position) and set its data member
 	pOut->PrintMessage("Click On Cell : ");
 	cardPosition = pIn->GetCellClicked();
-
-	
+	//Validation 
 	while (cardNumber < 1 || cardNumber > 14)
 	{
 		pOut->PrintMessage("Invalid Input. Please enter a number between 1 and 14 : ");
 		cardNumber = pIn->GetInteger(pOut);
 	}
-
+	// Clear status bar
 	pOut->ClearStatusBar();
 
 }
 
 void AddCardAction::Execute()
 {
-
+	//Reading The Card parameters
 	ReadActionParameters();
-	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
-
-
-	// == Here are some guideline steps (numbered below) to implement this function ==
-
-	// 1- The first line of any Action Execution is to read its parameter first
-
-	// 2- Switch case on cardNumber data member and create the appropriate card object type
+	//Switch case on cardNumber data member and create the appropriate card object type
 	Card* pCard = NULL; // will point to the card object type
 	switch (cardNumber)
 	{
@@ -123,19 +100,16 @@ void AddCardAction::Execute()
 		break;
 
 	}
-
 	// 3- if pCard is correctly set in the switch case (i.e. if pCard is pointing to an object -- NOT NULL)
 	if (pCard)
 	{
-		// A- We get a pointer to the Grid from the ApplicationManager
-
-		// B- Make the "pCard" reads its card parameters: ReadCardParameters(), It is virtual and depends on the card type
-
-		// C- Add the card object to the GameObject of its Cell:
-
-		// D- if the GameObject cannot be added in the Cell, Print the appropriate error message on statusbar
+		// We get a pointer to the Grid from the ApplicationManager
 		Grid* pGrid = pManager->GetGrid();
+		//Make the "pCard" reads its card parameters: ReadCardParameters(), It is virtual and depends on the card type
 		pCard->ReadCardParameters(pGrid);
+		//Add the card object to the GameObject of its Cell:
+		//if the GameObject cannot be added in the Cell, Print the appropriate error message on statusbar
+
 		bool IsValid = pGrid->AddObjectToCell(pCard);
 		if (IsValid == false)
 		{
