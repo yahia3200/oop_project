@@ -52,7 +52,12 @@ void PasteCardAction::ReadActionParameters()
 
 		cardnum = pGrid->GetClipboard()->GetCardNumber();
 	}
-	
+	else if (pGrid->GetClipboard() == NULL)
+	{
+		pOut->ClearStatusBar();
+
+		pGrid->PrintErrorMessage("There is No Card To Paste ...");
+	}
 	//clear statusbar
     pOut->ClearStatusBar();
 
