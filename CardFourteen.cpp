@@ -5,11 +5,13 @@ Player* CardFourteen::ownerplayer = NULL;  // set the owner of the card pointint
 int CardFourteen::price = 0;
 int CardFourteen::Fees = 0;
 bool CardFourteen::IsSaved = false;
+int CardFourteen::CardFourteenCounter = 0;
 
 CardFourteen::CardFourteen(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 14;  // set the inherited cardNumber data member with the card number (14 here)
 	ownerplayer = NULL;  // set the owner of the card pointint to null
+	CardFourteenCounter++;
 }
 
 void CardFourteen::ReadCardParameters(Grid* pGrid)
@@ -23,25 +25,25 @@ void CardFourteen::ReadCardParameters(Grid* pGrid)
 	if (!IsExisted)
 	{
 		// get parameters for card
-		pOut->PrintMessage("New CardFourteen: Enter its price: ");
+		pOut->PrintMessage("CardFourteen: Enter It's Price: ");
 		price = pIn->GetInteger(pOut);
 		while (price < 0)
 		{
-			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
+			pOut->PrintMessage("Invalid Input. Please Enter A Positive Integer: ");
 			price = pIn->GetInteger(pOut);
 		}
-		pOut->PrintMessage("Price: " + to_string(price) + "  , Click to continue");
+		pOut->PrintMessage("Price: " + to_string(price) + "  . Click to continue");
 		pIn->GetPointClicked(x, y);
 
-		pOut->PrintMessage("New CardFourteen: Enter its Fees: ");
+		pOut->PrintMessage("CardFourteen: Enter It's Fees: ");
 		Fees = pIn->GetInteger(pOut);
 
 		while (Fees < 0)
 		{
-			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
+			pOut->PrintMessage("Invalid Input. Please Enter A Positive Integer: ");
 			Fees = pIn->GetInteger(pOut);
 		}
-		pOut->PrintMessage("Fees: " + to_string(Fees) + "  , Click to continue");
+		pOut->PrintMessage("Fees: " + to_string(Fees) + "  . Click to continue");
 		pIn->GetPointClicked(x, y);
 
 		// set IsExisted true after creating the card for first time
@@ -179,6 +181,10 @@ void CardFourteen::SetIsSaved(bool s)
 
 CardFourteen::~CardFourteen()
 {
+	CardFourteenCounter--;
+
+	if (CardFourteenCounter == 0)
+		IsExisted = false;
 }
 
 

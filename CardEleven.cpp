@@ -5,11 +5,13 @@ Player* CardEleven::ownerplayer = NULL;  // set the owner of the card pointint t
 int CardEleven::price = 0;
 int CardEleven::Fees = 0;
 bool CardEleven::IsSaved = false;
+int CardEleven::CardElevenCounter = 0;
 
 CardEleven::CardEleven(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 11;  // set the inherited cardNumber data member with the card number (11 here)
 	ownerplayer = NULL;  // set the owner of the card pointint to null
+	CardElevenCounter++;
 }
 
 void CardEleven::ReadCardParameters(Grid* pGrid)
@@ -25,17 +27,17 @@ void CardEleven::ReadCardParameters(Grid* pGrid)
 	if (!IsExisted)
 	{
 		// get parameters for card
-		pOut->PrintMessage("New CardEleven: Enter its price: ");
+		pOut->PrintMessage("CardEleven: Enter It's Price: ");
 		price = pIn->GetInteger(pOut);
 		while (price < 0)
 		{
 			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
 			price = pIn->GetInteger(pOut);
 		}
-		pOut->PrintMessage("Price: " + to_string(price) + "  , Click to continue");
+		pOut->PrintMessage("Price: " + to_string(price) + "  . Click To Continue");
 		pIn->GetPointClicked(x, y);
 
-		pOut->PrintMessage("New CardEleven: Enter its fee: ");
+		pOut->PrintMessage("New CardEleven: Enter It's Fees: ");
 		Fees = pIn->GetInteger(pOut);
 
 		while (Fees < 0)
@@ -43,7 +45,7 @@ void CardEleven::ReadCardParameters(Grid* pGrid)
 			pOut->PrintMessage("Invalid Input. Please enter a positive integer: ");
 			Fees = pIn->GetInteger(pOut);
 		}
-		pOut->PrintMessage("Fees: " + to_string(Fees) + "  , Click to continue");
+		pOut->PrintMessage("Fees: " + to_string(Fees) + "  . Click to continue");
 		pIn->GetPointClicked(x, y);
 
 		// set IsExisted true after creating the card for first time
@@ -186,6 +188,10 @@ void CardEleven::Load(istream& InputFile)
 
 CardEleven::~CardEleven()
 {
+	CardElevenCounter--;
+
+	if (CardElevenCounter == 0)
+		IsExisted = false;
 }
 
 

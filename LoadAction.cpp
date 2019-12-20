@@ -30,6 +30,7 @@ void LoadAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
+	// Read File Name From The User
 	pOut->PrintMessage("Enter The File Name: ");
 	fileName = pIn->GetSrting(pOut);
 	
@@ -41,6 +42,8 @@ void LoadAction::Execute()
 	ReadActionParameters();
 
 	Grid* pGrid = pManager->GetGrid();
+
+	// Delete All Objects From The Grid And Reset Cards From 10 To 14
 	pGrid->ResetGrid();
 	CardTen::IsExisted = false;
 	CardEleven::IsExisted = false;
@@ -50,103 +53,117 @@ void LoadAction::Execute()
 
 	ifstream InputFile;
 	InputFile.open(fileName);
-	//if(InputFile.is_open()) //This Line for checking if the file is Opened or not 
-	int LaddersNum;
-	int start, end;
-	InputFile >> LaddersNum;
-
-	for (int i = 0; i < LaddersNum; i++)
+	if (InputFile.is_open()) //This Line for checking if the file is Opened or not 
 	{
-		InputFile >> start >> end;
+		// Read Ladders Number
+		int LaddersNum;
+		int start, end;
+		InputFile >> LaddersNum;
 
-		CellPosition startPos(start);
-		CellPosition endPos(end);
-
-		Ladder* pLadder = new Ladder(startPos, endPos);
-		pGrid->AddObjectToCell(pLadder);
-	}
-
-	int SnakesNum;
-	InputFile >> SnakesNum;
-
-	for (int i = 0; i < SnakesNum; i++)
-	{
-		InputFile >> start >> end;
-
-		CellPosition startPos(start);
-		CellPosition endPos(end);
-
-		Snake* pSnake = new Snake(startPos,endPos);
-		pGrid->AddObjectToCell(pSnake);
-
-	}
-
-	int CardsNum;
-	InputFile >> CardsNum;
-
-	int cardType,cardpos;
-	for (int i = 0; i < CardsNum; i++)
-	{
-		
-		InputFile >> cardType;
-		Card* pCard = NULL; 
-
-		InputFile >> cardpos;
-		CellPosition cardPosition(cardpos);
-
-		switch (cardType)
+		// Create All Ladders
+		for (int i = 0; i < LaddersNum; i++)
 		{
-		case 1:
-			pCard = new CardOne(cardPosition);
-			break;
-		case 2:
-			pCard = new CardTwo(cardPosition);
-			break;
-		case 3:
-			pCard = new CardThree(cardPosition);
-			break;
-		case 4:
-			pCard = new CardFour(cardPosition);
-			break;
-		case 5:
-			pCard = new CardFive(cardPosition);
-			break;
-		case 6:
-			pCard = new CardSix(cardPosition);
-			break;
-		case 7:
-			pCard = new CardSeven(cardPosition);
-			break;
-		case 8:
-			pCard = new CardEight(cardPosition);
-			break;
-		case 9:
-			pCard = new CardNine(cardPosition);
-			break;
-		case 10:
-			pCard = new CardTen(cardPosition);
-			break;
-		case 11:
-			pCard = new CardEleven(cardPosition);
-			break;
-		case 12:
-			pCard = new CardTwelve(cardPosition);
-			break;
-		case 13:
-			pCard = new CardThirteen(cardPosition);
-			break;
-		case 14:
-			pCard = new CardFourteen(cardPosition);
-			break;
+			InputFile >> start >> end;
+
+			CellPosition startPos(start);
+			CellPosition endPos(end);
+
+			Ladder* pLadder = new Ladder(startPos, endPos);
+			pGrid->AddObjectToCell(pLadder);
+		}
+
+		// Read Snakes Number
+		int SnakesNum;
+		InputFile >> SnakesNum;
+
+		// Create All Snakes
+		for (int i = 0; i < SnakesNum; i++)
+		{
+			InputFile >> start >> end;
+
+			CellPosition startPos(start);
+			CellPosition endPos(end);
+
+			Snake* pSnake = new Snake(startPos, endPos);
+			pGrid->AddObjectToCell(pSnake);
 
 		}
 
-		pCard->Load(InputFile);
+		// Read Cards Number
+		int CardsNum;
+		InputFile >> CardsNum;
 
+		// Read Card Type And Postion Then Create All Cards
+		int cardType, cardpos;
+		for (int i = 0; i < CardsNum; i++)
+		{
 
-		pGrid->AddObjectToCell(pCard);
-		//pGrid->GetOutput()->DrawCell(cardPosition, cardType);
+			InputFile >> cardType;
+			Card* pCard = NULL;
+
+			InputFile >> cardpos;
+			CellPosition cardPosition(cardpos);
+
+			switch (cardType)
+			{
+			case 1:
+				pCard = new CardOne(cardPosition);
+				break;
+			case 2:
+				pCard = new CardTwo(cardPosition);
+				break;
+			case 3:
+				pCard = new CardThree(cardPosition);
+				break;
+			case 4:
+				pCard = new CardFour(cardPosition);
+				break;
+			case 5:
+				pCard = new CardFive(cardPosition);
+				break;
+			case 6:
+				pCard = new CardSix(cardPosition);
+				break;
+			case 7:
+				pCard = new CardSeven(cardPosition);
+				break;
+			case 8:
+				pCard = new CardEight(cardPosition);
+				break;
+			case 9:
+				pCard = new CardNine(cardPosition);
+				break;
+			case 10:
+				pCard = new CardTen(cardPosition);
+				break;
+			case 11:
+				pCard = new CardEleven(cardPosition);
+				break;
+			case 12:
+				pCard = new CardTwelve(cardPosition);
+				break;
+			case 13:
+				pCard = new CardThirteen(cardPosition);
+				break;
+			case 14:
+				pCard = new CardFourteen(cardPosition);
+				break;
+			}
+
+			// Set Parameters For Cards And Add It To The Cell
+			pCard->Load(InputFile);
+			pGrid->AddObjectToCell(pCard);
+		}
 	}
+
+	else // If The File Didn't Found
+	{
+		pGrid->GetOutput()->PrintMessage("Couldn't Open The File . Click To Contiue");
+		int x, y;
+		pGrid->GetInput()->GetPointClicked(x, y);
+		pGrid->GetOutput()->ClearStatusBar();
+	}
+		
 }
 
 
