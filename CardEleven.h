@@ -34,6 +34,8 @@ public:
 
 	virtual void Load(istream& InputFile);
 
+	static void DecrementCardElevenCounter();   // If a Card Dosen't exisit But Not Destructed (Used In Cut)
+
 	virtual ~CardEleven(); // A Virtual Destructor
 };
 

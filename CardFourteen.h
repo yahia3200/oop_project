@@ -34,6 +34,8 @@ public:
 
 	static void SetIsSaved(bool s);
 
+	static void DecrementCardFourteenCounter();   // If a Card Dosen't exisit But Not Destructed (Used In Cut)
+
 	virtual ~CardFourteen(); // A Virtual Destructor
 };
 

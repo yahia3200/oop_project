@@ -179,6 +179,15 @@ void CardFourteen::SetIsSaved(bool s)
 	IsSaved = s;
 }
 
+void CardFourteen::DecrementCardFourteenCounter()
+{
+	CardFourteenCounter--;
+
+	if (CardFourteenCounter == 0)
+		IsExisted = false;
+}
+
+
 CardFourteen::~CardFourteen()
 {
 	CardFourteenCounter--;

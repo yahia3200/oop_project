@@ -182,6 +182,14 @@ void CardTen::SetIsSaved(bool s)
 	IsSaved = s;
 }
 
+void CardTen::DecrementCardTenCounter()
+{
+	CardTenCounter--;
+
+	if (CardTenCounter == 0)
+		IsExisted = false;
+}
+
 CardTen::~CardTen()
 {
 	CardTenCounter--;

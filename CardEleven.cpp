@@ -186,6 +186,14 @@ void CardEleven::Load(istream& InputFile)
 	
 }
 
+void CardEleven::DecrementCardElevenCounter()
+{
+	CardElevenCounter--;
+
+	if (CardElevenCounter == 0)
+		IsExisted = false;
+}
+
 CardEleven::~CardEleven()
 {
 	CardElevenCounter--;

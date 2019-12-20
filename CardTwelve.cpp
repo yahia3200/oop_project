@@ -181,6 +181,14 @@ void CardTwelve::SetIsSaved(bool s)
 	IsSaved = s;
 }
 
+void CardTwelve::DecrementCardTwelveCounter()
+{
+	CardTwelveCounter--;
+
+	if (CardTwelveCounter == 0)
+		IsExisted = false;
+}
+
 CardTwelve::~CardTwelve()
 {
 	CardTwelveCounter--;
