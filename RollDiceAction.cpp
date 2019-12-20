@@ -26,7 +26,6 @@ void RollDiceAction::Execute()
 	Output* pOut = pGrid->GetOutput();
 
 
-
 	// == Here are some guideline steps (numbered below) to implement this function ==
 
 	// Check if the Game is ended (Use the GetEndGame() function of pGrid), if yes, make the appropriate action
@@ -107,8 +106,7 @@ void RollDiceAction::Execute()
 	{
 		if (pGrid->GetCurrentPlayer()->getpreventplayer())
 		{
-
-			if (pGrid->GetCurrentPlayer()->GetWallet() > 0)
+			if (pGrid->GetCurrentPlayer()->GetWallet() > 0 && pGrid->GetCurrentPlayer()->GetTurnCount()!=2)
 			{
 				//prevent player from rolling dice by gettng 0 for dicenumber 
 				pGrid->GetCurrentPlayer()->Move(pGrid, 0);
@@ -129,11 +127,10 @@ void RollDiceAction::Execute()
 				// Move the currentPlayer using function Move of class player
 				pPlayer->Move(pGrid, diceNumber);
 				
-				if (pGrid->GetCurrentPlayer()->GetWallet() > 0)
+				if (pGrid->GetCurrentPlayer()->GetWallet() > 0 && pGrid->GetCurrentPlayer()->GetTurnCount() != 2)
 					pGrid->GetCurrentPlayer()->setpreventplayer(false);
 
 			}
-
 			// Advance the current player number of pGrid
 			pGrid->AdvanceCurrentPlayer();
 		}	
