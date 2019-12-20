@@ -24,7 +24,7 @@ void CutCardAction::ReadActionParameters()
 
 	//getting position of the cell clicked and get the cell
 
-	pOut->PrintMessage("Click On The Card To Cut it..");
+	pOut->PrintMessage("Click On The Source Cell..to Cut the Card");
 	position = pIn->GetCellClicked();
 
 	//getting card in the clicked cell
@@ -55,5 +55,13 @@ void CutCardAction::Execute()
 		pGrid->RemoveObjectFromCell(position);
 		pOut->DrawCell(position);
 		Card::DecrementCardCounter();
+	}
+	else
+	{
+		int x, y;
+		pGrid->PrintErrorMessage("There is No Card In The Clicked Cell...Click to Continue") ;
+		pIn->GetPointClicked(x, y);
+		pOut->ClearStatusBar();
+
 	}
 }
