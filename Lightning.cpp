@@ -1,6 +1,7 @@
 #include "Lightning.h"
 #include "Grid.h"
 #include "Player.h"
+
 Lightning::Lightning(ApplicationManager* pApp):Action(pApp)
 {
 	for (int i = 0; i < MaxPlayerCount; i++)
@@ -21,6 +22,7 @@ void Lightning::Execute()
 {
 	Grid* pGrid = pManager->GetGrid();
 	ReadActionParameters();
+	int userplayer = pGrid->GetcurrPlayerNumber();
 	if (Used[CurrPlayerNum] == false) {
 		IsUsed(CurrPlayerNum);
 		for (int i = 0; i < MaxPlayerCount-1; i++)
@@ -29,8 +31,12 @@ void Lightning::Execute()
 			ReadActionParameters();
 				CurrPlayer->SetWallet(CurrPlayer->GetWallet() - 20);
 		}
-		CurrPlayer->NumberOfAttacksincrements();
-		pGrid->AdvanceCurrentPlayer();
+
+		if (pGrid->GetcurrPlayerNumber()!= userplayer)
+		{
+			pGrid->AdvanceCurrentPlayer();
+		}
+		pGrid->GetCurrentPlayer()->NumberOfAttacksincrements();
 	}
 	else {
 		pGrid->GetOutput()->PrintMessage("You Have Used This Attack Befroe,Click anywhere to continue..");

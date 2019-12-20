@@ -183,44 +183,53 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		//if no:.......
 		if (NumberOfAttacks < 2)
 		{
-			//check if player wants to special attack
-			pOut->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
-			string ans = pIn->GetSrting(pOut);
-			//while (ans != "y" || ans != "Y" || ans != "n" || ans != "N")
-			//{
-			//	pOut->PrintMessage("Invalid Input,Try Again...");
-			//	ans = pIn->GetSrting(pOut);
-			//}
-			if (ans == "y" || ans == "Y")
-			{
-				pOut->PrintMessage("Press 1.Ice, 2.Fire, 3.Poison, 4.Lightning...");
-				int Answer = pIn->GetInteger(pOut);
-				Lightning* Light = pGrid->GetLight();
-				Ice* ice = pGrid->GetIce();
-				Poison* poison = pGrid->GetPoison();
-				Fire* fire = pGrid->GetFire();
-
-				switch (Answer)
+			if (!pGrid->GetCurrentPlayer()->getpreventplayer())
+			{ //check if player wants to special attack
+				pOut->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
+				string ans = pIn->GetSrting(pOut);
+				//while (ans != "y" || ans != "Y" || ans != "n" || ans != "N")
+				//{
+				//	pOut->PrintMessage("Invalid Input,Try Again...");
+				//	ans = pIn->GetSrting(pOut);
+				//}
+				if (ans == "y" || ans == "Y")
 				{
-				case 1:
-					ice->Execute();
-					break;
-				case 2:
-					fire->Execute();
-					break;
-				case 3:
-					poison->Execute();
-					break;
-				case 4:
-					Light->Execute();
-					break;
-				default:
-					break;
+					pOut->PrintMessage("Press 1.Ice, 2.Fire, 3.Poison, 4.Lightning...");
+					int Answer = pIn->GetInteger(pOut);
+					Lightning* Light = pGrid->GetLight();
+					Ice* ice = pGrid->GetIce();
+					Poison* poison = pGrid->GetPoison();
+					Fire* fire = pGrid->GetFire();
+
+					switch (Answer)
+					{
+					case 1:
+						ice->Execute();
+						break;
+					case 2:
+						fire->Execute();
+						break;
+					case 3:
+						poison->Execute();
+						break;
+					case 4:
+						Light->Execute();
+						break;
+					default:
+						break;
+					}
+				}
+				else if (ans == "n" || ans == "N") {
+					wallet = wallet + diceNumber * 100;
+					pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased. Click Anywhere to continue  ");
+					int x, y;
+					pIn->GetPointClicked(x, y);//Waiting user Action
+					pOut->ClearStatusBar();
 				}
 			}
-			else if (ans == "n" || ans == "N") {
-				wallet = wallet + diceNumber * 100;
-				pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased. Click Anywhere to continue  ");
+			else
+			{
+				pOut->PrintMessage("You are prevented from moving, you can't use a special attack this turn or recharging. Click Anywhere to continue  ");
 				int x, y;
 				pIn->GetPointClicked(x, y);//Waiting user Action
 				pOut->ClearStatusBar();
@@ -228,16 +237,26 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		}
 		else
 		{
-			wallet = wallet + diceNumber * 100;
-			pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased,Click Anywhere to continue  ");
-			int x, y;
-			pIn->GetPointClicked(x, y);//Waiting user Action
-			pOut->ClearStatusBar();
+			if (!pGrid->GetCurrentPlayer()->getpreventplayer())
+			{
+				wallet = wallet + diceNumber * 100;
+				pOut->PrintMessage("In This Turn you wont Play but ur Wallet will be increased,Click Anywhere to continue  ");
+				int x, y;
+				pIn->GetPointClicked(x, y);//Waiting user Action
+				pOut->ClearStatusBar();
+			}
+			else
+			{
+				pOut->PrintMessage("You are prevented from moving, you can't use a special attack this turn or recharging. Click Anywhere to continue  ");
+				int x, y;
+				pIn->GetPointClicked(x, y);//Waiting user Action
+				pOut->ClearStatusBar();
+			}
 		}
 	}
 	else
 	{
-		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99  &&  !preventplayer)
+		if (pGrid->GetCurrentPlayer()->GetCell()->GetCellPosition().GetCellNum() + diceNumber <= 99 && !preventplayer)
 		{
 			justRolledDiceNum = diceNumber;
 
@@ -316,8 +335,8 @@ void Player::Move(Grid* pGrid, int diceNumber)
 			if (pGrid->GetEndGame())
 				pOut->PrintMessage("Player " + to_string(this->playerNum) + " Won the Game...");
 		}
-		
-		
+
+
 	}
 
 }

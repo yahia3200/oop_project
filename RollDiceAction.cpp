@@ -106,7 +106,7 @@ void RollDiceAction::Execute()
 	{
 		if (pGrid->GetCurrentPlayer()->getpreventplayer())
 		{
-			if (pGrid->GetCurrentPlayer()->GetWallet() > 0 && pGrid->GetCurrentPlayer()->GetTurnCount()!=2)
+			if (pGrid->GetCurrentPlayer()->GetWallet() > 0)
 			{
 				//prevent player from rolling dice by gettng 0 for dicenumber 
 				pGrid->GetCurrentPlayer()->Move(pGrid, 0);
@@ -127,7 +127,7 @@ void RollDiceAction::Execute()
 				// Move the currentPlayer using function Move of class player
 				pPlayer->Move(pGrid, diceNumber);
 				
-				if (pGrid->GetCurrentPlayer()->GetWallet() > 0 && pGrid->GetCurrentPlayer()->GetTurnCount() != 2)
+				if (pGrid->GetCurrentPlayer()->GetWallet() > 0)
 					pGrid->GetCurrentPlayer()->setpreventplayer(false);
 
 			}
