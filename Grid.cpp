@@ -415,3 +415,24 @@ void Grid::deleteObject(CellPosition pos)
 	}
 }
 
+bool Grid::IsOverlapping(GameObject* newObj)
+{
+	bool IsOverlap = false;
+	for (int i = NumVerticalCells - 1; i >= 0; i--) // to allocate cells from bottom up
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) // to allocate cells from left to right
+		{
+			if (CellList[i][j]->GetGameObject())
+			{
+				IsOverlap = CellList[i][j]->GetGameObject()->IsOverlaping(newObj);
+
+				if (IsOverlap)
+					break;
+			}
+		}
+	}
+
+	return IsOverlap;
+
+}
+

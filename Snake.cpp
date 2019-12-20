@@ -1,4 +1,5 @@
 #include "Snake.h"
+#include "Ladder.h"
 
 int Snake::SnakeCount = 0;
 Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos):GameObject(startCellPos)
@@ -6,8 +7,6 @@ Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos):G
 	this->endCellPos = endCellPos;
 	this->startCellPos = startCellPos;
 	SnakeCount++;
-
-//Validation 
 }
 
 void Snake::Draw(Output* pOut) const
@@ -33,6 +32,29 @@ void Snake::Apply(Grid* pGrid, Player* pPlayer)
 CellPosition Snake::GetEndPosition() const
 {
 	return endCellPos;
+}
+
+bool Snake::IsOverlaping(GameObject* newObj)
+{
+	if (startCellPos.HCell() == newObj->GetPosition().HCell())
+	{
+		Snake* newSnake = dynamic_cast<Snake*>(newObj);
+		Ladder* newLadder = dynamic_cast<Ladder*>(newObj);
+		if (newSnake)
+		{
+			if (newSnake->startCellPos.GetCellNum() <= startCellPos.GetCellNum() && newSnake->startCellPos.GetCellNum() >= endCellPos.GetCellNum())
+				return true;
+			else if (newSnake->startCellPos.GetCellNum() >= startCellPos.GetCellNum() && newSnake->endCellPos.GetCellNum() <= endCellPos.GetCellNum())
+				return true;
+		}
+		if (newLadder)
+		{
+			if (newLadder->GetEndPosition().GetCellNum() == startCellPos.GetCellNum())
+				return true;
+		}
+	}
+
+	return false;
 }
 
 

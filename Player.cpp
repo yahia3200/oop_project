@@ -283,25 +283,38 @@ void Player::Move(Grid* pGrid, int diceNumber)
 
 			///TODO: use the appropriate output function to draw the player with "playerColor" (Done)
 			pOut->DrawPlayer(pos, playerNum, playerColor);
-			pCell = this->GetCell();
 			if (pCell->HasLadder())
 			{
 				Ladder* Lptr = pCell->HasLadder();
 				Lptr->Apply(pGrid, this);
+
+				if (pCell->HasCard())
+				{
+					Card* Cardptr = pCell->HasCard();
+					Cardptr->Apply(pGrid, this);
+				}
 			}
 			else if (pCell->HasSnake())
 			{
 				Snake* Snakeptr = pCell->HasSnake();
 				Snakeptr->Apply(pGrid, this);
+
+				if (pCell->HasCard())
+				{
+					Card* Cardptr = pCell->HasCard();
+					Cardptr->Apply(pGrid, this);
+				}
 			}
 			else if (pCell->HasCard())
 			{
 				Card* Cardptr = pCell->HasCard();
 				Cardptr->Apply(pGrid, this);
 			}
-			//pCell->GetGameObject()->Apply(pGrid, this);
-			if (pCell->GetCellPosition().GetCellNum() == 99)pGrid->SetEndGame(true);
-			if (pGrid->GetEndGame())pOut->PrintMessage("Player " + to_string(this->playerNum + 1) + " Won the Game...");
+
+			if (pCell->GetCellPosition().GetCellNum() == 99)
+				pGrid->SetEndGame(true);
+			if (pGrid->GetEndGame())
+				pOut->PrintMessage("Player " + to_string(this->playerNum) + " Won the Game...");
 		}
 		
 		

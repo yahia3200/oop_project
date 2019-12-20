@@ -33,16 +33,25 @@ void AddSnakeAction::Execute()
 		Snake* pSnake = new Snake(startPos, endPos);
 
 		Grid* pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
-		// Add the card object to the GameObject of its Cell:
-		bool added = pGrid->AddObjectToCell(pSnake);
-		// if the GameObject cannot be added
-		if (!added)
+		// if there is overlaping
+		if (pGrid->IsOverlapping(pSnake))
 		{
-			// Print an appropriate message
-			pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+			pGrid->PrintErrorMessage("Overlaping! Click to continue ...");
 			delete pSnake;
 		}
-		// Here, the Snake is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
+		else
+		{
+			// Add the card object to the GameObject of its Cell:
+			bool added = pGrid->AddObjectToCell(pSnake);
+			// if the GameObject cannot be added
+			if (!added)
+			{
+				// Print an appropriate message
+				pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+				delete pSnake;
+			}
+			// Here, the Snake is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
+		}
 	}
 	else
 	{

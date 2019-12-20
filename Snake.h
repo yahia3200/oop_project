@@ -17,6 +17,9 @@ public :
 	static void SaveSnakesNumber(ofstream& OutFile);
 
 	CellPosition GetEndPosition() const;
+
+	virtual bool IsOverlaping(GameObject* newObj);
+
 	virtual ~Snake();
 };
 

@@ -40,16 +40,26 @@ void AddLadderAction::Execute()
 		// Create a Ladder object with the parameters read from the user
 		Ladder* pLadder = new Ladder(startPos, endPos);
 		Grid* pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
-		// Add the card object to the GameObject of its Cell:
-		bool added = pGrid->AddObjectToCell(pLadder);
-		// if the GameObject cannot be added
-		if (!added)
+		// if there is overlaping
+		if (pGrid->IsOverlapping(pLadder))
 		{
-			// Print an appropriate message
-			pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+			pGrid->PrintErrorMessage("Overlaping! Click to continue ...");
 			delete pLadder;
 		}
-		// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
+		// Add the card object to the GameObject of its Cell:
+		else
+		{
+			bool added = pGrid->AddObjectToCell(pLadder);
+			// if the GameObject cannot be added
+			if (!added)
+			{
+				// Print an appropriate message
+				pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+				delete pLadder;
+			}
+			// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
+		}
+		
 
 	}
 	else
