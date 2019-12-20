@@ -17,6 +17,8 @@
 #include "CardFourteen.h"
 EditCardAction::EditCardAction(ApplicationManager* pApp) :Action(pApp)
 {
+	//Setting the cardNumber Intially 0 
+	//An indicator that there is no card is chosen by user
 	CardNumber = 0;
 }
 
@@ -32,6 +34,7 @@ void EditCardAction::ReadActionParameters()
 	
 	if (Cardptr!=NULL) //Check of not null pointer 
 	{
+		//if the card is exsist CardNumber will get the card number
 	CardNumber = Cardptr->GetCardNumber();
 	}
 	
@@ -40,12 +43,15 @@ void EditCardAction::ReadActionParameters()
 
 void EditCardAction::Execute()
 {
-	ReadActionParameters();
-	Grid* pGrid = pManager->GetGrid();
-	Input* pIn = pGrid->GetInput();
-	Output* pOut = pGrid->GetOutput();
-	if (CardNumber != 0)
+	ReadActionParameters(); //Reading The parameters (cell position which will be edited
+	Grid* pGrid = pManager->GetGrid(); //Getting pointer to the Grid
+	Input* pIn = pGrid->GetInput(); //Getting pointer to the input Class to Get UserAction waiting to Clear Statusbar
+	Output* pOut = pGrid->GetOutput(); //Getting Pointer to Output Class using Grid to Print Messages 
+	
+	if (CardNumber != 0) //To check if a card is chosen
 	{
+		//this switch case is made to check for the cards that have parameters can be editted,otherwise print a message that 
+		//the card cannot be edited and waiting user action
 		switch (CardNumber)
 
 		{
@@ -58,6 +64,8 @@ void EditCardAction::Execute()
 		case 9:
 			Cardptr->ReadCardParameters(pGrid);
 			break;
+			//From card 10 to 14 This cards parameters is read once ,when the first one is added ,so the function is Existed will be setted false
+			//To make the card Customizable again and sets its parameter again the switch the function to false
 		case 10:
 			((CardTen*)Cardptr)->setIsExisted(false);
 			Cardptr->ReadCardParameters(pGrid);
