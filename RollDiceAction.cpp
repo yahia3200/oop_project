@@ -8,6 +8,9 @@
 #include "Fire.h"
 #include <time.h> // used to in srand to generate random numbers with different seed
 
+#include <iostream>
+using namespace std;
+
 RollDiceAction::RollDiceAction(ApplicationManager* pApp) : Action(pApp)
 {
 }
@@ -25,7 +28,7 @@ void RollDiceAction::Execute()
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 
-
+	cout << pGrid->GetcurrPlayerNumber() << "   " << pGrid->GetCurrentPlayer()->getpreventplayer() << endl;
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
 
@@ -107,8 +110,7 @@ void RollDiceAction::Execute()
 	{
 		if (pGrid->GetCurrentPlayer()->getpreventplayer())
 		{
-
-			if (pGrid->GetCurrentPlayer()->GetWallet() > 0)
+			if (pGrid->GetCurrentPlayer()->GetWallet() > 0 && pGrid->GetCurrentPlayer()->GetTurnCount()!=2)
 			{
 				//prevent player from rolling dice by gettng 0 for dicenumber 
 				pGrid->GetCurrentPlayer()->Move(pGrid, 0);
@@ -129,11 +131,10 @@ void RollDiceAction::Execute()
 				// Move the currentPlayer using function Move of class player
 				pPlayer->Move(pGrid, diceNumber);
 				
-				if (pGrid->GetCurrentPlayer()->GetWallet() > 0)
+				if (pGrid->GetCurrentPlayer()->GetWallet() > 0 && pGrid->GetCurrentPlayer()->GetTurnCount() != 2)
 					pGrid->GetCurrentPlayer()->setpreventplayer(false);
 
 			}
-
 			// Advance the current player number of pGrid
 			pGrid->AdvanceCurrentPlayer();
 		}	

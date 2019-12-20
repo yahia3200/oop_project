@@ -85,6 +85,11 @@ void Player::resetPoisoncounter()
 	poisoncounter = 0;
 }
 
+int Player::GetPoisoncounter()
+{
+	return poisoncounter;
+}
+
 void Player::setIsBurnt(bool burntstatus)
 {
 	IsBurnt = burntstatus;
@@ -98,6 +103,11 @@ void Player::increaseturnsofFire()
 void Player::resetFirecounter()
 {
 	firecounter = 0;
+}
+
+int Player::GetFirecounter()
+{
+	return firecounter;
 }
 
 
