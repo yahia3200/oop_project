@@ -9,10 +9,8 @@ void CardTwo::ReadCardParameters(Grid* pGrid)
 {
 	Input* Pin = pGrid->GetInput();
 	Output* Pout = pGrid->GetOutput();
-
-	Pout->PrintMessage("New CardOne: Enter its wallet amount ");
+	Pout->PrintMessage("New CardTwo: Enter its wallet amount ");
 	walletAmount = Pin->GetInteger(Pout);
-
 	while (walletAmount < 0)
 	{
 		Pout->PrintMessage("Invalid Input. Please Enter Correct Value : ");
@@ -39,6 +37,7 @@ Card* CardTwo::GetCard(CellPosition& pos)
 
 void CardTwo::Save(ofstream& OutFile, int t)
 {
+	//Saving the card number ,position and wallet amount...
 	if (t == 2)
 	{
 		OutFile << cardNumber << " " << position.GetCellNum() << " " << walletAmount << '\n';

@@ -146,24 +146,18 @@ void Player::resetNumberOfAttacks()
 
 // ====== Drawing Functions ======
 
-
-
 void Player::Draw(Output* pOut) const
 {
+	//Drawing the player using output class
 	color playerColor = UI.PlayerColors[playerNum];
-
-
-	///TODO: use the appropriate output function to draw the player with "playerColor" (Done)
 	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, playerColor);
 
 }
 
 void Player::ClearDrawing(Output* pOut) const
 {
+	//This is used to clear the drawing of player in a certian Cell (For Movement)
 	color cellColor = pCell->HasCard() ? UI.CellColor_HasCard : UI.CellColor_NoCard;
-
-
-	///TODO: use the appropriate output function to draw the player with "cellColor" (to clear it) (Done)
 	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, cellColor);
 
 }

@@ -59,7 +59,7 @@ void CutCardAction::Execute()
 		pGrid->RemoveObjectFromCell(position);
 		pOut->DrawCell(position);
 		Card::DecrementCardCounter();
-
+		//Getting pointers to the Cards 
 		CardTen* IsCardTen = dynamic_cast<CardTen*>(CutCard);
 		CardEleven* IsCardEleven = dynamic_cast<CardEleven*>(CutCard);
 		CardTwelve* IsCardTwelve = dynamic_cast<CardTwelve*>(CutCard);

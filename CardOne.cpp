@@ -46,21 +46,17 @@ Card* CardOne::GetCard(CellPosition& pos)
 
 void CardOne::Apply(Grid* pGrid, Player* pPlayer)
 {
-		
-	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
-	// == Here are some guideline steps (numbered below) (numbered below) to implement this function ==
-
-	// 1- Call Apply() of the base class Card to print the message that you reached this card number
+	//Call Apply() of the base class Card to print the message that you reached this card number
 	Card::Apply(pGrid, pPlayer);
 
-	// 2- Decrement the wallet of pPlayer by the walletAmount data member of CardOne
-	//This Step Need Validation (What If Wallet Is Negative ? ) (Note In Player.cpp)
+	// Decrement the wallet of pPlayer by the walletAmount data member of CardOne
 	pPlayer->SetWallet(pPlayer->GetWallet() - walletAmount);
 
 }
 
 void CardOne::Save(ofstream& OutFile, int t)
 {
+	//Save the card number,position and its parameters
 	if (t == 2)
 	{
 		OutFile << cardNumber << " " << position.GetCellNum() << " " << walletAmount << '\n';

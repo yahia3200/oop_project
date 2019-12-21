@@ -47,6 +47,7 @@ CellPosition Ladder::GetEndPosition() const
 
 void Ladder::Save(ofstream& OutFile, int t)
 {
+	//Saving the start cell and end cell of the ladder
 	if (t == 0)
 	{
 		OutFile << startCellPos.GetCellNum() << " " << endCellPos.GetCellNum() << '\n';
@@ -61,9 +62,11 @@ void Ladder::SaveLaddersNumber(ofstream& OutFile)
 
 bool Ladder::IsOverlaping(GameObject* newObj)
 {
+	//this function to make sure that there is no overlapping 
 	if (startCellPos.HCell() == newObj->GetPosition().HCell())
 	{
-		Snake* newSnake = dynamic_cast<Snake*>(newObj);
+		//Getting pointer to snake and ladder not to overlap ladder or snake on ladder
+		Snake* newSnake = dynamic_cast<Snake*>(newObj); 
 		Ladder* newLadder = dynamic_cast<Ladder*>(newObj);
 		if (newLadder)
 		{
