@@ -43,15 +43,6 @@ void PasteCardAction::ReadActionParameters()
 	pOut->PrintMessage("Click On The Cell To Paste The Card On It..");
 
 	position = pIn->GetCellClicked();
-
-	//check if clicked copied or cutted cell is has a card (is not equal null)
-
-	if (pGrid->GetClipboard() != NULL)
-	{
-		//getting card clicked number 
-
-		cardnum = pGrid->GetClipboard()->GetCardNumber();
-	}
 	
 	//clear statusbar
     pOut->ClearStatusBar();
