@@ -82,11 +82,12 @@ void PasteCardAction::Execute()
 	//using GetCard function that return pointer to the card
 	//with same parameter of copied or cutted card 
 	//with the new position 
+	if (pGrid->GetClipboard() != NULL)
+	{
+		Card* cptr = pGrid->GetClipboard()->GetCard(position);
 
-	Card* cptr = pGrid->GetClipboard()->GetCard(position);
-
-	//paste the card to the clicked cell after cheaking
-	// it is valid to paste card in the clicked position 
+		//paste the card to the clicked cell after cheaking
+		// it is valid to paste card in the clicked position 
 
 		bool valid = pGrid->AddObjectToCell(cptr);
 		if (valid)
@@ -103,5 +104,5 @@ void PasteCardAction::Execute()
 			pOut->ClearStatusBar();
 			delete cptr;
 		}
-			
+	}
 	}
