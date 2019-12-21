@@ -425,10 +425,10 @@ bool Grid::IsOverlapping(GameObject* newObj)
 			if (CellList[i][j]->GetGameObject())
 			{
 				IsOverlap = CellList[i][j]->GetGameObject()->IsOverlaping(newObj);
-
-				if (IsOverlap)
-					break;
 			}
+
+			if (IsOverlap)
+				break;
 		}
 	}
 

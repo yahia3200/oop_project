@@ -43,18 +43,20 @@ void LoadAction::Execute()
 
 	Grid* pGrid = pManager->GetGrid();
 
-	// Delete All Objects From The Grid And Reset Cards From 10 To 14
-	pGrid->ResetGrid();
-	CardTen::IsExisted = false;
-	CardEleven::IsExisted = false;
-	CardTwelve::IsExisted = false;
-	CardThirteen::IsExisted = false;
-	CardFourteen::IsExisted = false;
-
 	ifstream InputFile;
 	InputFile.open(fileName);
 	if (InputFile.is_open()) //This Line for checking if the file is Opened or not 
 	{
+
+		// Delete All Objects From The Grid And Reset Cards From 10 To 14
+		pGrid->ResetGrid();
+		CardTen::IsExisted = false;
+		CardEleven::IsExisted = false;
+		CardTwelve::IsExisted = false;
+		CardThirteen::IsExisted = false;
+		CardFourteen::IsExisted = false;
+
+
 		// Read Ladders Number
 		int LaddersNum;
 		int start, end;
