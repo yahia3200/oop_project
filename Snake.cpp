@@ -1,6 +1,7 @@
 #include "Snake.h"
 #include "Ladder.h"
-
+#include "Player.h"
+#include"Card.h"
 int Snake::SnakeCount = 0;
 Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos):GameObject(startCellPos)
 {
@@ -33,6 +34,15 @@ void Snake::Apply(Grid* pGrid, Player* pPlayer)
 	//applaying snake effect 
 	pGrid->UpdatePlayerCell(pPlayer, endCellPos);
 	pGrid->UpdateInterface();
+
+	Cell* pCell = pPlayer->GetCell();
+
+	if (pCell->HasCard())
+	{
+		Card* Cardptr = pCell->HasCard();
+		Cardptr->Apply(pGrid, pPlayer);
+	}
+
 }
 
 CellPosition Snake::GetEndPosition() const
