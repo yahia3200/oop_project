@@ -57,6 +57,11 @@ void CardNine::Apply(Grid* pGrid, Player* pPlayer)
 
 	//Update player cell with the new clicked position 
 	pGrid->UpdatePlayerCell(pPlayer, CellTomove);
+
+	//Applying next game object if exist 
+	Cell* pCell = pPlayer->GetCell();
+	if (pCell->GetGameObject() != NULL)
+		pCell->GetGameObject()->Apply(pGrid, pPlayer);
 }
 
 CardNine::~CardNine()

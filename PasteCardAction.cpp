@@ -60,10 +60,10 @@ void PasteCardAction::ReadActionParameters()
 
 void PasteCardAction::Execute()
 {
-	
+
 
 	//getting pointer to Grid
-	
+
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
@@ -72,7 +72,7 @@ void PasteCardAction::Execute()
 
 	ReadActionParameters();
 
-	
+
 	//creat pointer to card with the clicked position
 	//using GetCard function that return pointer to the card
 	//with same parameter of copied or cutted card 
@@ -97,6 +97,10 @@ void PasteCardAction::Execute()
 
 		//paste the card to the clicked cell after cheaking
 		// it is valid to paste card in the clicked position 
+		//paste the card to the clicked cell after cheaking
+		// it is valid to paste card in the clicked position 
+		//paste the card to the clicked cell after cheaking
+		// it is valid to paste card in the clicked position 
 
 		bool valid = pGrid->AddObjectToCell(cptr);
 		if (valid)
@@ -113,8 +117,7 @@ void PasteCardAction::Execute()
 			pOut->ClearStatusBar();
 			delete cptr;
 		}
-	}
 
-	
-			
+
 	}
+}
