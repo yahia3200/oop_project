@@ -52,12 +52,7 @@ void PasteCardAction::ReadActionParameters()
 
 		cardnum = pGrid->GetClipboard()->GetCardNumber();
 	}
-	else if (pGrid->GetClipboard() == NULL)
-	{
-		pOut->ClearStatusBar();
-
-		pGrid->PrintErrorMessage("There is No Card To Paste ...");
-	}
+	
 	//clear statusbar
     pOut->ClearStatusBar();
 
@@ -83,10 +78,25 @@ void PasteCardAction::Execute()
 	//with same parameter of copied or cutted card 
 	//with the new position 
 
-	Card* cptr = pGrid->GetClipboard()->GetCard(position);
+	if (pGrid->GetClipboard() == NULL)
+	{
+		pOut->ClearStatusBar();
 
-	//paste the card to the clicked cell after cheaking
-	// it is valid to paste card in the clicked position 
+		pGrid->PrintErrorMessage("There is No Card To Paste ...Click To Continue");
+
+		int x, y;
+		pGrid->GetInput()->GetPointClicked(x, y);
+
+		//clear statusbar
+		pGrid->GetOutput()->ClearStatusBar();
+	}
+
+	else
+	{
+		Card* cptr = pGrid->GetClipboard()->GetCard(position);
+
+		//paste the card to the clicked cell after cheaking
+		// it is valid to paste card in the clicked position 
 
 		bool valid = pGrid->AddObjectToCell(cptr);
 		if (valid)
@@ -103,5 +113,8 @@ void PasteCardAction::Execute()
 			pOut->ClearStatusBar();
 			delete cptr;
 		}
+	}
+
+	
 			
 	}
