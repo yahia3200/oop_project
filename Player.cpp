@@ -371,7 +371,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		Isiced = false;
 	}
 }
-}
+
 void Player::AppendPlayerInfo(string& playersInfo) const
 {
 	playersInfo += "P" + to_string(playerNum) + "(";
