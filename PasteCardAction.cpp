@@ -52,7 +52,7 @@ void PasteCardAction::ReadActionParameters()
 
 		cardnum = pGrid->GetClipboard()->GetCardNumber();
 	}
-	else if (pGrid->GetClipboard() == NULL)
+	else
 	{
 		pOut->ClearStatusBar();
 
