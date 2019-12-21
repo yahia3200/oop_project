@@ -18,23 +18,22 @@ void Ladder::Draw(Output* pOut) const
 void Ladder::Apply(Grid* pGrid, Player* pPlayer) 
 {
 	
+	//Creating Pointer To Output Class Using Grid Class
+	//Creating Pointer To Input Class Using Grid Class
 
-	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
+	Output* pOut = pGrid->GetOutput(); 
+	Input* pIn = pGrid->GetInput();  
 
-
-	// == Here are some guideline steps (numbered below) to implement this function ==
-	
-	// 1- Print a message "You have reached a ladder. Click to continue ..." and wait mouse click
-
-	// 2- Apply the ladder's effect by moving the player to the endCellPos
-	//    Review the "pGrid" functions and decide which function can be used for that
-	Output* pOut = pGrid->GetOutput(); //Creating Pointer To Output Class Using Grid Class
-	Input* pIn = pGrid->GetInput();    //Creating Pointer To Input Class Using Grid Class
-	int x, y;  //Int Variables to be used in GetPointClicked
+	//Int Variables to be used in GetPointClicked
+	int x, y; 
 	pOut->PrintMessage("You have reached a ladder. Click to continue ..."); 
-	pIn->GetPointClicked(x, y); //Wating For User Click
+
+	//Wating For User Click
+	pIn->GetPointClicked(x, y);
 	pOut->ClearStatusBar();
-	pGrid->UpdatePlayerCell(pPlayer, endCellPos); //Applying Ladder Effect 
+
+	//Applying Ladder Effect 
+	pGrid->UpdatePlayerCell(pPlayer, endCellPos); 
 	
 }
 

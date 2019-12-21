@@ -18,15 +18,21 @@ void Snake::Draw(Output* pOut) const
 void Snake::Apply(Grid* pGrid, Player* pPlayer)
 {
 	//Creating Pointer To Output Class Using Grid Class
+
 	Output* pOut = pGrid->GetOutput(); 
+
 	//Creating Pointer To Input Class Using Grid Class
+
 	Input* pIn = pGrid->GetInput();
 	//Int Variables to be used in GetPointClicked
 	int x, y; 
-	pOut->PrintMessage("You have reached a ladder. Click to continue ...");
-	pIn->GetPointClicked(x, y); //Wating For User Click
+	pOut->PrintMessage("You have reached a snake. Click to continue ...");
+	//Wating For User Click
+	pIn->GetPointClicked(x, y); 
 	pOut->ClearStatusBar();
-	pGrid->UpdatePlayerCell(pPlayer, endCellPos); //Applying Ladder Effect 
+
+	//applaying snake effect 
+	pGrid->UpdatePlayerCell(pPlayer, endCellPos);
 	pGrid->UpdateInterface();
 }
 

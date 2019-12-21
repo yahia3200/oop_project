@@ -2,6 +2,7 @@
 
 CardNine::CardNine(const CellPosition& pos) : Card(pos) 
 {
+	//setting card number 
 	cardNumber = 9; 
 }
 
@@ -17,7 +18,7 @@ void CardNine::ReadCardParameters(Grid* pGrid)
 	// get cell clicked and stored it in a paramewte CellTomove (object from  CellPosition )
 	pOut->PrintMessage("New CardNine: Click to the cell to move to it  ");
 	CellTomove = pIn->GetCellClicked();
-	pOut->ClearStatusBar();
+	pOut->ClearStatusBar() ;
 }
 
 

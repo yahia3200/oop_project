@@ -20,7 +20,7 @@ void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 	pGrid->GetCurrentPlayer()->setpreventplayer(true);
 
 	//print message to the user 
-	pOut->PrintMessage("You Are Prevented From Rolling dice next turn ...Click To Continue ");
+	pOut->PrintMessage("you are denied from playing this turn. Click to continue ");
 	int x, y;
 	pIn->GetPointClicked(x, y);
 	pOut->ClearStatusBar();
