@@ -166,24 +166,6 @@ void Player::ClearDrawing(Output* pOut) const
 
 void Player::Move(Grid* pGrid, int diceNumber)
 {
-	
-
-	// 2- Check the turnCount to know if the wallet recharge turn comes (recharge wallet instead of move)
-	//    If yes, recharge wallet and reset the turnCount and return from the function (do NOT move)
-
-	// 3- Set the justRolledDiceNum with the passed diceNumber
-
-	// 4- Get the player current cell position, say "pos", and add to it the diceNumber (update the position)
-	//    Using the appropriate function of CellPosition class to update "pos"
-
-	// 5- Use pGrid->UpdatePlayerCell() func to Update player's cell POINTER (pCell) with the cell in the passed position, "pos" (the updated one)
-	//    the importance of this function is that it Updates the pCell pointer of the player and Draws it in the new position
-
-	// 6- Apply() the game object of the reached cell (if any)
-
-	
-	
-	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)
 	//Increment the turnCount
 	turnCount++;
 	//Getting pointer to the input && output Interfaces from the Grid
@@ -327,6 +309,12 @@ void Player::Move(Grid* pGrid, int diceNumber)
 			if (pCell->GetGameObject())
 			{
 				pCell->GetGameObject()->Apply(pGrid,this);
+				if (pCell->HasCard())
+				{
+					Card* Cardptr = pCell->HasCard();
+					Cardptr->Apply(pGrid,pGrid->GetCurrentPlayer());
+				}
+
 			}
 
 			if (pCell->GetCellPosition().GetCellNum() == 99)

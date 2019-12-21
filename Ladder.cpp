@@ -1,8 +1,6 @@
 #include "Ladder.h"
 #include "Player.h"
 #include "Snake.h"
-#include "Card.h"
-
 int Ladder::LadderCounter = 0;
 Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
 {
@@ -37,14 +35,6 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 	//Applying Ladder Effect 
 	pGrid->UpdatePlayerCell(pPlayer, endCellPos); 
 
-	Cell* pCell = pPlayer->GetCell();
-
-	if (pCell->HasCard())
-	{
-		Card* Cardptr = pCell->HasCard();
-		Cardptr->Apply(pGrid, pPlayer);
-	}
-	
 	
 }
 

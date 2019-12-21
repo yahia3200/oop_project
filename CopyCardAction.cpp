@@ -37,7 +37,7 @@ void CopyCardAction::Execute()
 {
 	ReadActionParameters();
 
-	//copy the card clicked After check there is card in clicked 
+	//copy the card clicked After check there is card in clicked cell
 	if (CpiedCardinfo != NULL)
 		pGrid->SetClipboard(CpiedCardinfo);
 	else
