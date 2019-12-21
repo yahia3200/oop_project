@@ -14,9 +14,14 @@ void CardThree::Apply(Grid* pGrid, Player* pPlayer)
 	
 	Ladder* Lptr = pGrid->GetNextLadder(position); //Getting the position of endCell of Next Ladder
 
-	pGrid->UpdatePlayerCell(pPlayer, Lptr->GetPosition()); //Updating The Player's Cell
+	if (Lptr)
+	{
+		pGrid->UpdatePlayerCell(pPlayer, Lptr->GetPosition()); //Updating The Player's Cell
 
-	Lptr->Apply(pGrid,pPlayer);
+		Lptr->Apply(pGrid, pPlayer);
+	}
+
+	
 }
 
 
