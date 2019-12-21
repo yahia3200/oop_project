@@ -37,7 +37,7 @@ void Poison::Execute()
 				pGrid->GetInput()->GetPointClicked(x, y);
 				pGrid->GetOutput()->ClearStatusBar();
 			}
-		} while (PoisonedPlayer>3||PoisonedPlayer<0||PoisonedPlayer==CurrPlayerNum);
+		} while (PoisonedPlayer > 3 || PoisonedPlayer < 0 || PoisonedPlayer == CurrPlayerNum);
 		for (int i = 0; i < MaxPlayerCount; i++)
 		{
 			pGrid->AdvanceCurrentPlayer();
@@ -46,7 +46,7 @@ void Poison::Execute()
 			{
 				CurrPlayer->setIspoisoned(true);
 				CurrPlayer->increaseturnsofpoison();
-				pGrid->GetOutput()->PrintMessage("Player No. " + to_string(PoisonedPlayer) + " Is poisoned by deducting 1 number from his dice roll. ,Press anywhere to continue");
+				pGrid->GetOutput()->PrintMessage("Player No. " + to_string(PoisonedPlayer) + " Is poisoned for " + to_string(pGrid->GetCurrentPlayer()->GetPoisoncounter()) + " turns by deducting 1 number from his dice roll. ,Press anywhere to continue");
 				int x, y;
 				pGrid->GetInput()->GetPointClicked(x, y);
 				pGrid->GetOutput()->ClearStatusBar();

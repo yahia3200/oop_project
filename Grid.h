@@ -118,6 +118,8 @@ public:
 	void ResetGrid();
 	void deleteObject(CellPosition pos);
 
+	bool IsOverlapping(GameObject* newObj);
+
 	~Grid(); // A destructor for any needed deallcations
 };
 

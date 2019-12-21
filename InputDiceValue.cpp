@@ -57,27 +57,86 @@ void InputDiceValue::Execute()
 	// -- If not ended, do the following --:
 	if (!pGrid->GetEndGame())
 	{
-		//Getting dice num from user 
-		pOut->PrintMessage("Enter dice value ...");
-
-		diceNumber = pIn->GetInteger(pOut);
-		while (diceNumber<0 || diceNumber>6)
+		if (pGrid->GetCurrentPlayer()->getpreventplayer())
 		{
-			pOut->PrintMessage("Enter correct dice value ...");
-			diceNumber = pIn->GetInteger(pOut);
-			
+			if (pGrid->GetCurrentPlayer()->GetWallet() >= 0)
+			{
+				//prevent player from rolling dice by gettng 0 for dicenumber 
+				pGrid->GetCurrentPlayer()->Move(pGrid, 0);
 
+				//let the current player availabel to play in the next turn
+				pGrid->GetCurrentPlayer()->setpreventplayer(false);
+			}
+			else
+			{
+				//Getting dice num from user 
+				pOut->PrintMessage("Enter dice value ...");
+
+				diceNumber = pIn->GetInteger(pOut);
+				while (diceNumber < 0 || diceNumber>6)
+				{
+					pOut->PrintMessage("Enter correct dice value ...");
+					diceNumber = pIn->GetInteger(pOut);
+				}
+
+				// Get the "current" player from pGrid
+				Player* pPlayer = pGrid->GetCurrentPlayer();
+
+				// Move the currentPlayer using function Move of class player
+				pPlayer->Move(pGrid, diceNumber);
+				pGrid->UpdateInterface();
+
+				if (pGrid->GetCurrentPlayer()->GetWallet() >= 0)
+					pGrid->GetCurrentPlayer()->setpreventplayer(false);
+			}
+			// Advance the current player number of pGrid
+			pGrid->AdvanceCurrentPlayer();
 		}
-		
-		// Get the "current" player from pGrid
-		Player* pPlayer = pGrid->GetCurrentPlayer();
+		else
+		{
+			//Getting dice num from user 
+			pOut->PrintMessage("Enter dice value ...");
 
-		// Move the currentPlayer using function Move of class player
+			diceNumber = pIn->GetInteger(pOut);
+			while (diceNumber < 0 || diceNumber>6)
+			{
+				pOut->PrintMessage("Enter correct dice value ...");
+				diceNumber = pIn->GetInteger(pOut);
+			}
 
-		pPlayer->Move(pGrid, diceNumber);
-		pGrid->UpdateInterface();
-		// Advance the current player number of pGrid
-		pGrid->AdvanceCurrentPlayer();
+			// Get the "current" player from pGrid
+			Player* pPlayer = pGrid->GetCurrentPlayer();
+
+			// Move the currentPlayer using function Move of class player
+			pPlayer->Move(pGrid, diceNumber);
+			pGrid->UpdateInterface();
+
+			// Advance the current player number of pGrid
+			pGrid->AdvanceCurrentPlayer();
+		}
+
+
+
+
+		////Getting dice num from user 
+		//pOut->PrintMessage("Enter dice value ...");
+
+		//diceNumber = pIn->GetInteger(pOut);
+		//while (diceNumber<0 || diceNumber>6)
+		//{
+		//	pOut->PrintMessage("Enter correct dice value ...");
+		//	diceNumber = pIn->GetInteger(pOut);
+		//}
+		//
+		//// Get the "current" player from pGrid
+		//Player* pPlayer = pGrid->GetCurrentPlayer();
+
+		//// Move the currentPlayer using function Move of class player
+		//pPlayer->Move(pGrid, diceNumber);
+		//pGrid->UpdateInterface();
+
+		//// Advance the current player number of pGrid
+		//pGrid->AdvanceCurrentPlayer();
 	}
 	else {
 		int x, y;
@@ -118,10 +177,12 @@ void InputDiceValue::Execute()
 			pGrid->GetCurrentPlayer()->SetturnCount(0);
 			pGrid->GetCurrentPlayer()->setIspoisoned(false);
 			pGrid->GetCurrentPlayer()->setIsBurnt(false);
+			pGrid->GetCurrentPlayer()->setIsiced(false);
 			pGrid->GetCurrentPlayer()->setpreventplayer(false);
 			pGrid->GetCurrentPlayer()->resetNumberOfAttacks();
 			pGrid->GetCurrentPlayer()->resetFirecounter();
 			pGrid->GetCurrentPlayer()->resetPoisoncounter();
+			pGrid->GetCurrentPlayer()->reseticecounter();
 			pGrid->UpdatePlayerCell(pGrid->GetCurrentPlayer(), *startplayerscell);
 			pGrid->GetLight()->restart();
 			pGrid->GetIce()->restart();

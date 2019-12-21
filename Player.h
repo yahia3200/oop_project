@@ -22,6 +22,9 @@ class Player
 	bool Ispoisoned;  //bool data member indicate if player is poisned or not
 	int firecounter;  //refers how many turn player is burnt
 	bool IsBurnt;  //bool data member indicate if player is burnt or not
+	int icecounter;  //refers how many turn player is iced
+	bool Isiced;  //bool data member indicate if player is iced or not
+
 
 public:
 
@@ -44,10 +47,17 @@ public:
 	void setIspoisoned(bool poisonstatus);  //A setter for poisoned player
 	void increaseturnsofpoison();  //put 5 counters on the player
 	void resetPoisoncounter();  //reset poisoncounter
+	int GetPoisoncounter();  //getter for Poisoncounter
 
 	void setIsBurnt(bool burntstatus);  //A setter for burnt player
 	void increaseturnsofFire();  //put 3 counters on the player
 	void resetFirecounter();  //reset firecounter
+	int GetFirecounter();  //getter for firecounter
+
+	void setIsiced(bool icedstatus);  //A setter for burnt player
+	void increaseturnsoice();  //put 3 counters on the player
+	void reseticecounter();  //reset firecounter
+	int Geticecounter();  //getter for firecounter
 
 	void NumberOfAttacksincrements();  //increase  Number Of Attacks for each player with one when attacks
 	void resetNumberOfAttacks();  //reset Number of attacks

@@ -32,6 +32,8 @@ public:
 	
 	virtual void Save(ofstream &OutFile,int t) = 0;	// Saves the GameObject parameters to the file
 
+	virtual bool IsOverlaping(GameObject* newObj);   // Not Pure Virtual Becouse Cards Can't Overlap
+
 	virtual ~GameObject(); // Virtual destructor
 };
 

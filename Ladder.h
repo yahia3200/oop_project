@@ -26,6 +26,7 @@ public:
 	
 	static void SaveLaddersNumber(ofstream& OutFile);
 	
+	virtual bool IsOverlaping(GameObject* newObj);
 
 	virtual ~Ladder(); // Virtual destructor
 };

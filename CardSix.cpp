@@ -9,7 +9,10 @@ void CardSix::Apply(Grid* pGrid, Player* pPlayer)
 {
 	Card::Apply(pGrid, pPlayer);
 
+	pPlayer->SetturnCount(pPlayer->GetTurnCount() - 1);
+
 	pPlayer->Move(pGrid, - pPlayer->GetRolledDiceNUm());
+
 }
 
 Card* CardSix::GetCard(CellPosition& pos)

@@ -1,5 +1,6 @@
 #include "Ladder.h"
 #include "Player.h"
+#include "Snake.h"
 
 int Ladder::LadderCounter = 0;
 Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
@@ -7,7 +8,6 @@ Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPo
 	this->endCellPos = endCellPos;
 	this->startCellPos = startCellPos;
 	LadderCounter++;
-	///TODO: Do the needed validation
 }
 
 void Ladder::Draw(Output* pOut) const
@@ -26,6 +26,7 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 
 	//Int Variables to be used in GetPointClicked
 	int x, y; 
+	
 	pOut->PrintMessage("You have reached a ladder. Click to continue ..."); 
 
 	//Wating For User Click
@@ -34,6 +35,7 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 
 	//Applying Ladder Effect 
 	pGrid->UpdatePlayerCell(pPlayer, endCellPos); 
+	
 	
 }
 
@@ -55,6 +57,32 @@ void Ladder::Save(ofstream& OutFile, int t)
 void Ladder::SaveLaddersNumber(ofstream& OutFile)
 {
 	OutFile << LadderCounter << '\n';
+}
+
+bool Ladder::IsOverlaping(GameObject* newObj)
+{
+	if (startCellPos.HCell() == newObj->GetPosition().HCell())
+	{
+		Snake* newSnake = dynamic_cast<Snake*>(newObj);
+		Ladder* newLadder = dynamic_cast<Ladder*>(newObj);
+		if (newLadder)
+		{
+
+			if (newLadder->startCellPos.GetCellNum() >= startCellPos.GetCellNum() && newLadder->startCellPos.GetCellNum() <= endCellPos.GetCellNum())
+				return true;
+			else if (newLadder->startCellPos.GetCellNum() <= startCellPos.GetCellNum() && newLadder->endCellPos.GetCellNum() >= endCellPos.GetCellNum())
+				return true;
+		}
+
+		if (newSnake)
+		{
+			if (newSnake->GetPosition().GetCellNum() == endCellPos.GetCellNum())
+				return true;
+		}
+	}
+
+	return false;
+		
 }
 
 void Ladder::DecrementLadderCounter()
