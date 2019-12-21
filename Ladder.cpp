@@ -1,6 +1,8 @@
 #include "Ladder.h"
 #include "Player.h"
 #include "Snake.h"
+#include "Card.h"
+
 int Ladder::LadderCounter = 0;
 Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
 {
@@ -35,6 +37,11 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 	//Applying Ladder Effect 
 	pGrid->UpdatePlayerCell(pPlayer, endCellPos); 
 
+	if (pPlayer->GetCell()->HasCard())
+	{
+		Card* Cardptr = pPlayer->GetCell()->HasCard();
+		Cardptr->Apply(pGrid, pGrid->GetCurrentPlayer());
+	}
 	
 }
 
@@ -74,11 +81,14 @@ bool Ladder::IsOverlaping(GameObject* newObj)
 				return true;
 			else if (newLadder->startCellPos.GetCellNum() <= startCellPos.GetCellNum() && newLadder->endCellPos.GetCellNum() >= endCellPos.GetCellNum())
 				return true;
+			else if (newLadder->endCellPos.GetCellNum() == startCellPos.GetCellNum())
+				return true;
 		}
 
 		if (newSnake)
 		{
 			if (newSnake->GetPosition().GetCellNum() == endCellPos.GetCellNum())
+
 				return true;
 		}
 	}

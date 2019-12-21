@@ -11,9 +11,14 @@ void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 
 	Snake* Snakeptr = pGrid->GetNextSnake(position); //Getting the position of endCell of Next Snake
 
-	pGrid->UpdatePlayerCell(pPlayer, Snakeptr->GetPosition()); //Updating The Player's Cell
+	if (Snakeptr)
+	{
+		pGrid->UpdatePlayerCell(pPlayer, Snakeptr->GetPosition()); //Updating The Player's Cell
 
-	Snakeptr->Apply(pGrid, pPlayer);
+		Snakeptr->Apply(pGrid, pPlayer);
+	}
+
+	
 }
 
 Card* CardFour::GetCard(CellPosition& pos)

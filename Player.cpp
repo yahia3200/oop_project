@@ -308,18 +308,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 			pOut->DrawPlayer(pos, playerNum, playerColor);
 			if (pCell->GetGameObject())
 			{
-				if (dynamic_cast <Ladder*>(pCell->GetGameObject())|| dynamic_cast <Snake*>(pCell->GetGameObject()))
-				{
-					pCell->GetGameObject()->Apply(pGrid,this);
-					if (pCell->HasCard())
-					{
-						Card* Cardptr = pCell->HasCard();
-						Cardptr->Apply(pGrid, pGrid->GetCurrentPlayer());
-					}
-				}
-				else
-					pCell->GetGameObject()->Apply(pGrid, this);
-
+				pCell->GetGameObject()->Apply(pGrid,this);
 			}
 
 			if (pCell->GetCellPosition().GetCellNum() == 99)
