@@ -16,8 +16,7 @@
 #include "CardTwelve.h"
 #include "CardThirteen.h"
 #include "CardFourteen.h"
-#include <iostream>
-using namespace std;
+
 PasteCardAction::PasteCardAction(ApplicationManager* pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer
